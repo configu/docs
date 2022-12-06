@@ -23,11 +23,6 @@ const components = {
     return <code {...props} />;
   },
   pre: (props) => <div {...props} />,
-  table: (props) => (
-    <div className="table-wrapper">
-      <table {...props} />
-    </div>
-  ),
   Collapsible,
   Admonition,
   CodeTabs,

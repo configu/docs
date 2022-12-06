@@ -6,19 +6,42 @@ title: Configu's Termiology
 
 Configu uses the following terms to refer to different parts of your configuration pipeline:
 
-| T | A |
-| - | - |
-| A | T |
-
-
-| Configu Concept           | Explanation |
-|-------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Configuration Schema**  | _Schemas_ are created from `.cfgu.json` files and imported into Configu. [Read more on how to import cfgu files](/docs/schemas) and create _schemas_.                                                                                                                                               |
-| **Configuration Set**     | A configuration *set* is where you assign values for your _schema_ keys. The _sets_ are organized in a tree structure, starting from the 'root' 'set', and enable inheritance. It is most often used to represent an environment and contains all the configuration values that are relevant to it. |
-| **Configuration Types**   | Configu enables pre-defined type validation on configuration keys. enforced [types](/docs/types) include (primitives, template strings, patterns, and more) Read more here for the full list of supported types.                                                                                    |
-| **Configuration Secret**  | A value within a _set_ can be linked to a secret containing sensitive information, like database credentials. Configu integrates with the most prevelant secret managers, and does not store or send the actual secret, only a pointer to it that can only be used with your tokens.                |
-| **Configuration Runtime** | Configu supports automatic integration with many popular platforms such as Heroku, Netlify and many more, for truly centralized config management.                                                                                                                                                  |
-| **Configuration Format**  | The format that Configu needs to deliver the selected set in (JSON, YAML, dotenv, shell) Read more here for full list of supported formats.                                                                                                                                                         |
+<div className="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Configu Concept</th>
+                <th>Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Configuration Schema</strong></td>
+                <td><i>Schemas</i> are created from <code>.cfgu.json</code> files and imported into Configu. <a href="/schemas">Read more on how to import cfgu files</a> and create <i>schemas</i>.</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration Set</strong></td>
+                <td>A configuration <i>set</i> is where you assign values for your <i>schema</i> keys. The <i>sets</i> are organized in a tree structure, starting from the 'root' 'set', and enable inheritance. It is most often used to represent an environment and contains all the configuration values that are relevant to it.</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration Types</strong></td>
+                <td>Configu enables pre-defined type validation on configuration keys. enforced [types](/docs/types) include (primitives, template strings, patterns, and more) Read more here for the full list of supported types.</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration Secret</strong></td>
+                <td>A value within a <i>set</i> can be linked to a secret containing sensitive information, like database credentials. Configu integrates with the most prevelant secret managers, and does not store or send the actual secret, only a pointer to it that can only be used with your tokens.</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration Runtime</strong></td>
+                <td>Configu supports automatic integration with many popular platforms such as Heroku, Netlify and many more, for truly centralized config management.</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration Format</strong></td>
+                <td>The format that Configu needs to deliver the selected set in (JSON, YAML, dotenv, shell) Read more here for full list of supported formats.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 A list of all runtimes, types supported vaults and other features connected with these concepts are found in the app. 
 
