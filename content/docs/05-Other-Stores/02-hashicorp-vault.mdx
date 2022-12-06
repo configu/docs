@@ -1,0 +1,74 @@
+---
+id: hashicorp-vault
+slug: hashicorp-vault
+title: Hashicorp Vault
+---
+
+import StoreIntroSnippet from '../components/store-intro.mdx';
+import CliInstallSnippet from '../components/cli-install.mdx';
+import CliUsageSnippet from '../components/cli-usage.mdx';
+import CliExamplesSnippet from '../components/cli-examples.mdx';
+import SdkInstallSnippet from '../components/sdk-install.mdx';
+export const introStoreName = 'Hashicorp Vault KV Secrets Engine - Version 2';
+export const scheme = 'hashicorp-vault';
+export const uriStructure = '[token]@[address]?[engine=][&protocol=]';
+export const uriExample = 'token@127.0.0.1:8200?engine=example&protocol=http';
+
+## Introduction
+
+<StoreIntroSnippet storeName={introStoreName} />
+
+## Working with the store
+
+## CLI installation
+
+<CliInstallSnippet />
+
+## CLI usage
+
+<CliUsageSnippet scheme={scheme} uriStructure={uriStructure} />
+
+Environment variables:
+
+- `VAULT_ADDR`: The address of the vault.
+- `VAULT_TOKEN`: Authentication token for accessing the vault.
+
+<CliExamplesSnippet scheme={scheme} uriExample={uriExample} />
+
+## SDK installation
+
+<SdkInstallSnippet />
+
+## SDK usage
+
+```node.jsnode.js
+import { Cfgu, Set, UpsertCommand, EvalCommand, DeleteCommand, HashiCorpVaultStore} from "@configu/node";
+import path from "path";
+
+const store = new HashiCorpVaultStore({ address, token, engine});
+const schema = new Cfgu(path.resolve(__dirname, "./example.cfgu.json"));
+const set = new Set("dev");
+
+// * Example upsert command
+await new UpsertCommand({ store, set, schema, configs: [{ key: "foo", value: "bar" }] }).run();
+
+// * Example eval command
+const configs = await new EvalCommand({ store, set, schema }).run();
+
+// * Example delete command
+await new DeleteCommand({ store, set, schema }).run();
+```
+
+## References
+
+To reference a value from this store, use the following reference format:
+
+```node.jsshell
+{{hashicorp-vault://<engine>@[set/]<schema>[.key][?key=[key]]}}
+```
+
+Example:
+
+```node.jsshell
+{{hashicorp-vault://engine@example-set/example-schema.foo}}
+```

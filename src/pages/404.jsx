@@ -10,7 +10,7 @@ import SEO from 'components/shared/seo';
 const NotFoundPage = () => (
   <Layout>
     <section className="safe-paddings py-16 sm:py-32">
-      <div className="container">
+      <div className="container px-0">
         <p className="font-semibold uppercase">404 error</p>
         <h1>Page not found</h1>
         <p className="mt-2">Sorry, we couldn’t find the page you’re looking for.</p>
@@ -24,10 +24,4 @@ const NotFoundPage = () => (
 
 export default NotFoundPage;
 
-export const Head = ({ location: { pathname } }) => (
-  <SEO
-    title="Page not found"
-    description="Sorry, we couldn’t find the page you’re looking for"
-    pathname={pathname}
-  />
-);
+export const Head = ({ location: { pathname } }) => <SEO pathname={pathname} />;

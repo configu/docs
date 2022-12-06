@@ -1,0 +1,7 @@
+@layer components {
+  .with-highlighted-text {
+    mark {
+      @apply bg-transparent text-blue-light dark:text-blue-dark;
+    }
+  }
+}

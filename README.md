@@ -1,4 +1,4 @@
-# Pixel Point Gatsby Tailwind Starter
+# Configu Docs Website Repo :rocket
 
 ## Table of Contents
 
@@ -16,23 +16,25 @@
 
 ## Getting Started
 
-1. Clone this repository or hit "Use this template" button
-
-```bash
-git clone git@github.com:pixel-point/gatsby-tailwind-starter.git
-```
-
-2. Install dependencies
+1. Install dependencies
 
 ```bash
 npm install
 ```
 
-3. Fill environment variables
+2. Fill environment variables
 
 ```bash
 cp .env.example .env
 ```
+
+An `.env` file should consist of publicly available included in `.env` as well as private ones:
+
+```env
+ALGOLIA_ADMIN_KEY=
+```
+
+:warning: Please, ask project owners for private variables or, if you have an access to Gatsby Dashboard, just pull them out from the `Environment variables` section.
 
 ## Usage
 
@@ -67,7 +69,9 @@ npm run clean
 │   ├── components
 │   │  ├── pages — React components that are being used specifically on a certain page
 │   │  └── shared — React components that are being used across the whole website
+│   ├── constants
 │   ├── hooks
+│   ├── icons
 │   ├── images
 │   ├── pages
 │   ├── styles
@@ -75,11 +79,12 @@ npm run clean
 │   ├── utils
 │   └── html.jsx — HTML template for all generated pages. Read more about it here — gatsbyjs.org/docs/custom-html
 ├── static
-│   └── fonts
-├── gatsby-browser.js — Usage of the Gatsby browser APIs. Read more about it [here](gatsbyjs.org/docs/browser-apis)
-├── gatsby-config.js — Main configuration file for a Gatsby site. Read more about it [here](gatsbyjs.org/docs/gatsby-config)
-├── gatsby-node.js — Usage of the Gatsby Node APIs. [Read more about it here](gatsbyjs.org/docs/node-apis)
-└── gatsby-ssr.js — Usage of the Gatsby server-side rendering APIs. [Read more about it here](gatsbyjs.org/docs/ssr-apis)
+│   ├── fonts
+│   └── images
+├── gatsby-browser.js — Usage of the Gatsby browser APIs
+├── gatsby-config.js — Main configuration file for a Gatsby site
+├── gatsby-node.js — Usage of the Gatsby Node APIs
+└── gatsby-ssr.js — Usage of the Gatsby server-side rendering APIs
 ```
 
 ## Component Folder Structure

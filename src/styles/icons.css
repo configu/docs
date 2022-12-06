@@ -1,0 +1,12 @@
+@layer components {
+  .social-icon {
+    path {
+      @apply transition-[fill] duration-200;
+    }
+    &:hover {
+      path {
+        @apply fill-white;
+      }
+    }
+  }
+}

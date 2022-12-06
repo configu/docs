@@ -1,0 +1,79 @@
+---
+id: azure-key-vault
+slug: azure-key-vault
+title: Azure Key Vault
+---
+
+import StoreIntroSnippet from '../components/store-intro.mdx';
+import CliInstallSnippet from '../components/cli-install.mdx';
+import CliUsageSnippet from '../components/cli-usage.mdx';
+import CliExamplesSnippet from '../components/cli-examples.mdx';
+import SdkInstallSnippet from '../components/sdk-install.mdx';
+export const introStoreName = 'Azure Key Vault';
+export const scheme = 'azure-key-vault';
+export const uriStructure = '[clientId]:[clientSecret]@[tenantId][?vaultUrl=]';
+export const uriExample = 'clientId:clientSecret@tenantId?vaultUrl=https://example.vault.azure.net';
+
+## Introduction
+
+<StoreIntroSnippet storeName={introStoreName} />
+
+## Working with the store
+
+## CLI installation
+
+<CliInstallSnippet />
+
+## CLI usage
+
+<CliUsageSnippet scheme={scheme} uriStructure={uriStructure} />
+
+Environment variables:
+
+- `AZURE_CLIENT_ID`: The client(application) ID of an App Registration in the tenant.
+- `AZURE_CLIENT_SECRET`: A client secret that was generated for the App Registration.
+- `AZURE_TENANT_ID`: The Azure Active Directory tenant(directory) ID.
+
+<CliExamplesSnippet scheme={scheme} uriExample={uriExample} />
+
+## SDK installation
+
+<SdkInstallSnippet />
+
+## SDK usage
+
+```node.js
+import { Cfgu, Set, UpsertCommand, EvalCommand, DeleteCommand, AzureKeyVaultStore} from "@configu/node";
+import path from "path";
+
+const store = new AzureKeyVaultStore({ credentials: { clientId, clientSecret, tenantId}, vaultUrl });
+const schema = new Cfgu(path.resolve(__dirname, "./example.cfgu.json"));
+const set = new Set("dev");
+
+// * Example upsert command
+await new UpsertCommand({ store, set, schema, configs: [{ key: "foo", value: "bar" }] }).run();
+
+// * Example eval command
+const configs = await new EvalCommand({ store, set, schema }).run();
+
+// * Example delete command
+await new DeleteCommand({ store, set, schema }).run();
+```
+
+## References
+
+To reference a value from this store, use the following reference format:
+
+```node.js
+{{azure-key-vault://<vaultUrl>@[set/]<schema>[.key][?key=[key]]}}
+```
+
+Example:
+
+```node.js
+{{azure-key-vault://example.vault.azure.net@example-set/example-schema.foo}}
+```
+
+## Limitations
+
+- Deleting entire configs does not immediately remove secrets, attempting to upsert before absolute deletion is complete will throw an error. Deleted secrets can be purged via the Azure Key Vault portal

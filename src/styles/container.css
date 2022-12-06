@@ -1,6 +1,17 @@
-/* TODO: Add max-widths for each breakpoint + paddings for the resolution when the container fluid */
 @layer components {
   .container {
-    @apply mx-auto;
+    @apply mx-auto max-w-[1460px] xl:px-10 md:px-7 sm:px-4;
+  }
+
+  .container-lg {
+    @apply mx-auto max-w-[1720px] md:px-7 sm:px-4 [@media(max-width:1800px)]:px-10;
+  }
+
+  .container-sm {
+    @apply mx-auto max-w-[1216px] lg:px-10 md:px-7 sm:px-4;
+  }
+
+  .container-xs {
+    @apply mx-auto max-w-[800px] md:px-7 sm:px-4;
   }
 }

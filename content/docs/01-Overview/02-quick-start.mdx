@@ -1,0 +1,63 @@
+---
+id: quick-start
+slug: quick-start
+title: Quick Start Guide
+---
+
+import CliInstallSnippet from '../components/cli-install.mdx';
+
+## Getting started
+
+Learn how to get started with Configu from the code and the developer to your runtime production,
+automate the process and prevent misconfigurations from reaching your runtime environments.
+
+## Quick start
+
+### 1. Install our open-source CLI
+
+<CliInstallSnippet />
+
+### 2. Declare your service schema
+
+```shell
+configu init --name "example-schema" --examples
+```
+
+### 3. Create a configuration store
+
+```shell
+configu store --name "default" --uri "configu://-"
+```
+
+### 4. Upsert the configuration schema and initialized values
+
+```shell
+configu upsert \
+--set "/example" --schema "./example-schema.cfgu.json" \
+--config "FOO=value" --config "BAR=bar"
+```
+
+or use the app interactive form
+
+```shell
+configu upsert \
+--set "/example" --schema "./example-schema.cfgu.json" \
+--interactive
+```
+
+### 5. Export the relevant configuration on any format or to any runtime
+
+```shell
+configu export \
+--set "/example" --schema "./example-schema.cfgu.json" \
+--format "Dotenv" \
+> ".env"
+```
+
+and you will get a .env file for the example set
+
+```.env
+FOO=value
+BAR=bar
+BAZ=value&bar
+```

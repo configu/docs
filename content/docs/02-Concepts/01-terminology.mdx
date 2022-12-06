@@ -1,0 +1,36 @@
+---
+id: terminology
+slug: terminology
+title: Configu's Termiology
+---
+
+Configu uses the following terms to refer to different parts of your configuration pipeline:
+
+| T | A |
+| - | - |
+| A | T |
+
+
+| Configu Concept           | Explanation |
+|-------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Configuration Schema**  | _Schemas_ are created from `.cfgu.json` files and imported into Configu. [Read more on how to import cfgu files](/docs/schemas) and create _schemas_.                                                                                                                                               |
+| **Configuration Set**     | A configuration *set* is where you assign values for your _schema_ keys. The _sets_ are organized in a tree structure, starting from the 'root' 'set', and enable inheritance. It is most often used to represent an environment and contains all the configuration values that are relevant to it. |
+| **Configuration Types**   | Configu enables pre-defined type validation on configuration keys. enforced [types](/docs/types) include (primitives, template strings, patterns, and more) Read more here for the full list of supported types.                                                                                    |
+| **Configuration Secret**  | A value within a _set_ can be linked to a secret containing sensitive information, like database credentials. Configu integrates with the most prevelant secret managers, and does not store or send the actual secret, only a pointer to it that can only be used with your tokens.                |
+| **Configuration Runtime** | Configu supports automatic integration with many popular platforms such as Heroku, Netlify and many more, for truly centralized config management.                                                                                                                                                  |
+| **Configuration Format**  | The format that Configu needs to deliver the selected set in (JSON, YAML, dotenv, shell) Read more here for full list of supported formats.                                                                                                                                                         |
+
+A list of all runtimes, types supported vaults and other features connected with these concepts are found in the app. 
+
+## More About Configuration Schemas
+
+Schemas are where you can declare all of the bits that your application is going to need in order to run 
+under a variety of circumstances. These are a great place to start writing when you're working on a new 
+app, while you're thinking about everything you're going to need.
+
+## More About Configuration Sets
+
+Sets are how you implement your schemas. Some sets might pull values for database credentials from a
+secret manager, where the other might pull them from dotenv files you have locally. However, types remain the
+same between sets (if `SITE_NAME` is type `string` in `-production`, it must also be a string in every
+other set).

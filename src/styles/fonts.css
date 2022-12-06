@@ -1,4 +1,180 @@
-/* TODO: Import fonts. Please keep in mind we use only woff2 format! */
 @layer base {
-  /* Your code goes here... */
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-400.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial');
+    ascent-override: 98.77%;
+    descent-override: 23.61%;
+    line-gap-override: 0%;
+    size-adjust: 105.7%;
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-500.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Arial');
+    ascent-override: 98.16%;
+    descent-override: 20.99%;
+    line-gap-override: 0%;
+    size-adjust: 105.75%;
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-600.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Arial Bold');
+    ascent-override: 104.22%;
+    descent-override: 25.44%;
+    line-gap-override: 0%;
+    size-adjust: 99.98%;
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-italic-600.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Arial Bold Italic');
+    ascent-override: 103.99%;
+    descent-override: 25.39%;
+    line-gap-override: 0%;
+    size-adjust: 100.2%;
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-700.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Arial Bold');
+    ascent-override: 106.2%;
+    descent-override: 22.71%;
+    line-gap-override: 0%;
+    size-adjust: 97.74%;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/space-grotesk/space-grotesk-400.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial');
+    ascent-override: 92.87%;
+    descent-override: 28.02%;
+    line-gap-override: 0%;
+    size-adjust: 107.68%;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/space-grotesk/space-grotesk-500.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Arial');
+    ascent-override: 93.47%;
+    descent-override: 30.44%;
+    line-gap-override: 0%;
+    size-adjust: 106.99%;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/space-grotesk/space-grotesk-600.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Arial Bold');
+    ascent-override: 101.81%;
+    descent-override: 35.39%;
+    line-gap-override: 0%;
+    size-adjust: 98.22%;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/space-grotesk/space-grotesk-700.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Arial Bold');
+    ascent-override: 102.53%;
+    descent-override: 37.9%;
+    line-gap-override: 0%;
+    size-adjust: 97.54%;
+  }
+
+  @font-face {
+    font-family: 'IBM Plex Mono';
+    src: url('/fonts/ibm-plex-mono/ibm-plex-mono-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+  }
 }

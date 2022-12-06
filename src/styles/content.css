@@ -1,0 +1,270 @@
+@layer components {
+  .prose {
+    blockquote.wp-block-quote {
+      @apply relative border-l-0 border-t-4 border-blue-light bg-grey-98 px-7 pt-16 pb-7 dark:border-blue-dark dark:bg-grey-25 sm:px-6 sm:pb-6;
+
+      &::before {
+        @apply absolute top-6 left-7 h-7 w-9 bg-blue-light content-[''] dark:bg-blue-dark sm:left-6;
+        -webkit-mask-image: url('/images/quote.svg');
+        mask-image: url('/images/quote.svg');
+        mask-size: 100%;
+      }
+
+      p {
+        @apply text-lg md:text-md sm:text-base;
+
+        &:first-child {
+          @apply mt-0;
+        }
+
+        &::before,
+        &::after {
+          @apply hidden;
+        }
+      }
+
+      cite {
+        @apply text-sm font-semibold text-black dark:text-white;
+      }
+    }
+
+    pre {
+      @apply my-5 !rounded-md !bg-grey-15 py-4 dark:!bg-grey-25;
+
+      code {
+        text-shadow: unset !important;
+
+        @apply !font-mono-ibm !text-base !text-white xl:!text-sm;
+
+        .comment.linenumber {
+          @apply text-grey-50;
+        }
+
+        .token.atrule,
+        .token.attr-value,
+        .token.keyword {
+          @apply text-[#6A4CFF];
+        }
+
+        .token.function,
+        .token.class-name {
+          @apply text-[#FF3366];
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+          @apply text-[#7e428a];
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+          @apply text-[#FF8C1A];
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+          @apply !text-[#00B277];
+        }
+
+        .token.punctuation {
+          @apply text-[#737373];
+        }
+
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+          @apply text-[#a6a6a6];
+        }
+      }
+    }
+
+    :not(pre) > code {
+      @apply !rounded-sm bg-grey-96 !px-1.5 !py-0.5 !font-mono-ibm !font-normal text-black dark:bg-grey-25 dark:text-white;
+
+      &::before,
+      &::after {
+        @apply hidden;
+      }
+    }
+
+    .admonition code {
+      @apply dark:!text-white;
+    }
+
+    .admonition.warning code {
+      @apply !bg-admonition-warning/16;
+    }
+
+    .admonition.info code {
+      @apply !bg-admonition-info/16;
+    }
+
+    .admonition.note code {
+      @apply !bg-admonition-note-light/16 dark:!bg-admonition-note-dark/16;
+    }
+
+    .admonition.caution code {
+      @apply !bg-admonition-caution-light/16;
+    }
+
+    .admonition.tip code {
+      @apply !bg-admonition-tip-light/16;
+    }
+
+    .code-group {
+      .prismjs {
+        @apply !my-0;
+      }
+    }
+
+    a {
+      @apply font-semibold text-blue-light no-underline transition-colors duration-200 hover:text-blue-light-hover dark:text-blue-dark dark:hover:text-blue-light;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    strong,
+    em,
+    span,
+    center,
+    blockquote,
+    li {
+      @apply dark:text-white;
+    }
+
+    .admonition span {
+      @apply text-inherit;
+    }
+
+    h2 {
+      @apply border-t border-dashed border-grey-80 pt-10 font-mono dark:border-grey-40;
+    }
+
+    ol,
+    ul {
+      @apply !pl-[45px];
+
+      li,
+      p {
+        @apply m-0;
+      }
+    }
+
+    ul.collapsible {
+      @apply !pl-0;
+
+      p {
+        @apply mt-8;
+      }
+    }
+
+    li {
+      ul {
+        @apply !m-0 list-[circle] !pl-[20px];
+      }
+
+      ol {
+        @apply !m-0 !pl-[20px];
+      }
+    }
+
+    hr {
+      @apply border-grey-40;
+    }
+  }
+
+  h3 {
+    @apply font-mono;
+  }
+
+  ol,
+  ul {
+    @apply marker:!text-blue-light dark:marker:!text-blue-dark;
+  }
+
+  .table-wrapper,
+  .wp-block-table {
+    @apply md:overflow-x-auto;
+
+    table {
+      @apply w-full border-hidden md:min-w-[500px];
+
+      thead {
+        @apply border-grey-88 dark:border-grey-25;
+      }
+
+      thead th {
+        @apply font-mono text-grey-50 dark:text-grey-60;
+      }
+
+      tbody tr {
+        @apply border-grey-88 dark:border-grey-25;
+      }
+
+      td,
+      th {
+        @apply p-3;
+      }
+
+      th:first-child,
+      td:first-child {
+        @apply pl-0;
+      }
+
+      th:last-child,
+      td:last-child {
+        @apply pr-0;
+      }
+
+      td {
+        @apply text-black dark:text-white;
+      }
+    }
+  }
+
+  .admonition p {
+    @apply my-2.5 text-black;
+  }
+
+  .collapsible p {
+    @apply mb-0 mt-8 font-sans text-md xl:text-base lg:mt-6 sm:mt-4 sm:text-sm;
+  }
+
+  .prose-static {
+    @apply max-w-full;
+
+    *:not(a) {
+      @apply leading-normal text-black;
+    }
+
+    h2 {
+      @apply my-6 border-none pt-0 text-lg leading-tight;
+    }
+
+    ol,
+    ul {
+      @apply space-y-1.5 !pl-[38px];
+    }
+  }
+
+  .faq-answer {
+    a {
+      @apply text-base sm:text-sm;
+    }
+  }
+}

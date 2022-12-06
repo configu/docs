@@ -1,0 +1,75 @@
+---
+id: cockroachdb
+slug: cockroachdb
+title: CockroachDB
+---
+
+import StoreIntroSnippet from '../components/store-intro.mdx';
+import CliInstallSnippet from '../components/cli-install.mdx';
+import CliUsageSnippet from '../components/cli-usage.mdx';
+import CliExamplesSnippet from '../components/cli-examples.mdx';
+import SdkInstallSnippet from '../components/sdk-install.mdx';
+import OrmLimitationsSnippet from '../components/orm-limitations.mdx';
+export const introStoreName = 'CockroachDB';
+export const scheme = 'cockroachdb';
+export const uriStructure = '[username]:[password]@[host][?database=]';
+export const uriExample = 'username:password@host?database=example';
+
+## Introduction
+
+<StoreIntroSnippet storeName={introStoreName} />
+
+## Working with the store
+
+## CLI installation
+
+<CliInstallSnippet />
+
+## CLI usage
+
+<CliUsageSnippet scheme={scheme} uriStructure={uriStructure} />
+
+<CliExamplesSnippet scheme={scheme} uriExample={uriExample} />
+
+## SDK installation
+
+<SdkInstallSnippet />
+
+## SDK usage
+
+```node.js
+import { Cfgu, Set, UpsertCommand, EvalCommand, DeleteCommand, CockroachStore} from "@configu/node";
+import path from "path";
+
+const store = new CockroachStore({ username, password, database, host });
+
+const schema = new Cfgu(path.resolve(__dirname, "./example.cfgu.json"));
+const set = new Set("dev");
+
+// * Example upsert command
+await new UpsertCommand({ store, set, schema, configs: [{ key: "foo", value: "bar" }] }).run();
+
+// * Example eval command
+const configs = await new EvalCommand({ store, set, schema }).run();
+
+// * Example delete command
+await new DeleteCommand({ store, set, schema }).run();
+```
+
+## References
+
+To reference a value from this store, use the following reference format:
+
+```node.js
+{{cockroachdb://<database>@[set/]<schema>[.key][?key=[key]]}}
+```
+
+Example:
+
+```node.js
+{{cockroachdb://my-db@example-set/example-schema.foo}}
+```
+
+## Limitations
+
+<OrmLimitationsSnippet />

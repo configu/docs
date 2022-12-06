@@ -1,9 +1,0 @@
-@layer utilities {
-  .remove-autocomplete-styles {
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus {
-      transition: background-color 5000s;
-    }
-  }
-}

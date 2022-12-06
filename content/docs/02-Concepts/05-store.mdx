@@ -1,0 +1,55 @@
+---
+id: store
+slug: store
+title: Store
+---
+
+Stores are where your data will be stored, and you can work with multiple stores at the same time.
+Data can be linked between different stores, for example, if you're using Configu's store with
+HashiCorp Vault, your secrets can be stored in the vault and linked to Configu via the metadata
+(the secret path `/kv/production/example-secret`) and the pairing will be done locally at the export
+through our open-source interface.
+
+Configu's interfaces support many stores and are open source! Therefore, you can add your own
+store if it does not already exist.
+
+## Supported stores:
+
+- [Configu](/docs/management)
+- Files:
+  - [JSON](/docs/json)
+- Secret managers:
+  - [HashiCorp Vault](/docs/hashicorp-vault)
+  - [AWS Secrets Manager](/docs/aws-secrets-manager)
+  - [Azure Key Vault](/docs/azure-key-vault)
+  - [Google Secret Manager](/docs/google-secret-manager)
+  - [Kubernetes Secret](/docs/kubernetes-secret)
+- Databases:
+  - [MySQL](/docs/mysql)
+  - [Microsoft SQL server](/docs/mssql)
+  - [SQLite](/docs/sqlite)
+  - [PostgreSQL](/docs/postgres)
+  - [CockroachDB](/docs/cockroachdb)
+  - [MariaDB](/docs/mariadb)
+  - [Amazon Aurora](/docs/amazon-aurora)
+- Browser:
+  - [localForage](/docs/localforage)
+
+## Start work with store
+
+To connect configu's CLI to the preferred store, run the `configu store` command
+
+```shell
+configu store --name "store-name" --uri "store-uri" # uses the name "default" if you choose not to specify any name
+```
+
+In order to connect Configu's store, you need to do the following:
+
+1.  Register the Saas application at [app.configu.io](https://app.configu.io/)
+2.  Create an organization for your company
+3.  Connect your CLI with your store interactively (locally) or via token
+
+```shell
+configu store --name "default" --uri "configu://-" # interactive login
+configu store --name "default" --uri "configu://[access-token]@<org-id>"
+```

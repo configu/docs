@@ -5,8 +5,8 @@ This is a reference on how to perform a safe dependencies update. It consists of
 Version of npm and the node on which the project runs
 
 ```json
-"node": "^16.15.0",
-"npm": "^8.3.x"
+"node": "v18.12.1",
+"npm": "^8.15.0"
 ```
 
 ## ♻️ Recommended way to update dependencies
@@ -91,15 +91,3 @@ In this case you'd want to specify all the libraries with green updates first
 ## 🐛 Known issues
 
 Add information if you're having trouble updating any dependencies, this could be very helpful for future updates
-<details>
-  <summary>Example</summary>
-
-### packageName
-
-- **Issue found on:** D Month, YYYY
-- **Problematic version:** x.x.x
-- **Last stable version:** x.x.x
-
-Space for a free-form description of the problem
-
-</details>

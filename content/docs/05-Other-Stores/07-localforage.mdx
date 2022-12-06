@@ -1,0 +1,68 @@
+---
+id: localforage
+slug: localforage
+title: Localforage
+---
+
+import StoreIntroSnippet from '../components/store-intro.mdx';
+import CliInstallSnippet from '../components/cli-install.mdx';
+import CliUsageSnippet from '../components/cli-usage.mdx';
+import CliExamplesSnippet from '../components/cli-examples.mdx';
+import SdkInstallSnippet from '../components/sdk-install.mdx';
+export const introStoreName = 'localForage';
+export const scheme = 'localforage';
+
+## Introduction
+
+<StoreIntroSnippet storeName={introStoreName} />
+
+## Working with the store
+
+## SDK installation
+
+Install the browser SDK
+
+```node.js
+// * Using yarn
+yarn add @configu/browser
+// * Using npm
+npm install --save @configu/browser
+```
+
+## SDK usage
+
+```node.js
+import { Cfgu, Set, UpsertCommand, EvalCommand, DeleteCommand, LocalForageStore} from "@configu/browser";
+import path from "path";
+
+const store = new LocalForageStore({ name: "example" });
+const schema = new Cfgu(cfguBlob);
+const set = new Set("dev");
+
+// * Example upsert command
+await new UpsertCommand({ store, set, schema, configs: [{ key: "foo", value: "bar" }] }).run();
+
+// * Example eval command
+const configs = await new EvalCommand({ store, set, schema }).run();
+
+// * Example delete command
+await new DeleteCommand({ store, set, schema }).run();
+```
+
+## References
+
+To reference a value from this store, use the following reference format:
+
+```node.js
+{{localforage://<databaseName>:<datastoreName>@[set/]<schema>[.key][?key=[key]]}}
+```
+
+Example:
+
+```node.js
+{{localforage://example-db:example-store@example-set/example-schema.foo}}
+```
+
+## Limitations
+
+- There is no CLI support for localForage because it is not relevant for browser stores.

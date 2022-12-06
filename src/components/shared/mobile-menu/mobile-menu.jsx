@@ -1,8 +1,10 @@
 import { motion, useAnimation } from 'framer-motion';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 
+import Button from 'components/shared/button';
 import Link from 'components/shared/link';
+import useScrollOverflow from 'hooks/use-scroll-overflow';
 
 const ANIMATION_DURATION = 0.2;
 
@@ -18,7 +20,7 @@ const variants = {
     },
   },
   to: {
-    zIndex: 999,
+    zIndex: 40,
     opacity: 1,
     translateY: 0,
     transition: {
@@ -27,54 +29,55 @@ const variants = {
   },
 };
 
-// TODO: Add links
-const links = [
-  {
-    text: '',
-    to: '',
-  },
-];
-
-const MobileMenu = ({ isOpen }) => {
+const MobileMenu = ({ isOpen, items }) => {
   const controls = useAnimation();
 
-  useEffect(() => {
-    if (isOpen) {
-      controls.start('to');
-    } else {
-      controls.start('from');
-    }
-  }, [isOpen, controls]);
+  useScrollOverflow(controls, isOpen);
 
   return (
     <motion.nav
-      // TODO: Add "top" value equal to the header's height so mobile menu would be positioned right after the header, e.g. "top-20"
-      //       Check out this screenshot for better understanding — https://user-images.githubusercontent.com/20713191/144218387-afd19e0c-c33d-4c8f-8cfe-b6e6214d236c.png
-      // TODO: Add background color, e.g. "bg-white"
-      className="absolute right-8 left-8 z-[-1] hidden rounded-md px-8 pt-4 pb-7 lg:block md:right-4 md:left-4"
+      className="safe-paddings fixed inset-0 z-[-1] hidden overflow-x-hidden bg-white px-8 pb-5 dark:bg-grey-15 lg:flex lg:flex-col lg:justify-between"
       initial="from"
       animate={controls}
       variants={variants}
-      // TODO: Replace the color to the one from the color palette
-      style={{ boxShadow: '0px 10px 20px rgba(26, 26, 26, 0.4)' }}
     >
-      <ul className="flex flex-col text-center">
-        {links.map(({ text, to }, index) => (
-          <li key={index}>
-            {/* TODO: Add needed props so the link would have styles */}
-            <Link className="block py-4" to={to}>
-              {text}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      {/* TODO: Add a button if needed */}
+      <div className="my-auto mt-16 flex h-full w-full overflow-x-hidden overflow-y-scroll">
+        <ul className="my-auto flex w-full flex-col space-y-3 text-center xs:space-y-1">
+          {items.map(({ text, to }, index) => (
+            <li key={index}>
+              <Link className="block py-4" to={to} size="md">
+                {text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mx-auto mt-auto flex w-full max-w-[500px] shrink-0 flex-col space-y-3">
+        <Button to={process.env.GATSBY_CONFIGU_APP_URL} className="w-full" size="sm" theme="blue">
+          Get it free
+        </Button>
+        <Button
+          to={process.env.GATSBY_CONFIGU_APP_URL}
+          className="w-full"
+          size="sm"
+          theme="primary-blue-outline"
+        >
+          Login
+        </Button>
+      </div>
     </motion.nav>
   );
 };
 
 MobileMenu.propTypes = {
   isOpen: PropTypes.bool,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 MobileMenu.defaultProps = {
