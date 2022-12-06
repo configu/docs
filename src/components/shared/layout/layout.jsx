@@ -7,26 +7,68 @@ import Header from 'components/shared/header';
 import MobileMenu from 'components/shared/mobile-menu';
 import { ThemeContext, useDarkModeInit } from 'hooks/use-dark-mode';
 
-const navItems = [
+const mainNavigation = [
   {
     text: 'Product',
-    to: '/product',
+    to: '//configu.io/product',
   },
   {
     text: 'Pricing',
-    to: '/pricing',
+    to: '//configu.io/pricing',
   },
   {
     text: 'Docs',
-    to: '/docs',
+    to: '/',
   },
-  // {
-  //   text: 'Blog',
-  //   to: '/blog',
-  // },
   {
     text: 'About Us',
-    to: '/about',
+    to: '//configu.io/about',
+  },
+];
+
+const subNavigation = [
+  {
+    title: 'Configu',
+    links: [
+      {
+        text: 'Home',
+        to: '//configu.io/',
+      },
+      {
+        text: 'Product',
+        to: '//configu.io/product',
+      },
+      {
+        text: 'About Us',
+        to: '//configu.io/about',
+      },
+      {
+        text: 'Status',
+        to: 'https://status.configu.com',
+      },
+    ],
+  },
+  {
+    title: 'Learn',
+    links: [
+      {
+        text: 'Docs',
+        to: '/',
+      },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      {
+        text: 'Terms of Service',
+        to: '//configu.io/terms-of-service',
+      },
+      {
+        text: 'Privacy Policy',
+        to: '//configu.io/privacy-policy',
+      },
+    ],
   },
 ];
 
@@ -43,12 +85,12 @@ const Layout = ({ children, headerTheme }) => {
         <Header
           isMobileMenuOpen={isMobileMenuOpen}
           headerTheme={headerTheme}
-          items={navItems}
+          nav={mainNavigation}
           onBurgerClick={handleHeaderBurgerClick}
         />
         <main className="flex-grow dark:bg-grey-15">{children}</main>
-        <Footer />
-        <MobileMenu isOpen={isMobileMenuOpen} items={navItems} />
+        <Footer nav={subNavigation} />
+        <MobileMenu isOpen={isMobileMenuOpen} items={mainNavigation} />
       </div>
     </ThemeContext.Provider>
   );

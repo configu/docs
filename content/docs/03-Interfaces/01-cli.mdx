@@ -109,7 +109,7 @@ configu [COMMAND]
 ```
 
 ```yaml    
-# see: https://configu.io/docs/buddy
+# see: https://docs.configu.io/buddy
 ```
 
 </CodeTabs>
@@ -124,7 +124,7 @@ Configu init --name "some-schema" --examples
 
 ## Store command
 
-A [store](/docs/store) specifies the location of the data.
+A [store](/store) specifies the location of the data.
 You can connect the CLI to multiple stores (each one of them needs to have a different name (`--name`) 
 and if non of them is "default" the default store will be the first one).
 The `--uri` flag supports full paths and interactive logins; to log in interactively, simply provide 
@@ -144,7 +144,7 @@ Configu store --name "default" --uri "configu://my-access-token@my-org"
 
 ## Upsert command
 
-The upsert (update/insert) command creates/updates a [set](/docs/sets) of values for your [schema](/docs/schemas).
+The upsert (update/insert) command creates/updates a [set](/sets) of values for your [schema](/schemas).
 
 Required flags:
 - `--set`: a set name built as an absolute path from the root set `/`  
@@ -188,7 +188,7 @@ As it has many options and flags, we recommend using the CLI command generator i
 
 ![Configu exports](configu-exports.jpg)
 
-Check out the [Exporting](/docs/exporting) page for more information on the formats and runtime integrations.
+Check out the [Exporting](/exporting) page for more information on the formats and runtime integrations.
 
 ## Delete command
 

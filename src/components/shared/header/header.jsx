@@ -31,10 +31,10 @@ const headerStyles = {
   },
 };
 
-const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, items }) => (
+const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
   <header className={clsx('header safe-paddings', headerStyles[headerTheme].background)}>
     <div className="container-lg flex h-20 items-center justify-end xl:px-10 md:h-[72px] md:px-7 sm:px-4 sm:pb-4">
-      <Link to="/" className="z-50 mr-auto h-6">
+      <Link to="//configu.io/" className="z-50 mr-auto h-6">
         <span className="sr-only">Configu</span>
         <Logo
           className={clsx(
@@ -46,7 +46,7 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, items }) => (
 
       <nav className="flex items-center space-x-8 leading-none md:hidden">
         <ul className="flex space-x-10">
-          {items.map(({ text, to }, index) => (
+          {nav.map(({ text, to }, index) => (
             <li key={index}>
               <Link to={to} size="sm" theme={headerStyles[headerTheme].menu}>
                 {text}
@@ -94,7 +94,7 @@ Header.propTypes = {
   isMobileMenuOpen: PropTypes.bool,
   headerTheme: PropTypes.oneOf(Object.keys(headerStyles)).isRequired,
   onBurgerClick: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(
+  nav: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
       to: PropTypes.string.isRequired,

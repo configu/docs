@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'components/shared/link';
@@ -11,56 +12,6 @@ import MailIcon from './images/mail.inline.svg';
 // import SlackIcon from './images/slack.inline.svg';
 // import TwitterIcon from './images/twitter.inline.svg';
 import ThemeSelect from './theme-select';
-
-const linkList = [
-  {
-    title: 'Configu',
-    links: [
-      {
-        name: 'Home',
-        url: '/',
-      },
-      {
-        name: 'Product',
-        url: '/product',
-      },
-      {
-        name: 'About Us',
-        url: '/about',
-      },
-      {
-        name: 'Status',
-        url: 'https://status.configu.com',
-      },
-    ],
-  },
-  {
-    title: 'Learn',
-    links: [
-      {
-        name: 'Docs',
-        url: '/docs',
-      },
-      // {
-      //   name: 'Blog',
-      //   url: '/blog',
-      // },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      {
-        name: 'Terms of Service',
-        url: '/terms-of-service',
-      },
-      {
-        name: 'Privacy Policy',
-        url: '/privacy-policy',
-      },
-    ],
-  },
-];
 
 const social = [
   {
@@ -103,7 +54,7 @@ const social = [
   },
 ];
 
-const Footer = () => (
+const Footer = ({ nav }) => (
   <footer className="safe-paddings dark:bg-grey-15 dark:text-white">
     <div className="container grid grid-cols-10 grid-rows-[max-content_auto] gap-x-5 py-16 md:pt-9 md:pb-8">
       <Link className="col-span-1 row-start-1 sm:col-start-1 sm:col-end-5" to="/">
@@ -117,14 +68,14 @@ const Footer = () => (
 
       <nav className="col-start-4 col-end-8 row-start-1 row-end-4 -mt-0.5 pl-[54px] pr-[90px] xl:pr-[17%] xl:pl-[10%] lg:col-start-3 lg:col-end-9 lg:pl-[50px] lg:pr-[80px] md:col-start-1 md:row-start-2 md:row-end-3 md:mt-10 md:pr-0 md:pl-0 sm:col-end-11 sm:mt-0">
         <ul className="flex w-full justify-between lg:m-auto lg:max-w-[428px] md:m-0 md:max-w-[475px] sm:max-w-none sm:flex-wrap sm:justify-start sm:gap-x-28">
-          {linkList.map(({ title, links }, idx) => (
+          {nav.map(({ title, links }, idx) => (
             <li className="sm:mt-8" key={idx}>
               <span className="font-mono text-md font-semibold xl:text-base">{title}</span>
               <ul>
                 {links.map((link) => (
-                  <li className="mt-5 flex" key={link.name}>
-                    <Link className="font-normal" to={link.url} size="sm" theme="black">
-                      {link.name}
+                  <li className="mt-5 flex" key={link.text}>
+                    <Link className="font-normal" to={link.to} size="sm" theme="black">
+                      {link.text}
                     </Link>
                   </li>
                 ))}
@@ -172,4 +123,17 @@ const Footer = () => (
     </div>
   </footer>
 );
+
+Footer.propTypes = {
+  nav: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      links: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        to: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+};
+
 export default Footer;
