@@ -128,10 +128,12 @@ Footer.propTypes = {
   nav: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      links: PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        to: PropTypes.string.isRequired,
-      }).isRequired,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          text: PropTypes.string.isRequired,
+          to: PropTypes.string.isRequired,
+        })
+      ).isRequired,
     })
   ).isRequired,
 };

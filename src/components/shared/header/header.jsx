@@ -34,7 +34,7 @@ const headerStyles = {
 const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
   <header className={clsx('header safe-paddings', headerStyles[headerTheme].background)}>
     <div className="container-lg flex h-20 items-center justify-end xl:px-10 md:h-[72px] md:px-7 sm:px-4 sm:pb-4">
-      <Link to="//configu.io/" className="z-50 mr-auto h-6">
+      <Link to={process.env.GATSBY_CONFIGU_SITE_URL} className="z-50 mr-auto h-6">
         <span className="sr-only">Configu</span>
         <Logo
           className={clsx(

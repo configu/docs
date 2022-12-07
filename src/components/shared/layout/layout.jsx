@@ -10,19 +10,19 @@ import { ThemeContext, useDarkModeInit } from 'hooks/use-dark-mode';
 const mainNavigation = [
   {
     text: 'Product',
-    to: '//configu.io/product',
+    to: `${process.env.GATSBY_CONFIGU_SITE_URL}product`,
   },
   {
     text: 'Pricing',
-    to: '//configu.io/pricing',
+    to: `${process.env.GATSBY_CONFIGU_SITE_URL}pricing`,
   },
   {
     text: 'Docs',
-    to: '/',
+    to: process.env.GATSBY_CONFIGU_DOCS_URL,
   },
   {
     text: 'About Us',
-    to: '//configu.io/about',
+    to: `${process.env.GATSBY_CONFIGU_SITE_URL}about`,
   },
 ];
 
@@ -32,19 +32,19 @@ const subNavigation = [
     links: [
       {
         text: 'Home',
-        to: '//configu.io/',
+        to: process.env.GATSBY_CONFIGU_SITE_URL,
       },
       {
         text: 'Product',
-        to: '//configu.io/product',
+        to: `${process.env.GATSBY_CONFIGU_SITE_URL}product`,
       },
       {
         text: 'About Us',
-        to: '//configu.io/about',
+        to: `${process.env.GATSBY_CONFIGU_SITE_URL}about`,
       },
       {
         text: 'Status',
-        to: 'https://status.configu.com',
+        to: process.env.GATSBY_CONFIGU_STATUS_URL,
       },
     ],
   },
@@ -53,7 +53,7 @@ const subNavigation = [
     links: [
       {
         text: 'Docs',
-        to: '/',
+        to: process.env.GATSBY_CONFIGU_DOCS_URL,
       },
     ],
   },
@@ -62,11 +62,11 @@ const subNavigation = [
     links: [
       {
         text: 'Terms of Service',
-        to: '//configu.io/terms-of-service',
+        to: `${process.env.GATSBY_CONFIGU_SITE_URL}terms-of-service`,
       },
       {
         text: 'Privacy Policy',
-        to: '//configu.io/privacy-policy',
+        to: `${process.env.GATSBY_CONFIGU_SITE_URL}privacy-policy`,
       },
     ],
   },
