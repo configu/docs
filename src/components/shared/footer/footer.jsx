@@ -57,7 +57,10 @@ const social = [
 const Footer = ({ nav }) => (
   <footer className="safe-paddings dark:bg-grey-15 dark:text-white">
     <div className="container grid grid-cols-10 grid-rows-[max-content_auto] gap-x-5 py-16 md:pt-9 md:pb-8">
-      <Link className="col-span-1 row-start-1 sm:col-start-1 sm:col-end-5" to="/">
+      <Link
+        to={process.env.GATSBY_CONFIGU_SITE_URL}
+        className="col-span-1 row-start-1 sm:col-start-1 sm:col-end-5"
+      >
         <span className="sr-only">Configu</span>
         <Logo className="text-black dark:text-white" />
       </Link>
