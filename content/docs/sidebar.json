@@ -3,7 +3,7 @@
     {
       "title": "Overview",
       "items": [
-        { "title": "Introduction!", "slug": "/" },
+        { "title": "Introduction", "slug": "/" },
         { "title": "Architecture", "slug": "architecture" },
         { "title": "Quick Start Guide", "slug": "quick-start" },
         { "title": "Configu's Data privacy", "slug": "data-privacy" }

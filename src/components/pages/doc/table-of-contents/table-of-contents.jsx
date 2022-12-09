@@ -27,7 +27,7 @@ const TableOfContents = ({ items /* fileUrl */ }) => {
 
   return (
     <aside className="lg:hidden">
-      <nav className="sticky top-8 mt-8 ml-10">
+      <nav className="sticky top-8 my-8 ml-10">
         {/* <div className="border-b border-solid border-grey-88 pb-2 dark:border-grey-40">
           <EditDocLink to={fileUrl} />
         </div> */}

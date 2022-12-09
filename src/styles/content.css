@@ -46,12 +46,12 @@
           @apply text-[#6A4CFF];
         }
 
+        .token.operator,
         .token.function,
         .token.class-name {
           @apply text-[#FF3366];
         }
 
-        .token.operator,
         .token.entity,
         .token.url,
         .language-css .token.string,
