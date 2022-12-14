@@ -62,7 +62,7 @@ const createDocPages = async ({ graphql, actions }) => {
         previousLink,
         nextLink,
         tableOfContents: tableOfContents?.items,
-        fileOriginPath: encodeURI(`${process.env.GATSBY_CONFIGU_DOCS_GITHUB_PATH}${filePath}`),
+        fileOriginPath: encodeURI(`${process.env.GATSBY_DOCS_GITHUB_PATH}${filePath}`),
       },
     });
   });
