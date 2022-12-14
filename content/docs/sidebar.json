@@ -12,7 +12,7 @@
     {
       "title": "Concepts",
       "items": [
-        { "title": "Configu's Termiology", "slug": "terminology" },
+        { "title": "Configu's Terminology", "slug": "terminology" },
         { "title": "Configu Schemas", "slug": "schemas" },
         { "title": "Understanding Configu's Types", "slug": "types" },
         { "title": "Configu Sets", "slug": "sets" },

@@ -23,6 +23,11 @@ const components = {
     return <code {...props} />;
   },
   pre: (props) => <div {...props} />,
+  table: (props) => (
+    <div className="table-wrapper">
+      <table {...props} />
+    </div>
+  ),
   Collapsible,
   Admonition,
   CodeTabs,
@@ -34,7 +39,7 @@ const Content = forwardRef(({ title, content, fileUrl }, ref) => (
     <h1 className="mb-3 flex font-mono text-5xl font-semibold leading-tight xl:text-3xl md:text-xl sm:flex-col-reverse sm:text-lg">
       {title}
       <EditDocLink
-        className="ml-auto pl-4 pt-3 hover:border-blue-light-hover dark:hover:border-blue-light lg:inline-flex md:pt-2 sm:ml-0 sm:mb-4 sm:w-full sm:justify-center sm:rounded sm:border sm:border-blue-light sm:p-2 dark:sm:border-blue-dark"
+        className="ml-auto hidden pl-4 pt-3 hover:border-blue-light-hover dark:hover:border-blue-light lg:inline-flex md:pt-2 sm:ml-0 sm:mb-4 sm:w-full sm:justify-center sm:rounded sm:border sm:border-blue-light sm:p-2 dark:sm:border-blue-dark"
         to={fileUrl}
       />
     </h1>
