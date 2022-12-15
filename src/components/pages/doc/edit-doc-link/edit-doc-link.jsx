@@ -10,6 +10,10 @@ const EditDocLink = ({ className: additionalClassName, to, ...otherProps }) => {
     additionalClassName
   );
 
+  // TODO: remove after open repo
+  return null;
+
+  // eslint-disable-next-line no-unreachable
   return (
     <a className={className} href={to} target="_blank" rel="noopener noreferrer" {...otherProps}>
       <EditIcon className="mr-2 sm:h-auto sm:w-[14px]" />
