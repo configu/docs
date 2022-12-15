@@ -1,7 +1,6 @@
 {
   "name": "configu-docs-website",
-  "version": "0.1.0",
-  "author": "Alex Barashkov <alex@pixelpoint.io>",
+  "author": "Ran Cohen <support@configu.com>",
   "engines": {
     "node": "18.12.1"
   },

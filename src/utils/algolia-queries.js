@@ -2,7 +2,7 @@ const queries = [
   {
     query: `{
       pages: allMdx(
-        filter: {internal: {contentFilePath: {regex: "/content/docs/"}}, fields: {isDraft: {in: false}}, frontmatter: {slug: {ne: "README"}}}
+        filter: {internal: {contentFilePath: {regex: "/content/docs/"}}, fields: {isDraft: {in: false}}, frontmatter: {title: {regex: "//"}, slug: {regex: "//"}}}
       ) {
         nodes {
           id
