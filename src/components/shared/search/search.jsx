@@ -28,6 +28,10 @@ const Search = ({ className }) => {
 
   const shouldShowResult = !!debouncedQuery?.length && hasFocus;
 
+  if (!process.env.GATSBY_ALGOLIA_APP_ID || !process.env.GATSBY_ALGOLIA_SEARCH_KEY) {
+    return null;
+  }
+
   return (
     <div className={clsx('relative', className)} ref={ref}>
       <InstantSearch

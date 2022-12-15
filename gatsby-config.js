@@ -121,7 +121,10 @@ module.exports = {
         ],
       },
     },
-    ...(process.env.NODE_ENV === 'production'
+    ...(process.env.NODE_ENV === 'production' &&
+    process.env.ALGOLIA_ADMIN_KEY &&
+    process.env.GATSBY_ALGOLIA_APP_ID &&
+    process.env.GATSBY_ALGOLIA_INDEX_NAME
       ? [
           {
             resolve: 'gatsby-plugin-algolia-search',
