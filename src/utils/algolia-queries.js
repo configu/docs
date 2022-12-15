@@ -18,7 +18,7 @@ const queries = [
       data.pages.nodes.map(({ id, frontmatter: { title, slug }, excerpt }) => ({
         objectID: id,
         title,
-        slug,
+        slug: slug === '/' ? slug : `/${slug}/`,
         excerpt,
       })),
     indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
