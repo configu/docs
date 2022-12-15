@@ -132,7 +132,7 @@ module.exports = {
               appId: process.env.GATSBY_ALGOLIA_APP_ID,
               apiKey: process.env.ALGOLIA_ADMIN_KEY,
               indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
-              enablePartialUpdates: true,
+              enablePartialUpdates: false,
               // eslint-disable-next-line global-require
               queries: require('./src/utils/algolia-queries'),
               matchFields: ['title', 'excerpt'],
