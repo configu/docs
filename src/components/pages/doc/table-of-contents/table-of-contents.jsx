@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import EditDocLink from 'components/pages/doc/edit-doc-link';
+// import EditDocLink from 'components/pages/doc/edit-doc-link';
 import Link from 'components/shared/link';
 import ContentsIcon from 'icons/contents.inline.svg';
 import getIdFromChildren from 'utils/get-id-from-children';
 
-const TableOfContents = ({ items, fileUrl }) => {
+const TableOfContents = ({ items /* fileUrl */ }) => {
   const handleAnchorClick = (e, id) => {
     e.preventDefault();
     document.getElementById(id).scrollIntoView({
@@ -28,9 +28,9 @@ const TableOfContents = ({ items, fileUrl }) => {
   return (
     <aside className="lg:hidden">
       <nav className="sticky top-8 my-8 ml-10">
-        <div className="border-b border-solid border-grey-88 pb-2 dark:border-grey-40">
+        {/* <div className="border-b border-solid border-grey-88 pb-2 dark:border-grey-40">
           <EditDocLink to={fileUrl} />
-        </div>
+        </div> */}
         <div className="mt-5 flex items-center text-grey-25 dark:text-grey-88">
           <ContentsIcon className="mb-0.5 text-grey-25 dark:text-grey-88" />
           <h3 className="pl-2 font-mono text-sm font-bold">Contents</h3>
