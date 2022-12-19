@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useMemo, useState } from 'react';
+import { CookiesProvider } from 'react-cookie';
 
 import Footer from 'components/shared/footer';
 import Header from 'components/shared/header';
@@ -80,19 +81,21 @@ const Layout = ({ children, headerTheme }) => {
   const handleHeaderBurgerClick = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-    <ThemeContext.Provider value={themeContextValue}>
-      <div className="flex min-h-screen flex-col">
-        <Header
-          isMobileMenuOpen={isMobileMenuOpen}
-          headerTheme={headerTheme}
-          nav={mainNavigation}
-          onBurgerClick={handleHeaderBurgerClick}
-        />
-        <main className="flex-grow dark:bg-grey-15">{children}</main>
-        <Footer nav={subNavigation} />
-        <MobileMenu isOpen={isMobileMenuOpen} items={mainNavigation} />
-      </div>
-    </ThemeContext.Provider>
+    <CookiesProvider>
+      <ThemeContext.Provider value={themeContextValue}>
+        <div className="flex min-h-screen flex-col">
+          <Header
+            isMobileMenuOpen={isMobileMenuOpen}
+            headerTheme={headerTheme}
+            nav={mainNavigation}
+            onBurgerClick={handleHeaderBurgerClick}
+          />
+          <main className="flex-grow dark:bg-grey-15">{children}</main>
+          <Footer nav={subNavigation} />
+          <MobileMenu isOpen={isMobileMenuOpen} items={mainNavigation} />
+        </div>
+      </ThemeContext.Provider>
+    </CookiesProvider>
   );
 };
 
