@@ -37,11 +37,11 @@ export const onRenderBody = ({ setPreBodyComponents, setHtmlAttributes, setHeadC
 (function() {
   if (typeof window === 'undefined') return;
   
-  const isDarkModeSetInCookie = document.cookie.split(';').some((item) => item.includes('theme=dark'));
-  const isSystemThemeEnabled = document.cookie.split(';').some((item) => item.includes('theme=system')) || !document.cookie.split(';').filter((item) => item.trim().startsWith('theme=')).length > 0;
+  const isDarkModeSetInLocalStorage = localStorage.theme && JSON.parse(localStorage.theme) === 'dark';
+  const isSystemThemeEnabled = localStorage.theme && JSON.parse(localStorage.theme) === 'system' || !('theme' in localStorage);
   const isSystemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  if (isDarkModeSetInCookie || (isSystemThemeEnabled && isSystemDarkMode)) {
+  if (isDarkModeSetInLocalStorage || (isSystemThemeEnabled && isSystemDarkMode)) {
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');

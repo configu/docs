@@ -2,10 +2,9 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useCookies } from 'react-cookie';
 
-import { MAIN_SITE_DOMAIN } from 'constants/nav';
 import useDarkMode from 'hooks/use-dark-mode';
+import useLocalStorage from 'hooks/use-local-storage';
 import useOnClickOutside from 'hooks/use-on-click-outside';
 
 import ChevronsIcon from '../images/chevrons.inline.svg';
@@ -65,8 +64,8 @@ ActiveThemeIcon.defaultProps = {
 };
 
 const ThemeSelect = () => {
-  const [cookies, setCookie] = useCookies(['theme']);
   const [, setDarkMode] = useDarkMode();
+  const [storageTheme, setStorageTheme] = useLocalStorage('theme');
   const [theme, setTheme] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -78,19 +77,16 @@ const ThemeSelect = () => {
   useOnClickOutside(dropdownRef, handleClickOutside);
 
   useEffect(() => {
-    const initTheme = cookies.theme || 'system';
+    const initTheme = storageTheme || 'system';
 
     setTheme(initTheme);
-  }, [cookies.theme]);
+  }, [storageTheme]);
 
   const handleSelect = (value) => {
     const newTheme = value;
     setTheme(newTheme);
+    setStorageTheme(newTheme);
     setShowDropdown(false);
-    setCookie('theme', newTheme, {
-      domain: MAIN_SITE_DOMAIN,
-      path: '/',
-    });
 
     if (newTheme === 'dark' || (newTheme === 'system' && isSystemDarkMode)) {
       setDarkMode(true);
