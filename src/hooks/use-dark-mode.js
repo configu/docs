@@ -23,6 +23,7 @@ export function useDarkModeInit() {
   const handleDarkTheme = (value) =>
     setCookie('dark-mode-enabled', value, {
       domain: MAIN_SITE_DOMAIN,
+      path: '/',
     });
 
   useIsomorphicLayoutEffect(() => {
