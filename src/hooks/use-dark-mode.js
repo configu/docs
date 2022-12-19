@@ -1,21 +1,29 @@
 import { createContext, useContext } from 'react';
+import { useCookies } from 'react-cookie';
+
+import { MAIN_SITE_DOMAIN } from 'constants/nav';
 
 import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
-import useLocalStorage from './use-local-storage';
 
 const ThemeContext = createContext([]);
 export { ThemeContext };
 
 export function useDarkModeInit() {
-  const [enabledState, setEnabledState] = useLocalStorage('dark-mode-enabled');
+  const [cookies, setCookie] = useCookies(['dark-mode-enabled']);
   const isSystemDarkMode =
     typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const isSystemThemeEnabled =
-    typeof localStorage !== 'undefined'
-      ? (localStorage.theme && JSON.parse(localStorage.theme) === 'system') ||
-        !('theme' in localStorage)
+    typeof window !== 'undefined'
+      ? document.cookie.split(';').some((item) => item.includes('theme=system')) ||
+        !document.cookie.split(';').filter((item) => item.trim().startsWith('theme=')).length > 0
       : false;
-  const enabled = enabledState || (isSystemThemeEnabled && isSystemDarkMode);
+  const enabled =
+    cookies['dark-mode-enabled'] === 'true' || (isSystemThemeEnabled && isSystemDarkMode);
+
+  const handleDarkTheme = (value) =>
+    setCookie('dark-mode-enabled', value, {
+      domain: MAIN_SITE_DOMAIN,
+    });
 
   useIsomorphicLayoutEffect(() => {
     const className = 'dark';
@@ -27,7 +35,7 @@ export function useDarkModeInit() {
     }
   }, [enabled]);
 
-  return [enabled, setEnabledState];
+  return [enabled, handleDarkTheme];
 }
 
 function useDarkMode() {
