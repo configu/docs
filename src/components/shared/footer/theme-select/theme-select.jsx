@@ -89,6 +89,7 @@ const ThemeSelect = () => {
     setShowDropdown(false);
     setCookie('theme', newTheme, {
       domain: MAIN_SITE_DOMAIN,
+      path: '/',
     });
 
     if (newTheme === 'dark' || (newTheme === 'system' && isSystemDarkMode)) {
