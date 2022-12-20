@@ -7,8 +7,8 @@
   "scripts": {
     "start": "npm run develop",
     "develop": "gatsby develop -H 0.0.0.0",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
+    "build": "gatsby build --prefix-paths",
+    "serve": "gatsby serve --prefix-paths",
     "clean": "gatsby clean",
     "format": "prettier --write --ignore-path .gitignore .",
     "lint": "npm run lint:js & npm run lint:md",
@@ -40,7 +40,6 @@
     "lodash.get": "^4.4.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-instantsearch-dom": "^6.38.1",
     "react-syntax-highlighter": "^15.5.0",

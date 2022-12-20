@@ -4,7 +4,7 @@ const get = require('lodash.get');
 
 const docTemplate = path.resolve('./src/templates/doc.jsx');
 
-const sidebar = require('./content/docs/sidebar.json');
+const sidebar = require('./content/sidebar.json');
 const { DRAFT_FILTER, DOC_REQUIRED_FIELDS } = require('./src/constants/docs');
 const getDocPreviousAndNextLinks = require('./src/utils/get-doc-previous-and-next-link');
 
@@ -18,7 +18,7 @@ const createDocPages = async ({ graphql, actions }) => {
       query ($draftFilter: [Boolean]!) {
         allMdx(
           filter: {
-            internal: { contentFilePath: { regex: "//content/docs/(?!components/)/" } }
+            internal: { contentFilePath: { regex: "//content/(?!components/)/" } }
             fields: { isDraft: { in: $draftFilter } }
           }
         ) {
@@ -50,7 +50,7 @@ const createDocPages = async ({ graphql, actions }) => {
         throw new Error(`Doc "${contentFilePath}" does not have field "${fieldName}"!`);
       }
     });
-    const filePath = contentFilePath.split('/docs/').pop();
+    const filePath = contentFilePath.split('/content/').pop();
     const { previousLink, nextLink } = getDocPreviousAndNextLinks(frontmatter.slug, flatSidebar);
 
     actions.createPage({

@@ -4,7 +4,8 @@ require('dotenv').config();
 
 module.exports = {
   flags: { DEV_SSR: process.env.GATSBY_DEV_SSR || false },
-  trailingSlash: 'always',
+  pathPrefix: '/docs',
+  assetPrefix: process.env.GATSBY_DEFAULT_SITE_URL,
   siteMetadata: {
     siteTitle: 'Configu - Rethinking Configuration Management',
     siteDescription:
@@ -26,7 +27,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'docs',
-        path: `${__dirname}/content/docs/`,
+        path: `${__dirname}/content/`,
       },
     },
     'gatsby-plugin-image',
@@ -79,6 +80,7 @@ module.exports = {
       resolve: 'gatsby-plugin-gatsby-cloud',
       options: {
         headers: {
+          '/*': ['Access-Control-Allow-Origin: *'],
           '/fonts/*': ['Cache-Control: public, max-age=31536000, immutable'],
         },
       },
