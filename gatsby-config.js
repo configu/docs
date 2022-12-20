@@ -4,7 +4,7 @@ require('dotenv').config();
 
 module.exports = {
   flags: { DEV_SSR: process.env.GATSBY_DEV_SSR || false },
-  // pathPrefix: process.env.PATH_PREFIX || '/docs',
+  pathPrefix: process.env.PATH_PREFIX || '/docs',
   siteMetadata: {
     siteTitle: 'Configu - Rethinking Configuration Management',
     siteDescription:

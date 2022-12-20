@@ -73,7 +73,7 @@ exports.createPages = async (options) => {
   await createDocPages(options);
 
   createRedirect({
-    fromPath: `/*`,
+    fromPath: `/docs/*`,
     toPath: `https://ppconfigu.gatsbyjs.io/docs/*`,
     statusCode: 200,
   });
