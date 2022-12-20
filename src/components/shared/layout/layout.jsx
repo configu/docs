@@ -18,7 +18,7 @@ const mainNavigation = [
   },
   {
     text: 'Docs',
-    to: process.env.GATSBY_CONFIGU_DOCS_URL,
+    to: '/',
   },
   {
     text: 'About Us',
@@ -53,7 +53,7 @@ const subNavigation = [
     links: [
       {
         text: 'Docs',
-        to: process.env.GATSBY_CONFIGU_DOCS_URL,
+        to: '/',
       },
     ],
   },

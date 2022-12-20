@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types, jsx-a11y/html-has-lang */
 import React from 'react';
 
-const fontsBasePath = '/fonts';
+const fontsBasePath = '/docs/fonts';
 
 const fontsPaths = [
   '/plus-jakarta-sans/plus-jakarta-sans-600.woff2',
