@@ -20,7 +20,11 @@ const NotFoundPage = () => (
         <p className="mt-4 max-w-[592px] text-center font-mono text-xl leading-tight dark:text-white xl:text-md sm:max-w-[480px] sm:text-base">
           Sorry, the page you are looking for doesn't seem to exist. Let's try again:
         </p>
-        <Search className="mt-9 w-[400px] md:max-w-[350px] sm:w-full" />
+        <Search
+          className="mt-9 w-[400px] md:max-w-[350px] sm:w-full"
+          inputClassName="min-h-[48px]"
+          placeholderText="Search from other pages"
+        />
         <Link className="mt-8 text-lg" size="md" theme="black-underlined" to="/">
           Back to Home
         </Link>

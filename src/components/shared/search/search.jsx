@@ -13,7 +13,7 @@ import Results from './results';
 
 const indices = [{ name: algoliaQueries[0].indexName, title: 'Docs', hitComp: 'postPageHit' }];
 
-const Search = ({ className }) => {
+const Search = ({ className, inputClassName, placeholderText }) => {
   const ref = useRef(null);
   const [query, setQuery] = useState();
   const [hasFocus, setFocus] = useState(false);
@@ -39,7 +39,12 @@ const Search = ({ className }) => {
         indexName={indices[0].name}
         onSearchStateChange={({ query }) => setQuery(query)}
       >
-        <Input hasFocus={hasFocus} onFocus={() => setFocus(true)} />
+        <Input
+          additionalClassName={inputClassName}
+          placeholder={placeholderText}
+          hasFocus={hasFocus}
+          onFocus={() => setFocus(true)}
+        />
         {shouldShowResult && <Results indices={indices} />}
       </InstantSearch>
     </div>
@@ -48,10 +53,14 @@ const Search = ({ className }) => {
 
 Search.propTypes = {
   className: PropTypes.string,
+  inputClassName: PropTypes.string,
+  placeholderText: PropTypes.string,
 };
 
 Search.defaultProps = {
   className: null,
+  inputClassName: null,
+  placeholderText: null,
 };
 
 export default Search;
