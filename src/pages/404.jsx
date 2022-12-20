@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import Button from 'components/shared/button/button';
 import Layout from 'components/shared/layout';
+import Link from 'components/shared/link/link';
+import Search from 'components/shared/search';
 import SEO from 'components/shared/seo';
 import Icon404 from 'icons/icon-404.inline.svg';
 
@@ -10,7 +11,7 @@ import Icon404 from 'icons/icon-404.inline.svg';
 //       No need to change anything else. Only colors and font sizes
 const NotFoundPage = () => (
   <Layout>
-    <section className="safe-paddings py-52 lg:py-44 md:py-36 sm:py-28 xs:py-10">
+    <section className="safe-paddings py-32 lg:py-28 md:py-24 sm:py-16 xs:py-10">
       <div className="container flex flex-col items-center">
         <Icon404 className="dark:fill-blue dark:text-white sm:w-full" />
         <h1 className="mt-10 text-center font-mono text-[58px] font-bold leading-none dark:text-white md:text-[48px] sm:mt-5 sm:text-5xl">
@@ -20,9 +21,10 @@ const NotFoundPage = () => (
           Sorry, the page you are looking for doesn’t exist or has been moved. We suggest you back
           to home.
         </p>
-        <Button className="mt-9" size="md" theme="blue" type="button" to="/">
+        <Search className="mt-9 w-[400px] md:max-w-[350px] sm:w-full" />
+        <Link className="mt-8 text-lg" size="md" theme="black-underlined" to="/">
           Back to Home
-        </Button>
+        </Link>
       </div>
     </section>
   </Layout>
