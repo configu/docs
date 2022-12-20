@@ -4,7 +4,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-400.woff2') format('woff2');
+    src: url('/docs/fonts/plus-jakarta-sans/plus-jakarta-sans-400.woff2') format('woff2');
   }
 
   @font-face {
@@ -23,7 +23,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-500.woff2') format('woff2');
+    src: url('/docs/fonts/plus-jakarta-sans/plus-jakarta-sans-500.woff2') format('woff2');
   }
 
   @font-face {
@@ -42,7 +42,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-600.woff2') format('woff2');
+    src: url('/docs/fonts/plus-jakarta-sans/plus-jakarta-sans-600.woff2') format('woff2');
   }
 
   @font-face {
@@ -61,7 +61,7 @@
     font-style: italic;
     font-weight: 600;
     font-display: swap;
-    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-italic-600.woff2') format('woff2');
+    src: url('/docs/fonts/plus-jakarta-sans/plus-jakarta-sans-italic-600.woff2') format('woff2');
   }
 
   @font-face {
@@ -80,7 +80,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('/fonts/plus-jakarta-sans/plus-jakarta-sans-700.woff2') format('woff2');
+    src: url('/docs/fonts/plus-jakarta-sans/plus-jakarta-sans-700.woff2') format('woff2');
   }
 
   @font-face {
@@ -99,7 +99,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/space-grotesk/space-grotesk-400.woff2') format('woff2');
+    src: url('/docs/fonts/space-grotesk/space-grotesk-400.woff2') format('woff2');
   }
 
   @font-face {
@@ -118,7 +118,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url('/fonts/space-grotesk/space-grotesk-500.woff2') format('woff2');
+    src: url('/docs/fonts/space-grotesk/space-grotesk-500.woff2') format('woff2');
   }
 
   @font-face {
@@ -137,7 +137,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url('/fonts/space-grotesk/space-grotesk-600.woff2') format('woff2');
+    src: url('/docs/fonts/space-grotesk/space-grotesk-600.woff2') format('woff2');
   }
 
   @font-face {
@@ -156,7 +156,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('/fonts/space-grotesk/space-grotesk-700.woff2') format('woff2');
+    src: url('/docs/fonts/space-grotesk/space-grotesk-700.woff2') format('woff2');
   }
 
   @font-face {
@@ -172,7 +172,7 @@
 
   @font-face {
     font-family: 'IBM Plex Mono';
-    src: url('/fonts/ibm-plex-mono/ibm-plex-mono-regular.woff2') format('woff2');
+    src: url('/docs/fonts/ibm-plex-mono/ibm-plex-mono-regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: fallback;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, Fragment } from 'react';
 
 import Admonition from 'components/shared/admonition';
+import Anchor from 'components/shared/anchor';
 import AnchorHeading from 'components/shared/anchor-heading';
 import CodeBlock from 'components/shared/code-block';
 import CodeTabs from 'components/shared/code-tabs';
@@ -28,6 +29,7 @@ const components = {
       <table {...props} />
     </div>
   ),
+  a: Anchor,
   Collapsible,
   Admonition,
   CodeTabs,
