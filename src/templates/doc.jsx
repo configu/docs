@@ -41,13 +41,11 @@ const DocTemplate = (props) => {
             <Navigation previousLink={previousLink} nextLink={nextLink} />
           </div>
 
-          {tableOfContents?.length > 0 && (
-            <TableOfContents
-              items={tableOfContents}
-              contentRef={contentRef}
-              fileUrl={fileOriginPath}
-            />
-          )}
+          <TableOfContents
+            items={tableOfContents || []}
+            contentRef={contentRef}
+            fileUrl={fileOriginPath}
+          />
         </div>
       </div>
     </Layout>

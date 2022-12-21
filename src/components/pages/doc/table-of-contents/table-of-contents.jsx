@@ -31,27 +31,31 @@ const TableOfContents = ({ items, fileUrl }) => {
         <div className="border-b border-solid border-grey-88 pb-2 dark:border-grey-40">
           <EditDocLink to={fileUrl} />
         </div>
-        <div className="mt-5 flex items-center text-grey-25 dark:text-grey-88">
-          <ContentsIcon className="mb-0.5 text-grey-25 dark:text-grey-88" />
-          <h3 className="pl-2 font-mono text-sm font-bold">Contents</h3>
-        </div>
-        <ul className="flex flex-col">
-          {items.map(({ title }, index) => {
-            const href = getIdFromChildren(title);
+        {items.length > 0 && (
+          <>
+            <div className="mt-5 flex items-center text-grey-25 dark:text-grey-88">
+              <ContentsIcon className="mb-0.5 text-grey-25 dark:text-grey-88" />
+              <h3 className="pl-2 font-mono text-sm font-bold">Contents</h3>
+            </div>
+            <ul className="flex flex-col">
+              {items.map(({ title }, index) => {
+                const href = getIdFromChildren(title);
 
-            return (
-              <li className="pt-2 font-semibold first:pt-1.5" key={index}>
-                <Link
-                  className="font-mono text-sm text-grey-25 transition-colors duration-200"
-                  to={`#${href}`}
-                  onClick={(e) => handleAnchorClick(e, href)}
-                >
-                  {title}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                return (
+                  <li className="pt-2 font-semibold first:pt-1.5" key={index}>
+                    <Link
+                      className="font-mono text-sm text-grey-25 transition-colors duration-200"
+                      to={`#${href}`}
+                      onClick={(e) => handleAnchorClick(e, href)}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
       </nav>
     </aside>
   );
