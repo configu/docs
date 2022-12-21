@@ -13,7 +13,7 @@ import Results from './results';
 
 const indices = [{ name: algoliaQueries[0].indexName, title: 'Docs', hitComp: 'postPageHit' }];
 
-const Search = ({ className, inputClassName, placeholderText }) => {
+const Search = ({ className, inputClassName, placeholderText, searhIconSize }) => {
   const ref = useRef(null);
   const [query, setQuery] = useState();
   const [hasFocus, setFocus] = useState(false);
@@ -43,6 +43,7 @@ const Search = ({ className, inputClassName, placeholderText }) => {
           additionalClassName={inputClassName}
           placeholder={placeholderText}
           hasFocus={hasFocus}
+          iconSize={searhIconSize}
           onFocus={() => setFocus(true)}
         />
         {shouldShowResult && <Results indices={indices} />}
@@ -55,12 +56,14 @@ Search.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
   placeholderText: PropTypes.string,
+  searhIconSize: PropTypes.string,
 };
 
 Search.defaultProps = {
   className: null,
   inputClassName: null,
   placeholderText: null,
+  searhIconSize: null,
 };
 
 export default Search;

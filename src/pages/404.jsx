@@ -24,8 +24,9 @@ const NotFoundPage = () => (
           className="mt-9 w-[400px] md:max-w-[350px] sm:w-full"
           inputClassName="min-h-[48px]"
           placeholderText="Search from other pages"
+          searhIconSize="lg"
         />
-        <Link className="mt-8 text-lg" size="md" theme="black-underlined" to="/">
+        <Link className="mt-8 text-lg" size="xl" theme="black-underlined" to="/">
           Back to Home
         </Link>
       </div>

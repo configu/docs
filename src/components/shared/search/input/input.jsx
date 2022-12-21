@@ -3,15 +3,30 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connectSearchBox } from 'react-instantsearch-dom';
 
+import SearchIconLg from './images/search-lg.inline.svg';
 import SearchIcon from './images/search.inline.svg';
 
 const Input = connectSearchBox(
-  ({ refine, currentRefinement, onFocus, hasFocus, additionalClassName, placeholder }) => {
+  ({
+    refine,
+    currentRefinement,
+    onFocus,
+    hasFocus,
+    additionalClassName,
+    placeholder,
+    iconSize,
+  }) => {
     const Placeholder = placeholder || 'Search';
 
     return (
       <div className="relative">
-        <SearchIcon className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
+        {iconSize === 'lg' && (
+          <SearchIconLg className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
+        )}
+        {iconSize === 'md' ||
+          (iconSize === null && (
+            <SearchIcon className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
+          ))}
         <input
           id="search-input"
           className={clsx(
@@ -37,6 +52,7 @@ Input.propTypes = {
   currentRefinement: PropTypes.string,
   additionalClassName: PropTypes.string,
   placeholder: PropTypes.string,
+  iconSize: PropTypes.string,
   onFocus: PropTypes.func.isRequired,
   hasFocus: PropTypes.bool,
 };
@@ -45,6 +61,7 @@ Input.defaultProps = {
   refine: () => null,
   currentRefinement: null,
   hasFocus: false,
+  iconSize: 'md',
 };
 
 export default Input;
