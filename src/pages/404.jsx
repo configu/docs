@@ -12,8 +12,8 @@ import Icon404 from 'icons/icon-404.inline.svg';
 const NotFoundPage = () => (
   <Layout>
     <section className="safe-paddings py-32 lg:pt-28 md:pt-24 sm:pt-20 xs:py-16">
-      <div className="container flex h-[100vh] flex-col items-center">
-        <Icon404 className="dark:fill-blue dark:text-white sm:w-full" />
+      <div className="container flex h-screen flex-col items-center">
+        <Icon404 className="dark:text-white sm:w-full" />
         <h1 className="mt-10 text-center font-mono text-[58px] font-bold leading-none dark:text-white md:text-[48px] sm:mt-5 sm:text-5xl">
           Ooops! Page not found...
         </h1>
