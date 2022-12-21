@@ -69,14 +69,7 @@ const createDocPages = async ({ graphql, actions }) => {
 };
 
 exports.createPages = async (options) => {
-  const { createRedirect } = options.actions;
   await createDocPages(options);
-
-  createRedirect({
-    fromPath: `/docs/*`,
-    toPath: `https://ppconfigu.gatsbyjs.io/docs/*`,
-    statusCode: 200,
-  });
 };
 
 exports.onCreateNode = ({ node, actions }) => {
