@@ -11,10 +11,10 @@ import Icon404 from 'icons/icon-404.inline.svg';
 //       No need to change anything else. Only colors and font sizes
 const NotFoundPage = () => (
   <Layout>
-    <section className="safe-paddings py-32 lg:pt-28 md:pt-24 sm:pt-20 xs:py-16">
-      <div className="container flex h-screen flex-col items-center">
-        <Icon404 className="stroke-blue-light dark:stroke-blue-dark dark:text-white sm:w-full" />
-        <h1 className="mt-10 text-center font-mono text-[58px] font-bold leading-none dark:text-white md:text-[48px] sm:mt-5 sm:text-5xl">
+    <section className="safe-paddings">
+      <div className="container flex h-[calc(100vh-80px)] flex-col items-center justify-center md:h-[calc(100vh-72px)]">
+        <Icon404 className="-mt-16 max-h-fit stroke-blue-light stroke-0 dark:stroke-blue-dark dark:text-white sm:w-full" />
+        <h1 className="mt-20 text-center font-mono text-[58px] font-bold leading-none dark:text-white md:text-[48px] sm:mt-16 sm:text-5xl">
           Ooops! Page not found...
         </h1>
         <p className="mt-4 max-w-[592px] text-center font-mono text-xl leading-tight dark:text-white xl:text-md sm:max-w-[480px] sm:text-base">
