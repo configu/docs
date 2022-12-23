@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -75,9 +76,9 @@ const Hits = connectHits(({ hits, showAll }) =>
   )
 );
 
-const Results = ({ indices }) => (
+const Results = ({ indices, additionalStyles }) => (
   <div className="absolute left-0 right-0 bottom-0 z-10 translate-y-full overflow-hidden rounded-b border border-t-0 border-grey-80 bg-white dark:border-grey-40 dark:bg-grey-15">
-    <div className="max-h-[70vh] overflow-y-scroll pt-2.5">
+    <div className={clsx('overflow-y-scroll pt-2.5', additionalStyles)}>
       {indices.map(({ name }) => (
         <Index indexName={name} key={name}>
           <Hits showAll />
@@ -97,7 +98,6 @@ const Results = ({ indices }) => (
     </div>
   </div>
 );
-
 Results.propTypes = {
   indices: PropTypes.arrayOf(
     PropTypes.exact({
@@ -106,6 +106,11 @@ Results.propTypes = {
       hitComp: PropTypes.string.isRequired,
     })
   ).isRequired,
+  additionalStyles: PropTypes.string,
+};
+
+Results.defaultProps = {
+  additionalStyles: null,
 };
 
 export default Results;

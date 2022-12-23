@@ -109,7 +109,7 @@ const ThemeSelect = () => {
     <div className="relative h-8 w-36">
       <div
         className={clsx(
-          'absolute bottom-0 z-40 w-36 items-center rounded border border-grey-80 bg-white text-sm leading-none transition-shadow duration-200 dark:border-grey-40 dark:bg-grey-15 md:bottom-auto md:top-0 md:flex md:flex-col-reverse',
+          'absolute bottom-0 z-0 w-36 items-center rounded border border-grey-80 bg-white text-sm leading-none transition-shadow duration-200 dark:border-grey-40 dark:bg-grey-15 md:bottom-auto md:top-0 md:flex md:flex-col-reverse',
           showDropdown && 'shadow-select dark:shadow-none'
         )}
         ref={dropdownRef}
