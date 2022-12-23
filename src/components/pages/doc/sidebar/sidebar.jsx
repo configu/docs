@@ -32,11 +32,9 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
 
   const title = getTitle(sidebar, currentSlug) ?? 'Navigation';
 
-  const AdditionalResultStyles = 'max-h-[70vh]';
-
   return (
     <aside className={className}>
-      <Search additionalResultsStyles={AdditionalResultStyles} />
+      <Search additionalResultsStyles="max-h-[70vh]" />
       <nav className="mt-5 md:hidden">
         <ul>
           {sidebar.map((item, index) => (
