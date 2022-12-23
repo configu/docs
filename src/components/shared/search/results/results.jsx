@@ -78,7 +78,7 @@ const Hits = connectHits(({ hits, showAll }) =>
 
 const Results = ({ indices, additionalStyles }) => (
   <div className="absolute left-0 right-0 bottom-0 z-10 translate-y-full overflow-hidden rounded-b border border-t-0 border-grey-80 bg-white dark:border-grey-40 dark:bg-grey-15">
-    <div className={clsx('max-h-[70vh] overflow-y-scroll pt-2.5', additionalStyles)}>
+    <div className={clsx('overflow-y-scroll pt-2.5', additionalStyles)}>
       {indices.map(({ name }) => (
         <Index indexName={name} key={name}>
           <Hits showAll />
