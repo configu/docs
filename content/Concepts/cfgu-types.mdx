@@ -1,39 +1,12 @@
 ---
-id: types
-slug: types
-title: Understanding Configu's Types
+id: cfgu-types
+slug: cfgu-types
+title: Cfgu Available Types
 ---
 
-One of the core values of Configu is its ability to validate and enforce types for your
-configurations. Configu's types help guard against accidents in configuration
-updates, and makes your schema easier for humans to understand.
+For convenience and reference, we keep the table below up-to-date with the different types that the Cfgu format supports.
 
-To manage this, Configu implements the following type allowances in configuration objects, 
-which is what schemas become once pushed:
-
- - Primitive, basic types like numbers, strings, booleans, hex and others are valiadtaed based
- purely on their content. If your schema declares a number and you give it a string, Configu will
- issue an error, and you won't be able to validate or push the configuration until you fix it.
-
- - Patterns, which are needed to fulfill additional expectations for types like regex. A Pattern
- is needed for any type that can't be checked against itself or a pre-defined pattern (e.g. email, 
- mobile phone number)
-
- - Templates, which are patterns that combine multiple values from the current schema or others 
- schemas along with other characters, e.g. in order to build a query URL to fetch a feed.
-
-Configu schemas also promote human discovery by including a _note_ field for every key. Notes are 
-optional but strongly encouraged, even if the schema seems obvious right now.
-
-## Table Of Available Types
-
-For convenience and reference, we keep the table below up-to-date with the different types that 
-Configu supports.
-
-Fields identified in the "Also Requires" column indicate additional data that you need to specify 
-in order to use a certain type. For instance, using the "Regex" type requires "pattern" also be 
-specified. We recommend that `note` be specified for human-friendly lookup with every Schema key; 
-the table below shows what's mandatory.
+Fields identified in the "Also Requires" column indicate additional data that you need to specify in order to use a certain type. For instance, using the "Regex" type requires "pattern" also be specified.
 
 <div class="table-wrapper">
   <table>
@@ -61,7 +34,7 @@ the table below shows what's mandatory.
         <td>123456</td>
       </tr>
       <tr>
-        <td>Regex</td>
+        <td>RegEx</td>
         <td>
           <code>pattern</code>
         </td>
@@ -97,7 +70,7 @@ the table below shows what's mandatory.
         <td>41 24.2028, 2 10.4418</td>
       </tr>
       <tr>
-        <td>Semver</td>
+        <td>SemVer</td>
         <td>None</td>
         <td>1.2.3-4</td>
       </tr>
@@ -109,20 +82,20 @@ the table below shows what's mandatory.
         </td>
       </tr>
       <tr>
-        <td>IPV4</td>
+        <td>IPv4</td>
         <td>None</td>
         <td>127.0.0.1</td>
       </tr>
       <tr>
-        <td>IPV6</td>
+        <td>IPv6</td>
         <td>None</td>
         <td>2600:4040:b5c4:1100:216:3eff:feda:953b</td>
       </tr>
-      <tr>
+      {/* <tr>
         <td>Base16</td>
         <td>None</td>
         <td>A Base16 Encoded Value</td>
-      </tr>
+      </tr> */}
       <tr>
         <td>Base64</td>
         <td>None</td>
@@ -142,11 +115,6 @@ the table below shows what's mandatory.
         <td>SHA</td>
         <td>None</td>
         <td>A SHA Hashed Value</td>
-      </tr>
-      <tr>
-        <td>REF</td>
-        <td>None</td>
-        <td>A Reference Value</td>
       </tr>
       <tr>
         <td>Country</td>
@@ -183,13 +151,13 @@ the table below shows what's mandatory.
           <code>AUD</code> <code>USD</code>
         </td>
       </tr>
-      <tr>
+      {/* <tr>
         <td>Language</td>
         <td>None</td>
         <td>
           <code>he</code> <code>en</code>
         </td>
-      </tr>
+      </tr> */}
     </tbody>
   </table>
 </div>
