@@ -17,6 +17,7 @@ The name of the .cfgu file is used as its unique id (uid), and each Config creat
 By using .cfgu files, teams can benefit from a clear and structured way to define and manage their configuration data, improving the efficiency and reliability of their software development and deployment processes, and facilitating collaboration among team members.
 
 Here is an example of a ConfigSchema (.cfgu.json) file:
+
 ```json
 {
   "API_KEY": {
@@ -26,16 +27,19 @@ Here is an example of a ConfigSchema (.cfgu.json) file:
   }
 }
 ```
+
 This schema binds a configuration called "API_KEY" with a type of "String", which is required and has a default value of "abc123".
 
+{/* not ok! consider using other markup */}
+{/* ## [Configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21) ([Config.key](https://github.com/configu/configu/blob/main/types/Config.ts#L5)) */}
 
-## [Configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21) ([Config.key](https://github.com/configu/configu/blob/main/types/Config.ts#L5))
+## [Configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21)
 
 A configuration key is the name of the configuration as it appears in the code. It is used to identify and reference a specific configuration, and can be used to access the value of the configuration in the code.
 
 Here are some examples of how a config key named "CONFIG" might be used in various programming languages as an environment variable:
-<LangToEnvs />
 
+<LangToEnvs />
 
 ## [The Cfgu format](https://github.com/configu/configu/blob/main/types/Cfgu.ts)
 
@@ -51,8 +55,7 @@ The Cfgu format consists of a set of properties that specify important character
 
 When these properties are attached to a configuration key in a ConfigSchema and used through the Configu interface (CLI/SDK), they are used to apply important and repeated validation on the configuration values, often implemented in the code.
 
--------
-
+---
 
 ## Working with ConfigSchemas
 
@@ -65,24 +68,24 @@ of your configuration schema in JSON format. The simplest way to do this is to r
 configu init --name some-schema
 ```
 
-... somewhere in your source repository where it can be tracked. You should track these files 
-like any other code. You can create as many `.cfgu.json` files as you need, and we encourage 
-you to use Configu for any tool that exists in your development workflow - even ad-hoc build scripts. 
+... somewhere in your source repository where it can be tracked. You should track these files
+like any other code. You can create as many `.cfgu.json` files as you need, and we encourage
+you to use Configu for any tool that exists in your development workflow - even ad-hoc build scripts.
 
-To create a new configuration with a small demonstration schema, run `configu init --examples` which 
-will give you an overview of how types, defaults, notes and templates work together. 
+To create a new configuration with a small demonstration schema, run `configu init --examples` which
+will give you an overview of how types, defaults, notes and templates work together.
 
 ## Changing A Schema
 
-You can add as many keys of any type as you wish to your configuration as your application evolves. 
-You should treat your `.cfgu.json` files as the **source of truth** for your configuration schemas, 
+You can add as many keys of any type as you wish to your configuration as your application evolves.
+You should treat your `.cfgu.json` files as the **source of truth** for your configuration schemas,
 and use your version control to manage versions and changes as they're coupled to your applications.
 
-Ordinary maintenance tasks are changing the default values, notes, templates and patterns associated 
-with your schema, which is easy to accomplish by editing the associated `.cfgu.json` file as needed 
+Ordinary maintenance tasks are changing the default values, notes, templates and patterns associated
+with your schema, which is easy to accomplish by editing the associated `.cfgu.json` file as needed
 and letting it go through your existing review / PR process.
 
-Once you want to initialize values and create a set for it, you can use `configu upsert` 
+Once you want to initialize values and create a set for it, you can use `configu upsert`
 [(Read more on how to manage values)](/sets).
 
 Our IDE plugins provide very convenient completion and lookup to make this process as simple as possible.
@@ -90,27 +93,29 @@ Our IDE plugins provide very convenient completion and lookup to make this proce
 
 ## Renaming & Deprecation
 
-If you need to **rename** a schema key, you can do this, just be aware that changing the name 
+If you need to **rename** a schema key, you can do this, just be aware that changing the name
 is actually two operations:
 
- - The key (as we know it) is deprecated
- - A new key with the new name or type is then added
+- The key (as we know it) is deprecated
+- A new key with the new name or type is then added
 
-Deprecation is a sort of 'soft' delete - we remove the configuration key from Configu's view when 
-filling sets, but we keep a reference to it in case of rollback. Users with Administration access 
+Deprecation is a sort of 'soft' delete - we remove the configuration key from Configu's view when
+filling sets, but we keep a reference to it in case of rollback. Users with Administration access
 can prune deprecated keys as needed.
 
 ## Deleting A Schema
 
 <Admonition type="warning">
+
 Be sure about deleting a schema!
+
 </Admonition>
 
-Note that unlike configuration keys, **schemas themselves are hard-deleted, not deprecated**, 
-so please be sure that's what you want to do. They can be re-created by restoring them in your 
+Note that unlike configuration keys, **schemas themselves are hard-deleted, not deprecated**,
+so please be sure that's what you want to do. They can be re-created by restoring them in your
 repository, and upserting them again in the event that you make a mistake.
 
-You should favor having a team admin periodically prune deprecated keys from schemas instead 
+You should favor having a team admin periodically prune deprecated keys from schemas instead
 of re-creating them; you really only want to delete a schema if it won't be needed in the future.
 
 You can delete schema using the `delete` command

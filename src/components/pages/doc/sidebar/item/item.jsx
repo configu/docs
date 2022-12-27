@@ -16,7 +16,7 @@ const Item = ({ title, slug, items, isOpenByDefault, currentSlug }) => {
       {slug ? (
         <Link
           className={clsx(
-            'flex w-full items-center py-1.5 text-left text-grey-25 transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark',
+            'flex w-full items-center py-1.5 text-left font-mono text-sm font-semibold leading-snug text-grey-25 transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark',
             {
               '!text-blue-light dark:!text-blue-dark': currentSlug === slug,
             }
