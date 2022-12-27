@@ -30,12 +30,39 @@ title: <page title>
 
 ## Sidebar
 
-Sidebar data is stored in the [`src/content/sidebar.json`](./content/sidebar.json) file.
+The source of truth for sidebar generation is stored in the [`src/content/sidebar.json`](./content/sidebar.json) file. The content in this file determines sidebar hierarchy.
 
-In order to add a new page, add a new item to `items` array with keys `title` and `slug` under specific category or subcategory:
+To add a top-level sidebar section, place a sibling in a desired position inside top-level `items` array:
 
-- `title` in the sidebar may differ from `title` in Markdown file.
-- `slug` should always match page's slug.
+```json
+{
+  "items": [
+    // your new item
+    {
+      "title": "Before the overview section",
+      "items": [
+        // add entries to pupulate the section with subpages
+      ]
+    },
+    {
+      "title": "Overview",
+      "items": [
+        { "title": "Introduction", "slug": "/" },
+        { "title": "Architecture", "slug": "architecture" },
+        { "title": "Quick Start Guide", "slug": "quick-start" },
+        { "title": "Configu's Data privacy", "slug": "data-privacy" }
+      ]
+    }
+  ]
+}
+```
+
+:warning: note, that it is not enough to define a page in a sidebar for it to appear! For each page there has to be a corresponding `.md` file used for page generation.
+
+**Attributes breakdown**:
+
+- the `title` attribute is required and is a represenation of a certain `.md` page in sidebar. `title` may differ from the on inside the page
+- `slug` should always match page's slug. Under the hood we define the active item by comparing current page url and the passed `slug` metadata. Also the sidebar links are being constructed using this attribute.
 
 ## Headings
 
