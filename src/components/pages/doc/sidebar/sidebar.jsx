@@ -9,7 +9,11 @@ import Item from './item';
 const getTitle = (sidebar, currentSlug) => {
   let result;
 
-  sidebar.forEach(({ items }) => {
+  sidebar.forEach(({ slug, title, items }) => {
+    if (slug && title) {
+      return title;
+    }
+
     items.forEach(({ title, slug, items }) => {
       if (slug === currentSlug) result = title;
 
@@ -23,12 +27,17 @@ const getTitle = (sidebar, currentSlug) => {
 };
 
 const Sidebar = ({ className, sidebar, currentSlug }) => {
-  const activeItemIndex = sidebar.findIndex(
-    ({ items }) =>
-      items.find(
+  const activeItemIndex = sidebar.findIndex(({ slug, items }) => {
+    if (slug) {
+      return slug === currentSlug;
+    }
+
+    return (
+      items?.find(
         ({ slug, items }) => slug === currentSlug || items?.find(({ slug }) => slug === currentSlug)
       ) !== undefined
-  );
+    );
+  });
 
   const title = getTitle(sidebar, currentSlug) ?? 'Navigation';
 
@@ -75,6 +84,7 @@ Sidebar.propTypes = {
   sidebar: PropTypes.arrayOf(
     PropTypes.exact({
       title: PropTypes.string.isRequired,
+      slug: PropTypes.string,
       items: PropTypes.arrayOf(
         PropTypes.exact({
           title: PropTypes.string.isRequired,
@@ -86,7 +96,7 @@ Sidebar.propTypes = {
             })
           ),
         })
-      ).isRequired,
+      ),
     })
   ).isRequired,
   currentSlug: PropTypes.string.isRequired,

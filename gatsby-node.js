@@ -8,9 +8,13 @@ const sidebar = require('./content/sidebar.json');
 const { DRAFT_FILTER, DOC_REQUIRED_FIELDS } = require('./src/constants/docs');
 const getDocPreviousAndNextLinks = require('./src/utils/get-doc-previous-and-next-link');
 
-const flatSidebar = sidebar.items
-  .map(({ items }) => items.map((item) => (item?.items?.length > 0 ? item.items : item)))
-  .flat(2);
+const flatSidebar = (items) =>
+  items.reduce((acc, item) => {
+    if (item.items) {
+      return [...acc, ...flatSidebar(item.items)];
+    }
+    return [...acc, item];
+  }, []);
 
 const createDocPages = async ({ graphql, actions }) => {
   const result = await graphql(
@@ -51,7 +55,10 @@ const createDocPages = async ({ graphql, actions }) => {
       }
     });
     const filePath = contentFilePath.split('/content/').pop();
-    const { previousLink, nextLink } = getDocPreviousAndNextLinks(frontmatter.slug, flatSidebar);
+    const { previousLink, nextLink } = getDocPreviousAndNextLinks(
+      frontmatter.slug,
+      flatSidebar(sidebar.items)
+    );
 
     actions.createPage({
       path: frontmatter.slug,
