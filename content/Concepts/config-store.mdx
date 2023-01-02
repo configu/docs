@@ -1,16 +1,32 @@
 ---
-slug: store
-title: Store
+slug: config-store
+title: ConfigStore
 ---
 
-Stores are where your data will be stored, and you can work with multiple stores at the same time.
-Data can be linked between different stores, for example, if you're using Configu's store with
-HashiCorp Vault, your secrets can be stored in the vault and linked to Configu via the metadata
-(the secret path `/kv/production/example-secret`) and the pairing will be done locally at the export
-through our open-source interface.
+import { getStoreConnectionStringPlaceholder } from '@configu/lib';
 
-Configu's interfaces support many stores and are open source! Therefore, you can add your own
-store if it does not already exist.
+A ConfigStore is a storage system for Configs, which can be any system or service that is capable of storing data. This can include text files, databases, secret managers, and Configu's SaaS Configuration Store. ConfigStores are responsible for storing, retrieving, and managing configuration data, and developers can choose the ConfigStore that best fits their needs and workflow.
+
+ConfigStores are unique in their type, and can be referenced as instances of their class implementation when using Configu's SDK. When using Configu's CLI, ConfigStores are referenced using connection strings, which can also be cached as short labels for convenience.
+
+Configu's interfaces support a wide range of ConfigStores and are open source, so if you don't see a ConfigStore that meets your needs, you can easily create your own by implementing a simple abstract class with get and set methods. This allows you to extend Configu to fit your specific configuration management needs.
+
+Here are some examples of using Configu SaaS Store with Configu's CLI:
+
+```bash
+configu store upsert --label "my-store" --interactive
+
+configu store upsert -l "my-store" --connection-string "store=configu;org=my-company;token=123abc;type=Token"
+
+configu store upsert --type "configu"
+
+configu store list
+
+configu [COMMAND] --store "my-store" ...
+configu [COMMAND] --store "store=configu;org=my-company;token=123abc;type=Token" ...
+
+configu store delete -l "my-store"
+```
 
 ## Supported stores:
 
@@ -33,22 +49,3 @@ store if it does not already exist.
   - [Amazon Aurora](/amazon-aurora)
 - Browser:
   - [localForage](/localforage)
-
-## Start work with store
-
-To connect configu's CLI to the preferred store, run the `configu store` command
-
-```shell
-configu store --name "store-name" --uri "store-uri" # uses the name "default" if you choose not to specify any name
-```
-
-In order to connect Configu's store, you need to do the following:
-
-1.  Register the Saas application at [app.configu.io](https://app.configu.io/)
-2.  Create an organization for your company
-3.  Connect your CLI with your store interactively (locally) or via token
-
-```shell
-configu store --name "default" --uri "configu://-" # interactive login
-configu store --name "default" --uri "configu://[access-token]@<org-id>"
-```

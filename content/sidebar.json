@@ -13,9 +13,37 @@
       "title": "Concepts",
       "items": [
         { "title": "Terminology", "slug": "terminology" },
+        { "title": "Config Store", "slug": "config-store" },
+        { "title": "Config Set", "slug": "config-set" },
         { "title": "Config Schema", "slug": "config-schema" },
-        { "title": "Cfgu Types", "slug": "cfgu-types" }
+        { "title": "Cfgu Types", "slug": "cfgu-types" },
+        { "title": "Commands", "slug": "commands" }
       ]
+    },
+    {
+      "title": "CLI",
+      "items": [
+        { "title": "Setup", "slug": "cli-setup" },
+        { "title": "Command Reference", "slug": "cli-commands" },
+        { "title": "store", "slug": "cli-store" },
+        { "title": "init", "slug": "cli-init" },
+        { "title": "upsert", "slug": "cli-upsert" },
+        { "title": "export", "slug": "cli-export" },
+        { "title": "delete", "slug": "cli-delete" }
+      ]
+    },
+    {
+      "title": "SDK",
+      "items": [
+        { "title": "Node.js", "slug": "nodejs-sdk" },
+        { "title": "Browser", "slug": "browser-sdk" },
+        { "title": "Python", "slug": "python-sdk" },
+        { "title": "VS Code Extension", "slug": "vs-code-ext" }
+      ]
+    },
+    {
+      "title": "Recipes",
+      "items": [{ "title": "Managing Node.js Application With Heroku", "slug": "nodejs-heroku" }]
     }
   ]
 }

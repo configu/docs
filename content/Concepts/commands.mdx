@@ -1,57 +1,181 @@
 ---
-id: exporting
-slug: exporting
-title: Exporting & Synchronizing Configurations
+slug: commands
+title: Configu's Commands
 ---
 
-Once you have [declared your schema](/schemas) and [created a set](/sets), the Configu CLI 
-is all you'll need in order to export and synchronize your configuration across your deployments, 
-wherever they might be.
+import { getStoreConnectionStringPlaceholder } from '@configu/lib';
 
-Configu CLI runs easily locally, on your CI/CD server, on your cluster, or anywhere that you need 
-it to run. Configu CLI will work with any automation or orchestration software that you want to use.
+Configu defines three major commands (operations). These commands allow developers to manage their configuration data and ensure that it is properly stored, retrieved, and updated.
 
-## Exporting Your Configurations
+## Upsert
 
-When using the Configu CLI to export your configurations for the first time, we recommend using 
-the CLI command generator (to reach the command generator, navigate to **Integrations** &rarr; 
-**Configu CLI**)
+The Upsert command is used to create, update, or delete Configs in a ConfigStore.
 
-![Configu-exports](configu-exports.jpg)
+#### Input
 
-You just have to make a few settings to tell Configu which schema and set you want to produce, 
-and what runtime you're deploying to, and the command builder does the rest.
+- A single ConfigStore
+- A single ConfigSet
+- A snigle ConfigSchema
+- A list of key-value pairs, representing the Configs to be upserted
 
-## Select How To Run (Locally, Or On The CI Server)
+#### Output
 
-If you intend to run interactively, you'll need to make sure you're logged in and your CLI is 
-connected and set to the correct organization. If you're setting up Configu to run on the CI/CD, 
-[you'll need a token](/administration) as the tool suggests.
+- None
 
-## Select How You'd Like The Config Exported
+#### Flow
 
-Configu can deliver your configuration in a variety of ways:
+- Iterate through each key-value pair in the input list:
+  - Validate that the key has been declared in the ConfigSchema.
+  - Validate the value against the matching Cfgu properties in the ConfigSchema (e.g. type, pattern, etc.).
+  - Construct a Config object using the input ConfigSet path, ConfigSchema uid, key, and value.
+- Call the ConfigStore's set method with the list of constructed Config objects.
+  - If a Config with the same set, schema, and key does not already exist in the ConfigStore, it will be created.
+  - If a Config with the same set, schema, and key already exists in the ConfigStore, it will be updated with the new value.
+  - If the value is an empty string, the Config will be deleted from the ConfigStore.
 
- - **Print**: Print the configuration to standard output, or to a file, and select the desired format
- - **Template**: Output the configuration to a template file
- - **Source**: Export the configuration in a way that shell scripts/docker files can evaluate it
- - **Sync**: Synchronize the configuration directly to a supported runtime / IAAS / PAAS provider
-(like Heroku, AWS, and more)
+#### Usage
 
-Using the command generator will also help to understand which flags Configu expects to see with each 
-choice.
+```bash
+configu upsert \
+  --store "{getStoreConnectionStringPlaceholder('configu')}" \
+  --set "production" --schema "./service.cfgu.json" \
+  --config "API_TOKEN=123abc" --config "AWS_REGION=us-east-1" --config "DELETE_ME="
+```
 
-## Copy And Run The Command!
+```js
+import path from 'path';
+import { ConfiguStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
 
-You'll see the command preview as you build it in the app. Once you're done, you can copy it, paste, 
-insert any tokens that are required and Configu will handle the rest - here's what will happen:
+(async () => {
+  try {
+    if (!process.env.CONFIGU_ORG || !process.env.CONFIGU_TOKEN) {
+      return;
+    }
 
- 1.  Configu will make sure your client has the permissions to execute the command
- 2.  Configu will look up the specified schema and set, stored in the selected stores
- 3.  Configu will expand any template strings, and fetch any required secrets from the specified secret managers
- 4.  Configu will complete the operation by outputting the config according to the flags you specified
+    const store = new ConfiguStore({
+      credentials: {
+        org: process.env.CONFIGU_ORG,
+        token: process.env.CONFIGU_TOKEN,
+        type: 'Token',
+      },
+    });
+    const set = new ConfigSet('production');
+    const schema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
 
-## Don't Forget - Our Client Libraries Are Open Source!
+    await new UpsertCommand({
+      store,
+      set,
+      schema,
+      configs: [
+        { key: 'API_TOKEN', value: '123abc' },
+        { key: 'AWS_REGION', value: 'us-east-1' },
+        { key: 'DELETE_ME', value: '' },
+      ],
+    }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
 
-We made the client libraries open source! We want you to add your own formats and runtimes if they 
-don't already exist.
+## Eval
+
+The Eval command is used to fetch and validate Configs as an Object from a ConfigStore.
+
+#### Input
+
+- A single ConfigStore {/* or multiple ConfigStores - after we decide what todo with referances values */}
+- A single ConfigSet
+- A single ConfigSchema or multiple ConfigSchemas
+
+#### Output
+
+- An object of the evaluated configs
+
+```ts
+type EvaluatedConfigs = { [key: string]: string };
+```
+
+#### Flow
+
+- Iterate through each schema from the input:
+  - Iterate through each key from the current schema:
+    - Iterate up in the set hierarchy from the input:
+      - Construct a ConfigStoreQuery object using the current hierarchy, current schema uid, and current key.
+- Call the ConfigStore's get method with the list of constructed ConfigStoreQuery objects.
+- Remove duplicates from the fetched Configs according to set hierarchy (bottom to top) and schema inputs (right to left).
+- Iterate through each fetched Config and determine its final value considering the default property from the corresponding Cfgu.
+- Evaluate all template Configs final value.
+- Validate the final values against their corresponding Cfgu properties in the ConfigSchema (e.g. type, required, depends, etc.).
+- Return EvaluatedConfigs which is an object of pairs of keys and string values.
+
+#### Usage
+
+```bash
+configu export \
+  --store "{getStoreConnectionStringPlaceholder('configu')}" \
+  --set "production" --schema "./globals.cfgu.json" --schema "./service.cfgu.json"
+```
+
+<Admonition>
+  
+The Export command in the CLI is built on top of the Eval command and provides additional functionality. It is named after the well-known Bash shell command ([export](https://www.geeksforgeeks.org/export-command-in-linux-with-examples/)) that allows environment variables to be shared with child processes.
+
+</Admonition>
+
+```js
+import path from 'path';
+import { ConfiguStore, ConfigSet, ConfigSchema, EvalCommand } from '@configu/node';
+
+(async () => {
+  try {
+    if (!process.env.CONFIGU_ORG || !process.env.CONFIGU_TOKEN) {
+      return;
+    }
+
+    const store = new ConfiguStore({
+      credentials: {
+        org: process.env.CONFIGU_ORG,
+        token: process.env.CONFIGU_TOKEN,
+        type: 'Token',
+      },
+    });
+    const set = new ConfigSet('production');
+    const globalsSchema = new ConfigSchema(path.join(__dirname, 'globals.cfgu.json'));
+    const serviceSchema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
+
+    const { data } = await new EvalCommand({
+      store,
+      set,
+      schema: [globalsSchema, serviceSchema],
+    }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
+## Delete
+
+The Delete command is used to bulk delete Configs from a ConfigStore.
+
+#### Input
+
+- A single ConfigStore
+- Either a single ConfigSet or a single ConfigSchema or both
+
+#### Output
+
+- None
+
+#### Flow
+
+- If only ConfigSet supplied:
+  - Construct a ConfigStoreQuery object using the supplied set.path, schema as "\*" (all) and key as "\*" (all).
+- If only ConfigSchema supplied:
+  - Construct a ConfigStoreQuery object using set as "\*" (all), the supplied schema.uid and key as "\*" (all).
+- If both ConfigSet and ConfigSchema supplied:
+  - Construct a ConfigStoreQuery object using the supplied set.path, the supplied schema.uid and key as "\*" (all).
+- Call the ConfigStore's get method with the constructed ConfigStoreQuery.
+- Set value to an empty string ("") on each of the fetched Configs.
+- Call the ConfigStore's set method with the list of modified Config objects.

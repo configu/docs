@@ -90,3 +90,16 @@ exports.onCreateNode = ({ node, actions }) => {
     });
   }
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        os: false,
+        path: false,
+        buffer: false,
+        fs: false,
+      },
+    },
+  });
+};

@@ -16,16 +16,23 @@ We'll use the Configu's CLI and the Configu's Saas Configuration Store to decalr
 ### 2. Declare a Config schema
 
 ```shell
-configu init --getting-started
+configu init --get-started
 ```
 
 ### 3. Use a Config Store
 
-> Create a new organization in the [Configu SaaS Configuration Store](https://app.configu.com/).
-
 ```shell
 configu store upsert --type "configu"
 ```
+
+<Admonition>
+  
+[Configu SaaS Store](https://app.configu.com/) is a convenient way to get started with Configu, especially for users who are new to the platform. It provides a cloud-based configuration management solution that is easy to use and requires minimal setup.
+To get started with [Configu SaaS Store](https://app.configu.com/), you'll need to [register and create a new organization](https://app.configu.com/).
+
+It's important to note that Configu SaaS Store is just one of many options for storing and managing configuration data with Configu. If you have specific requirements or preferences, you may wish to explore other ConfigStore options, such as using a database, a secret manager, or your own custom implementation.
+
+</Admonition>
 
 ### 4. Upsert Config values to a "test" Config Set
 
@@ -52,6 +59,6 @@ SUBJECT=<YOUR_NAME>
 BAZ=hey, <YOUR_NAME>!
 ```
 
-That's it! You should now have a simple set of configuration data stored in the Configu SaaS Configuration Store, ready to be used in your application.
+That's it! You should now have a simple set of configuration data stored in the Configu SaaS Store, ready to be used in your application.
 
 To learn more about Configu and how to use it, you can continue to expolre the documentation and join the Configu [Discord channel](https://discord.com/invite/cjSBxnB9z8), where you can ask questions and get help from the Configu team and other community members.

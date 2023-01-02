@@ -8,12 +8,15 @@ Here is a dictionary of some key concepts in Configu:
 <div class="table-wrapper">
 
   <table>
+
     <thead>
       <tr>
         <th>Concept</th>
         <th>Explanation</th>
+        <th>Resources</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>
@@ -25,7 +28,9 @@ Here is a dictionary of some key concepts in Configu:
           - schema: The unique identifier of the ConfigSchema that the configuration has been declared on.
           - value: The literal value of the configuration in the ConfigSet.
           - set: The path of the ConfigSet that the value belongs to.
-          <a href="https://github.com/configu/configu/blob/main/types/Config.ts">See Config decleration.</a>
+        </td>
+        <td>
+          - <a href="https://github.com/configu/configu/blob/main/types/Config.ts" target="_blank">See Config decleration in code</a>
         </td>
       </tr>
 
@@ -35,7 +40,9 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           A Cfgu is a generic declaration of a Config, that specifies information about its type, constrains and other characteristics.
-          <a href="https://github.com/configu/configu/blob/main/types/Cfgu.ts">See Cfgu decleration.</a>
+        </td>
+        <td>
+          - <a href="https://github.com/configu/configu/blob/main/types/Cfgu.ts" target="_blank">See Cfgu decleration in code</a>
         </td>
       </tr>
 
@@ -45,8 +52,10 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           A ConfigSchema is a file stored as \[Config.schema\].cfgu.\[json|yaml\] that contains binding records between a unique \[Config.key\] and its Cfgu declaration.
-          <a href="/docs/config-schema">Read more on ConfigSchema</a>
-          <a href="https://github.com/configu/configu/blob/main/types/ConfigSchema.ts">See ConfigSchema decleration.</a>
+        </td>
+        <td>
+          - <a href="https://github.com/configu/configu/blob/main/types/ConfigSchema.ts" target="_blank">See ConfigSchema decleration in code</a>
+          - <a href="/docs/config-schema">Read more on ConfigSchema</a>
         </td>
       </tr>
 
@@ -55,9 +64,11 @@ Here is a dictionary of some key concepts in Configu:
           <strong>ConfigSet</strong>
         </td>
         <td>
-          A ConfigSet (\<Config.set\>) is a string representing a path in a hierarchical structure (tree) that is used to organize \<Config.value\>s for different contexts such as environments, tenants, etc.
-          <a href="/docs/config-set">Read more on ConfigSet</a>
-          <a href="https://github.com/configu/configu/blob/main/types/ConfigSet.ts">See ConfigSet decleration.</a>
+          A ConfigSet (\[Config.set\]) is a string representing a path in a hierarchical structure (tree) that is used to organize and group \[Config.value\]s for different contexts such as environments, tenants, etc.
+        </td>
+        <td>
+          - <a href="https://github.com/configu/configu/blob/main/types/ConfigSet.ts" target="_blank">See ConfigSet decleration in code</a>
+          - <a href="/docs/config-set">Read more on ConfigSet</a>
         </td>
       </tr>
 
@@ -67,8 +78,10 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           A ConfigStore is a storage engine for Configs, which can be any system or service that is capable of storing data. It can be a simple text file, a database, a secret manager, Configu's SaaS Configuration Store, or your own custom implementation.
-          <a href="/docs/config-store">Read more on ConfigStore</a>
-          <a href="https://github.com/configu/configu/blob/main/types/ConfigStore.ts">See ConfigStore decleration.</a>
+        </td>
+        <td>
+          - <a href="https://github.com/configu/configu/blob/main/types/ConfigStore.ts" target="_blank">See ConfigStore decleration in code</a>
+          - <a href="/docs/config-store">Read more on ConfigStore</a>
         </td>
       </tr>
 
@@ -78,7 +91,9 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           In computing, configuration files are files used to configure the parameters and initial settings for some computer programs. They are used for user applications, server processes and operating system settings.
-          <a href="https://en.wikipedia.org/wiki/Configuration_file">Read more on Configuration file</a>
+        </td>
+        <td>
+          - <a href="https://en.wikipedia.org/wiki/Configuration_file" target="_blank">Read more on Configuration file</a>
         </td>
       </tr>
 
@@ -89,6 +104,8 @@ Here is a dictionary of some key concepts in Configu:
         <td>
           XML, JSON, YAML, TOML, Dotenv, HCL, etc..
         </td>
+        <td>
+        </td>
       </tr>
 
       <tr>
@@ -97,6 +114,8 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           API keys, passwords, certificates, and other sensitive data.
+        </td>
+        <td>
         </td>
       </tr>
 
@@ -109,6 +128,9 @@ Here is a dictionary of some key concepts in Configu:
           \{\{mustache\}\}
           </a> templates and can be rendered as a configuration file.
         </td>
+        <td>
+          - <a href="https://mustache.github.io/" target="_blank">Open mustache docs</a>
+        </td>
       </tr>
 
       <tr>
@@ -117,6 +139,8 @@ Here is a dictionary of some key concepts in Configu:
         </td>
         <td>
           A process that syncs configuration data through Configu to a runtime environment such as Vercel, Netlify, AWS Lambda, AWS ECS, K8s, etc.
+        </td>
+        <td>
         </td>
       </tr>
     </tbody>
