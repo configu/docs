@@ -1,0 +1,74 @@
+<CodeTabs labels={["GitHub Action", "GitLab CI/CD", "Jenkins", "Circle CI", "Azure DevOps Pipelines", "Bitbucket", "TeamCity", "Buddy"]}>
+
+```yaml
+# source: https://github.com/configu/setup-cli-action
+steps:
+  - uses: configu/setup-cli-action@v1
+  - run: configu [COMMAND]
+```
+
+```yaml
+# source: https://gitlab.com/configu1/setup-cli-gitlab-ci
+include:
+  - remote: 'https://gitlab.com/configu1/setup-cli-gitlab-ci/-/raw/main/configu.gitlab-ci.yml'
+use-configu-job:
+  stage: deploy
+  extends: .configu/setup-cli
+  script:
+    - configu [COMMAND]
+```
+
+```yaml
+# Add "Execute Shell" build step
+curl https://cli.configu.com/install.sh | sh
+configu [COMMAND]
+```
+
+```yaml
+# source: https://github.com/configu/setup-cli-orb
+version: 2.1
+orbs:
+  configu: configu/setup-cli-orb@X.Y.Z
+jobs:
+  use-configu:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - configu/setup
+      - configu [COMMAND]
+workflows:
+  deploy:
+    jobs:
+      - use-configu
+```
+
+```yaml
+steps:
+  - script: |
+      (curl https://cli.configu.com/install.sh || wget -qO- https://cli.configu.com/install.sh) | sudo sh
+    displayName: Install Configu CLI
+  - script: configu [COMMAND]
+    displayName: Use Configu CLI
+```
+
+```yaml
+image: atlassian/default-image:3
+  pipelines:
+    default:
+      - step:
+          script:
+            - curl https://cli.configu.com/install.sh | sh
+            - configu [COMMAND]
+```
+
+```yaml
+# Add "Command Line" build step
+curl https://configu.io/cli/install.sh | sh
+configu [COMMAND]
+```
+
+```yaml
+# see: https://configu.io/docs/buddy
+```
+
+</CodeTabs>

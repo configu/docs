@@ -1,0 +1,41 @@
+---
+slug: cli-init
+title: configu init
+---
+
+create a new [ConfigSchema `.cfgu`](/config-schema) file in the current working dir.
+
+```shell
+configu init [flags]
+```
+
+### Flags
+
+- `--uid <string>` (**optional**) set the schema `uid`, which is also the name of the new .cfgu file. the default is the current directory name in parameter-case.
+- `--dir <path/to/dir>` (**optional**) set the directory that will contain the new .cfgu file. the default is the current directory.
+- `--import <path/to/file>` (**optional**) import an existing .env or .json file and create a new .cfgu file from its records.
+  - `--defaults` assign the values from the imported file as the default value for the keys that will be created in the .cfgu file.
+  - `--types` infer the Cfgu type of the values from the imported file and assign them to the keys that will be created in the .cfgu file. the default is String.
+- `--get-started/--example` (**optional**) fill the new .cfgu file with a variety of pre-made, detailed record examples.
+
+### Examples
+
+```shell
+# create a new .cfgu file in the current directory with the default name (current directory name in parameter-case)
+configu init
+
+# create a new .cfgu file in the current directory with a specific name (my-project.cfgu)
+configu init --uid my-project
+
+# create a new .cfgu file in a specific directory (./config) with a specific name (my-project.cfgu)
+configu init --dir ./config --uid my-project
+
+# import an existing .json file and create a new .cfgu file from it's records
+configu init --import ./config.json
+
+# import an existing .env file and create a new .cfgu file from it's records, assigning the values as the default value for the keys in the .cfgu file and inferring the Cfgu type of the values and assigning them to the keys in the .cfgu file
+configu init --import ./.env --defaults --types
+
+# fill the new .cfgu file with a variety of pre-made, detailed record examples
+configu init --get-started
+```

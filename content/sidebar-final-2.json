@@ -5,6 +5,7 @@
       "title": "Overview",
       "items": [
         { "title": "Get Started", "slug": "get-started" },
+        { "title": "Features", "slug": "features" },
         { "title": "Architecture", "slug": "architecture" }
       ]
     },
@@ -27,8 +28,22 @@
         { "title": "store", "slug": "cli-store" },
         { "title": "init", "slug": "cli-init" },
         { "title": "upsert", "slug": "cli-upsert" },
-        { "title": "export", "slug": "cli-export" }
+        { "title": "export", "slug": "cli-export" },
+        { "title": "delete", "slug": "cli-delete" }
       ]
+    },
+    {
+      "title": "SDK",
+      "items": [
+        { "title": "Node.js", "slug": "nodejs-sdk" },
+        { "title": "Browser", "slug": "browser-sdk" },
+        { "title": "Python", "slug": "python-sdk" },
+        { "title": "VS Code Extension", "slug": "vs-code-ext" }
+      ]
+    },
+    {
+      "title": "Recipes",
+      "items": [{ "title": "Managing Node.js Application With Heroku", "slug": "nodejs-heroku" }]
     }
   ]
 }
