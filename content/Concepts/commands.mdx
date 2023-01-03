@@ -35,9 +35,9 @@ The Upsert command is used to create, update, or delete Configs in a ConfigStore
 
 #### Usage
 
-```bash
+```shell
 configu upsert \
-  --store "{getStoreConnectionStringPlaceholder('configu')}" \
+  --store "store=configu;org=my-company;token=123abc;type=Token" \
   --set "production" --schema "./service.cfgu.json" \
   --config "API_TOKEN=123abc" --config "AWS_REGION=us-east-1" --config "DELETE_ME="
 ```
@@ -113,7 +113,7 @@ type EvaluatedConfigs = { [key: string]: string };
 
 ```bash
 configu export \
-  --store "{getStoreConnectionStringPlaceholder('configu')}" \
+  --store "store=configu;org=my-company;token=123abc;type=Token" \
   --set "production" --schema "./globals.cfgu.json" --schema "./service.cfgu.json"
 ```
 

@@ -13,7 +13,7 @@ Configu's interfaces support a wide range of ConfigStores and are open source, s
 
 Here are some examples of using Configu SaaS Store with Configu's CLI:
 
-```bash
+```shell
 configu store upsert --label "my-store" --interactive
 
 configu store upsert -l "my-store" --connection-string "store=configu;org=my-company;token=123abc;type=Token"
@@ -30,22 +30,24 @@ configu store delete -l "my-store"
 
 ## Supported stores:
 
-- [Configu](/management)
+{/* todo: explain more on each of the sotres */}
+
+- [Configu SaaS Store](https://app.configu.com/)
 - Files:
-  - [JSON](/json)
+  - JSON
 - Secret managers:
-  - [HashiCorp Vault](/hashicorp-vault)
-  - [AWS Secrets Manager](/aws-secrets-manager)
-  - [Azure Key Vault](/azure-key-vault)
-  - [Google Secret Manager](/google-secret-manager)
-  - [Kubernetes Secret](/kubernetes-secret)
+  - HashiCorp Vault
+  - AWS Secrets Manager
+  - Azure Key Vault
+  - Google Secret Manager
+  - Kubernetes Secret
 - Databases:
-  - [MySQL](/mysql)
-  - [Microsoft SQL server](/mssql)
-  - [SQLite](/sqlite)
-  - [PostgreSQL](/postgres)
-  - [CockroachDB](/cockroachdb)
-  - [MariaDB](/mariadb)
-  - [Amazon Aurora](/amazon-aurora)
+  - MySQL
+  - Microsoft SQL server
+  - SQLite
+  - PostgreSQL
+  - CockroachDB
+  - MariaDB
+  - Amazon Aurora
 - Browser:
-  - [localForage](/localforage)
+  - LocalForage
