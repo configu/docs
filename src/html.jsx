@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types, jsx-a11y/html-has-lang */
 import React from 'react';
 
-const isProductionMode = process.env.NODE_ENV === 'production';
-const fontsBasePath = isProductionMode ? '/docs/fonts' : '/fonts';
+const fontsBasePath = process.env.NODE_ENV === 'production' ? '/docs/fonts' : '/fonts';
 
 const fontsPaths = [
   '/plus-jakarta-sans/plus-jakarta-sans-600.woff2',
