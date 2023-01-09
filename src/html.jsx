@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types, jsx-a11y/html-has-lang */
 import React from 'react';
 
-const fontsBasePath = '/docs/fonts';
+const isProductionMode = process.env.NODE_ENV === 'production';
+const fontsBasePath = isProductionMode ? '/docs/fonts' : '/fonts';
 
 const fontsPaths = [
   '/plus-jakarta-sans/plus-jakarta-sans-600.woff2',
@@ -35,6 +36,27 @@ const HTML = ({
           key={index}
         />
       ))}
+      <link
+        href={`${fontsBasePath}/fonts-fallback.css`}
+        rel="stylesheet"
+        type="text/css"
+        as="style"
+      />
+      {isProductionMode ? (
+        <link
+          href={`${fontsBasePath}/fonts-production.css`}
+          rel="stylesheet"
+          type="text/css"
+          as="style"
+        />
+      ) : (
+        <link
+          href={`${fontsBasePath}/fonts-development.css`}
+          rel="stylesheet"
+          type="text/css"
+          as="style"
+        />
+      )}
       {headComponents}
     </head>
     <body {...bodyAttributes}>
