@@ -3,8 +3,6 @@ slug: commands
 title: Configu's Commands
 ---
 
-import { getStoreConnectionStringPlaceholder } from '@configu/lib';
-
 Configu defines three major commands (operations). These commands allow developers to manage their configuration data and ensure that it is properly stored, retrieved, and updated.
 
 ## Upsert
@@ -118,7 +116,7 @@ configu export \
 ```
 
 <Admonition>
-  
+
 The Export command in the CLI is built on top of the Eval command and provides additional functionality. It is named after the well-known Bash shell command ([export](https://www.geeksforgeeks.org/export-command-in-linux-with-examples/)) that allows environment variables to be shared with child processes.
 
 </Admonition>

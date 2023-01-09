@@ -3,9 +3,7 @@ slug: cli-store
 title: configu store
 ---
 
-import { getStoreConnectionStringPlaceholder } from '@configu/lib';
-
-manage [ConfigStore](/config-store) connection-string as labels that can later be used as values for the `--store` flag in other commands.
+manage [ConfigStore](/docs/config-store) connection-string as labels that can later be used as values for the `--store` flag in other commands.
 
 ## Connection-String
 
@@ -13,21 +11,18 @@ A ConfigStore connection-string consists of its type and the configuration neede
 
 Here are some examples of ConfigStore connection strings:
 
-<pre>
-  <code>
-    {getStoreConnectionStringPlaceholder('configu')}
-    <br />
-    {getStoreConnectionStringPlaceholder('json-file')}
-    <br />
-    {getStoreConnectionStringPlaceholder('sqlite')}
-    <br />
-    {getStoreConnectionStringPlaceholder('postgres')}
-    <br />
-  </code>
-</pre>
+```shell
+store=configu;org=<org>;token=<token>;type=<type>[;endpoint=<endpoint>]
+
+store=json-file;path=<path>
+
+store=sqlite;database=<database>
+
+store=postgres;url=<url>
+```
 
 <Admonition type="info">
-  
+
 `Connection-Strings` are used only in the CLI to provide all the configuration needed to initialize a ConfigStore instance.
 
 </Admonition>

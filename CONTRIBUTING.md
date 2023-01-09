@@ -159,7 +159,9 @@ curl https://cli.configu.com/install.sh | sh
 
 ## The rest
 
-The rest of elements you could write as you would in native md: images, inline code, tables etc.
+The rest of elements you could write as you would in native md: links, images, inline code, tables etc.
+
+:warning: Note, that relative links to other documentation pages must start with `/docs/`.
 
 ## Custom
 

@@ -6,7 +6,7 @@ title: Configu CLI
 import CliInstallSnippet from '../components/cli-install.mdx';
 import CliInstallCiCdSnippet from '../components/cli-install-ci-cd.mdx';
 
-The Configu CLI is an excellent interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to retrieve and manage your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/cli/#setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
+The Configu CLI is an excellent interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to retrieve and manage your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/docs/cli/#setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
 
 ## Install with script:
 
@@ -17,7 +17,7 @@ To install Configu CLI globally, you can use the following command:
 This will download and run the installation script, which will check for dependencies, download the latest version of the Configu CLI binary, and install it on your system. The CLI will be installed on your system's $PATH, allowing you to use it from anywhere in your terminal.
 
 <Admonition>
-  
+
 Please note that you may need to grant the script the necessary permissions to add the CLI to the $PATH. You can review the contents of the script before running it to ensure that it is safe to execute.
 
 </Admonition>
@@ -29,7 +29,7 @@ To make Configu CLI available via a CI/CD pipeline, you can use the pre-made, de
 <CliInstallCiCdSnippet />
 
 <Admonition>
-  
+
 After you've used the step, subsequent steps in the same job can run arbitrary Configu CLI commands. All of Configu commands work exactly like they do on your local command line.
 
 </Admonition>
@@ -48,7 +48,7 @@ Alternatively, you can manually download the Configu CLI binary from the [releas
 
 You can also use this table to find the unversioned URLs for the TAR file (.tar.gz) for your operating system. When we release a new version of Configu CLI, we also update these URLs so they point to the most up-to-date version.
 
-<div class="table-wrapper">
+<div className="table-wrapper">
 
   <table>
 
@@ -138,7 +138,7 @@ configu
 If you see the help message of the Configu CLI including the current version of the installation, then your installation was successful.
 
 <Admonition>
-  
+
 The CLI has a built-in help system that you can use to learn about the available commands and options. You can access the help system by running `configu --help` or configu \[COMMAND\] --help`.
 
 </Admonition>
@@ -151,4 +151,4 @@ To update the Configu CLI, you can run the following command:
 configu update
 ```
 
-If you encounter any errors, you can try re-installing the CLI by running the [installation process](/cli/#setup) again.
+If you encounter any errors, you can try re-installing the CLI by running the [installation process](/docs/cli/#setup) again.
