@@ -20,7 +20,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@configu/lib": "^0.4.1",
     "@mdx-js/react": "^2.1.5",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
