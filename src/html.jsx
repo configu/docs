@@ -42,21 +42,12 @@ const HTML = ({
         type="text/css"
         as="style"
       />
-      {isProductionMode ? (
-        <link
-          href={`${fontsBasePath}/fonts-production.css`}
-          rel="stylesheet"
-          type="text/css"
-          as="style"
-        />
-      ) : (
-        <link
-          href={`${fontsBasePath}/fonts-development.css`}
-          rel="stylesheet"
-          type="text/css"
-          as="style"
-        />
-      )}
+      <link
+        href={`${fontsBasePath}/fonts-${process.env.NODE_ENV}.css`}
+        rel="stylesheet"
+        type="text/css"
+        as="style"
+      />
       {headComponents}
     </head>
     <body {...bodyAttributes}>
