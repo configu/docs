@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 
 /* Base */
-@import './fonts.css';
 @import './global.css';
 @import './text.css';
 

@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial');
+  ascent-override: 98.77%;
+  descent-override: 23.61%;
+  line-gap-override: 0%;
+  size-adjust: 105.7%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Arial');
+  ascent-override: 98.16%;
+  descent-override: 20.99%;
+  line-gap-override: 0%;
+  size-adjust: 105.75%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Arial Bold');
+  ascent-override: 104.22%;
+  descent-override: 25.44%;
+  line-gap-override: 0%;
+  size-adjust: 99.98%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Arial Bold Italic');
+  ascent-override: 103.99%;
+  descent-override: 25.39%;
+  line-gap-override: 0%;
+  size-adjust: 100.2%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Arial Bold');
+  ascent-override: 106.2%;
+  descent-override: 22.71%;
+  line-gap-override: 0%;
+  size-adjust: 97.74%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Courier New');
+  ascent-override: 122.13%;
+  descent-override: 36.85%;
+  line-gap-override: 0%;
+  size-adjust: 81.88%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Courier New');
+  ascent-override: 122.92%;
+  descent-override: 40.03%;
+  line-gap-override: 0%;
+  size-adjust: 81.35%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Courier New Bold');
+  ascent-override: 123.75%;
+  descent-override: 43.02%;
+  line-gap-override: 0%;
+  size-adjust: 80.8%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Courier New Bold');
+  ascent-override: 124.63%;
+  descent-override: 46.07%;
+  line-gap-override: 0%;
+  size-adjust: 80.24%;
+}
