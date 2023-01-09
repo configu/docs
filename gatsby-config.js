@@ -5,7 +5,6 @@ require('dotenv').config();
 module.exports = {
   flags: { DEV_SSR: process.env.GATSBY_DEV_SSR || false },
   pathPrefix: '/docs',
-  assetPrefix: process.env.GATSBY_DEFAULT_SITE_URL,
   siteMetadata: {
     siteTitle: 'Configu - Rethinking Configuration Management',
     siteDescription:
