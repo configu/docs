@@ -159,7 +159,9 @@ curl https://cli.configu.com/install.sh | sh
 
 ## The rest
 
-The rest of elements you could write as you would in native md: images, inline code, tables etc.
+The rest of elements you could write as you would in native md: links, images, inline code, tables etc.
+
+:warning: Note, that external links will appear with a little 🔗 icon and should be start with `https` protocol. So internal links to other documentation pages should start with `/`.
 
 ## Custom
 
