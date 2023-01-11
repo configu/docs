@@ -1,0 +1,30 @@
+---
+slug: config-set
+title: ConfigSet
+---
+
+A ConfigSet is the way of organizing and grouping configurations in Configu. It is a string that represents a path ("/" seperator) in a hierarchical structure (tree data model), and is used to tie different configuration values to different contexts such as environments, tenants, or other use cases.
+
+The ConfigSet hierarchy starts with a root set, which is represented as an empty string ("") and is aliased as "/". This root set is at the top of the hierarchy and serves as a parent to all other sets. The set path always starts with the root set and must not end with "/".
+
+Each stored Config has a "set" property that links its "value" to a path in the ConfigSet hierarchy. When Configu evaluates a configuration, it will look for a matching value all the way up the hierarchy, starting at the last node of the supplied path and ending at the root set. This allows developers to easily inherit and override Config.values as needed, making it simple to customize the behavior of their software for different environments or use cases.
+
+It's important to note that ConfigSets can be used to represent any context that requires different configuration values. For example, you could use ConfigSets to group configurations for different tenants, regions, or feature flags. The possibilities are endless, and it's up to you to decide how you want to structure your ConfigSet hierarchy to fit your specific needs.
+
+Here is an example of a simple ConfigSet hierarchy:
+
+```text
+''
+├── 'development'
+│   └── AWS_REGION=us-east-2
+└── 'production'
+    ├── AWS_REGION=us-east-1
+    └── 'eu-customer'
+        └── AWS_REGION=eu-west-1
+```
+
+In this example, the root set is represented by an empty string, which is a common convention in Configu. The root set is the default parent for all other sets, and it can be used to define global configuration values that apply to all other sets.
+
+The development set is a child of the root set, and it defines a single configuration value for the AWS_REGION key. This means that when evaluating the configuration data in the development environment, Configu will use the us-east-2 value for the AWS_REGION configuration key.
+
+The production set is also a child of the root set, and it defines a different value for the AWS_REGION key. It also has a child set called eu-customer, which defines yet another value for the same configuration key. This means that when evaluating the configuration data in the production or production/eu-customer environments, Configu will use the appropriate values for the AWS_REGION configuration key based on the set path.

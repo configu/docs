@@ -1,0 +1,162 @@
+---
+slug: cfgu-types
+title: Cfgu Available Types
+---
+
+For convenience and reference, we keep the table below up-to-date with the different types that the Cfgu format supports.
+
+Fields identified in the "Also Requires" column indicate additional data that you need to specify in order to use a certain type. For instance, using the "Regex" type requires "pattern" also be specified.
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Also Requires</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>String</td>
+        <td>None</td>
+        <td>"Hello, World!"</td>
+      </tr>
+      <tr>
+        <td>Boolean</td>
+        <td>None</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>Number</td>
+        <td>None</td>
+        <td>123456</td>
+      </tr>
+      <tr>
+        <td>RegEx</td>
+        <td>
+          <code>pattern</code>
+        </td>
+        <td>foo|bar</td>
+      </tr>
+      <tr>
+        <td>UUID</td>
+        <td>None</td>
+        <td>Any generated UUID</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>None</td>
+        <td>
+          <code>foo@example.com</code>, <code>foo+bar@example.com</code>
+        </td>
+      </tr>
+      <tr>
+        <td>MobilePhone</td>
+        <td>None</td>
+        <td>+1 000 000 0000</td>
+      </tr>
+      <tr>
+        <td>Locale</td>
+        <td>None</td>
+        <td>
+          <code>EN-GB</code>
+        </td>
+      </tr>
+      <tr>
+        <td>LatLong</td>
+        <td>None</td>
+        <td>41 24.2028, 2 10.4418</td>
+      </tr>
+      <tr>
+        <td>SemVer</td>
+        <td>None</td>
+        <td>1.2.3-4</td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td>None</td>
+        <td>
+          <code>#ffffff</code>
+        </td>
+      </tr>
+      <tr>
+        <td>IPv4</td>
+        <td>None</td>
+        <td>127.0.0.1</td>
+      </tr>
+      <tr>
+        <td>IPv6</td>
+        <td>None</td>
+        <td>2600:4040:b5c4:1100:216:3eff:feda:953b</td>
+      </tr>
+      {/* <tr>
+        <td>Base16</td>
+        <td>None</td>
+        <td>A Base16 Encoded Value</td>
+      </tr> */}
+      <tr>
+        <td>Base64</td>
+        <td>None</td>
+        <td>A Base64 Encoded Value</td>
+      </tr>
+      <tr>
+        <td>Hex</td>
+        <td>None</td>
+        <td>A Hex Encoded Value</td>
+      </tr>
+      <tr>
+        <td>MD5</td>
+        <td>None</td>
+        <td>A MD5 Hashed Value</td>
+      </tr>
+      <tr>
+        <td>SHA</td>
+        <td>None</td>
+        <td>A SHA Hashed Value</td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td>None</td>
+        <td>
+          <code>GB</code> <code>GR</code>
+        </td>
+      </tr>
+      <tr>
+        <td>AWSRegion</td>
+        <td>None</td>
+        <td>
+          <code>eu-west-1</code> <code>us-west-2</code>
+        </td>
+      </tr>
+      <tr>
+        <td>AzureRegion</td>
+        <td>None</td>
+        <td>
+          <code>brazilsouth</code> <code>australiaeast</code>
+        </td>
+      </tr>
+      <tr>
+        <td>GCPRegion</td>
+        <td>None</td>
+        <td>
+          <code>asia-south1</code> <code>asia-southeast2</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Currency</td>
+        <td>None</td>
+        <td>
+          <code>AUD</code> <code>USD</code>
+        </td>
+      </tr>
+      {/* <tr>
+        <td>Language</td>
+        <td>None</td>
+        <td>
+          <code>he</code> <code>en</code>
+        </td>
+      </tr> */}
+    </tbody>
+  </table>
+</div>

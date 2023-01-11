@@ -1,0 +1,33 @@
+---
+slug: cli-upsert
+title: configu upsert
+---
+
+create, update or delete [Configs](/terminology) from a [ConfigStore](/config-store).
+
+```shell
+configu upsert [flags]
+```
+
+### Flags
+
+- `--store <label|cs>` (**required**) the ConfigStore to upsert Configs to.
+- `--set <hierarchy>` (**required**) the ConfigSet to assign the upserted Configs. use an empty string for the root set.
+- `--schema <path/to/cfgu/file>` (**required**) path for a ConfigSchema file to operate the upsert against.
+- `--config/-c <key=value>` (**required**) (**multiple**) "key=value" pairs to upsert. use an empty value to delete a Config.
+
+### Examples
+
+```shell
+# upsert a Config to the root set of a store with label "my-store" using a schema file at ./config/schema.cfgu
+configu upsert --store my-store --set '' --schema ./config/schema.cfgu.json --config myConfig=myValue
+
+# upsert multiple Configs to a set called "prod" within a store with label "my-store" using a schema file at ./config/schema.cfgu.json
+configu upsert --store my-store --set 'prod' --schema ./config/schema.cfgu.json --config key1=value1 --config key2=value2 --config key3=value3
+
+# delete a Config from a set called "prod" within a store with label "my-store" using a schema file at ./config/schema.cfgu.json
+configu upsert --store my-store --set 'prod' --schema ./config/schema.cfgu.json --config keyToDelete=
+
+# upsert a Config to a set called "prod" within a store with connection string "store=configu;org=myorg;token=mytoken;type=Token" using a schema file at ./config/schema.cfgu.json
+configu upsert --store 'store=configu;org=myorg;token=mytoken;type=Token' --set 'prod' --schema ./config/schema.cfgu.json --config myConfig=myValue
+```

@@ -1,0 +1,64 @@
+---
+id: get-started
+slug: get-started
+title: Get Started
+---
+
+import CliInstallSnippet from '../components/cli-install.mdx';
+
+Learn how to quickly get started with Configu.
+We'll use the Configu's CLI and the Configu's Saas Configuration Store to decalre, initalize, and export a simple set configuration data.
+
+### 1. Install the Configu CLI
+
+<CliInstallSnippet />
+
+### 2. Declare a ConfigSchema
+
+```shell
+configu init --get-started
+```
+
+### 3. Connect a ConfigStore
+
+```shell
+configu store upsert --type "configu"
+```
+
+<Admonition>
+  
+[Configu SaaS Store](https://app.configu.com/) is a convenient way to get started with Configu, especially for users who are new to the platform. It provides a cloud-based configuration management solution that is easy to use and requires minimal setup.
+To get started with [Configu SaaS Store](https://app.configu.com/), you'll need to [register and create a new organization](https://app.configu.com/).
+
+It's important to note that [Configu SaaS Store](https://app.configu.com/) is just one of many options for storing and managing configuration data with Configu. If you have specific requirements or preferences, you may wish to explore other ConfigStore options, such as using a database, a secret manager, or your own custom implementation.
+
+</Admonition>
+
+### 4. Upsert Config values to a "test" ConfigSet
+
+```shell
+configu upsert \
+--store "configu" --set "test" --schema "./get-started.cfgu.json" \
+--config "GREETING=hey" --config "SUBJECT=<YOUR_NAME>"
+```
+
+### 5. Export the configuration data
+
+```shell
+configu export \
+--store "configu" --set "test" --schema "./get-started.cfgu.json" \
+--format "Dotenv" \
+> ".env"
+```
+
+As a result, you will get a `.env` file with the configurations declared in the "get-started" ConfigSchema and their values from the "test" ConfigSet.
+
+```.env
+GREETING=hey
+SUBJECT=<YOUR_NAME>
+BAZ=hey, <YOUR_NAME>!
+```
+
+That's it! You should now have a simple set of configuration data stored in the [Configu SaaS Store](https://app.configu.com/), ready to be used in your application.
+
+To learn more about Configu and how to use it, you can continue to expolre the documentation and join the Configu [Discord channel](https://discord.com/invite/cjSBxnB9z8), where you can ask questions and get help from the Configu team and other community members.

@@ -5,6 +5,7 @@
       "title": "Overview",
       "items": [
         { "title": "Get Started", "slug": "get-started" },
+        { "title": "Features", "slug": "features" },
         { "title": "Architecture", "slug": "architecture" }
       ]
     },
@@ -16,18 +17,21 @@
         { "title": "Config Set", "slug": "config-set" },
         { "title": "Config Schema", "slug": "config-schema" },
         { "title": "Cfgu Types", "slug": "cfgu-types" },
-        { "title": "Commands", "slug": "commands" }
+        { "title": "Main Commands", "slug": "main-commands" }
       ]
     },
     {
-      "title": "CLI",
+      "title": "Interfaces",
       "items": [
-        { "title": "Setup", "slug": "cli-setup" },
-        { "title": "Command Reference", "slug": "cli-commands" },
-        { "title": "store", "slug": "cli-store" },
-        { "title": "init", "slug": "cli-init" },
-        { "title": "upsert", "slug": "cli-upsert" },
-        { "title": "export", "slug": "cli-export" }
+        { "title": "CLI", "slug": "cli" },
+        { "title": "Node.js SDK", "slug": "sdk" },
+        { "title": "VS", "slug": "ide-plugins" }
+      ]
+    },
+    {
+      "title": "Recipes",
+      "items": [
+        { "title": "Managing NodeJS Application With Heroku", "slug": "heroku-configuration" }
       ]
     }
   ]

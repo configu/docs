@@ -1,0 +1,49 @@
+---
+slug: cli-commands
+title: CLI Reference Documentation
+---
+
+This section contains reference documentation for working with the Configu CLI. For a step-by-step introduction, you can get started with [this guide](/get-started).
+
+## Synopsis
+
+```shell
+configu <command> [--string-flag <value>] [--boolean-flag]
+configu <topic> <command> [flags]
+```
+
+Use `configu <command> --help` for information on a specific command. Use `configu <topic> --help` to view a list of available help topics. The synopsis for each command shows its flags and their usage. Optional parameters are shown in square brackets.
+
+## Command Reference
+
+- [`configu store` - manage ConfigStore connections](/cli-store)
+- [`configu init` - create a .cfgu file](/cli-init)
+- [`configu upsert` - manage Configs](/cli-upsert)
+- [`configu export` - fetch configuration data](/cli-export)
+  {/* - [`configu delete` - delete Configs](/cli-delete) */}
+
+## Other Commands
+
+### `configu autocomplete`
+
+display autocomplete installation instructions
+
+### `configu update`
+
+update the configu CLI
+
+`-a, --available` install a specific version.
+`-i, --interactive` interactively select version to install.
+`-v, --version <semver>` install a specific version.
+`--force` force a re-download of the requested version.
+
+### `configu version`
+
+display the Configu CLI version
+
+`--verbose` show additional information about the CLI.
+`--json` format output as json.
+
+### `configu help`
+
+display help for Configu CLI
