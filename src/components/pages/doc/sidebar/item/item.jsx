@@ -1,12 +1,17 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Link from 'components/shared/link';
 import ChevronRight from 'icons/chevron-right.inline.svg';
 import slugToHref from 'utils/slug-to-href';
 
-const Item = ({ id, title, slug, items, isOpen, currentSlug }) => (
+const Item = ({ title, slug, items, isOpenByDefault, currentSlug }) => {
+  const [isOpen, setIsOpen] = useState(isOpenByDefault);
+
+  const handleClick = () => setIsOpen((isOpen) => !isOpen);
+
+  return (
     <li>
       {slug ? (
         <Link
@@ -25,28 +30,27 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug }) => (
         <button
           className={clsx(
             'flex w-full items-center py-1.5 text-left text-grey-25 transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark',
-            { '!text-blue-light dark:!text-blue-dark': isOpen }
+            isOpen && '!text-blue-light dark:!text-blue-dark'
           )}
-          id={id.toString()}
           type="button"
+          onClick={handleClick}
         >
-          <div className="pointer-events-none mr-2 -mt-px h-full w-[12px] shrink-0">
+          <div className="mr-2 -mt-px h-full w-[12px] shrink-0">
             <ChevronRight
               className={clsx('h-[11px] w-[7px] transition-transform duration-200', {
                 'ml-0.5 rotate-90 transform': isOpen,
               })}
             />
           </div>
-          <span className="pointer-events-none font-mono text-sm font-semibold leading-snug">
-            {title}
-          </span>
+          <span className="font-mono text-sm font-semibold leading-snug">{title}</span>
         </button>
       )}
       {!!items?.length && (
         <ul
-          className={clsx('ml-1 border-l border-grey-88  pl-[15px] dark:border-grey-40', {
-            'sr-only': !isOpen,
-          })}
+          className={clsx(
+            'ml-1 border-l border-grey-88  pl-[15px] dark:border-grey-40',
+            !isOpen && 'sr-only'
+          )}
         >
           {items.map(({ title, slug }, index) => (
             <li key={index}>
@@ -69,9 +73,9 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug }) => (
       )}
     </li>
   );
+};
 
 Item.propTypes = {
-  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   slug: PropTypes.string,
   items: PropTypes.arrayOf(
@@ -86,14 +90,14 @@ Item.propTypes = {
       ),
     })
   ),
-  isOpen: PropTypes.bool,
+  isOpenByDefault: PropTypes.bool,
   currentSlug: PropTypes.string.isRequired,
 };
 
 Item.defaultProps = {
   slug: null,
   items: null,
-  isOpen: false,
+  isOpenByDefault: false,
 };
 
 export default Item;

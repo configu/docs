@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 
 import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
 import Search from 'components/shared/search';
-import useLocalStorage from 'hooks/use-local-storage';
 
 import Item from './item';
 
@@ -28,79 +27,29 @@ const getTitle = (sidebar, currentSlug) => {
 };
 
 const Sidebar = ({ className, sidebar, currentSlug }) => {
-  const [storageOpenItems, setStorageOpenItems] = useLocalStorage(
-    'sidebar-open-items',
-    JSON.stringify({})
-  );
-  const [stateOpenItems, setStateOpenItems] = useState({}); // useState(JSON.parse(storageOpenItems));
-  const activePageItemIndex = useMemo(
-    () =>
-      sidebar.findIndex(({ slug, items }) => {
-        if (slug) {
-          return slug === currentSlug;
-        }
+  const activeItemIndex = sidebar.findIndex(({ slug, items }) => {
+    if (slug) {
+      return slug === currentSlug;
+    }
 
-        return (
-          items?.find(
-            ({ slug, items }) =>
-              slug === currentSlug || items?.find(({ slug }) => slug === currentSlug)
-          ) !== undefined
-        );
-      }),
-    [currentSlug, sidebar]
-  );
+    return (
+      items?.find(
+        ({ slug, items }) => slug === currentSlug || items?.find(({ slug }) => slug === currentSlug)
+      ) !== undefined
+    );
+  });
 
   const title = getTitle(sidebar, currentSlug) ?? 'Navigation';
-
-  useEffect(() => {
-    if (storageOpenItems === '{}') {
-      setStorageOpenItems(JSON.stringify({ [activePageItemIndex]: true }));
-      setStateOpenItems({ [activePageItemIndex]: true });
-    } else {
-      setStateOpenItems(JSON.parse(storageOpenItems));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (storageOpenItems !== JSON.stringify(stateOpenItems)) {
-      setStorageOpenItems(JSON.stringify(stateOpenItems));
-    }
-  }, [stateOpenItems, setStorageOpenItems, storageOpenItems]);
-
-  const handleItemClose = (id) => {
-    setStateOpenItems((prv) => {
-      const newObj = { ...prv };
-      delete newObj[id];
-
-      return newObj;
-    });
-  };
-
-  const handleItemClick = (e) => {
-    const id = e.target.getAttribute('id');
-
-    if (!id) return;
-
-    const isOpen = stateOpenItems[id];
-
-    if (isOpen) {
-      return handleItemClose(id);
-    }
-
-    setStateOpenItems((prv) => ({ ...prv, [id]: true }));
-  };
 
   return (
     <aside className={className}>
       <Search additionalResultsStyles="max-h-[70vh]" />
       <nav className="mt-5 md:hidden">
-        <ul role="list" onClick={handleItemClick}>
+        <ul>
           {sidebar.map((item, index) => (
             <Item
               {...item}
-              id={index}
-              isOpen={stateOpenItems[index]}
+              isOpenByDefault={index === activeItemIndex}
               currentSlug={currentSlug}
               key={index}
             />
@@ -118,8 +67,7 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
             {sidebar.map((item, index) => (
               <Item
                 {...item}
-                id={index}
-                isOpen={stateOpenItems[index]}
+                isOpenByDefault={index === activeItemIndex}
                 currentSlug={currentSlug}
                 key={index}
               />
