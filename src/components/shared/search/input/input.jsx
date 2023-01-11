@@ -45,11 +45,11 @@ const Input = connectSearchBox(
           onFocus={onFocus}
         />
         <HotkeysDarkIcon
-          className="pointer-events-none absolute top-1/2 right-2.5 hidden -translate-y-1/2 dark:block"
+          className="pointer-events-none absolute top-1/2 right-2.5 hidden -translate-y-1/2 dark:block md:dark:hidden"
           aria-hidden
         />
         <HotkeysLightIcon
-          className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 dark:hidden"
+          className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 dark:hidden md:hidden "
           aria-hidden
         />
       </div>
