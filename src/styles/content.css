@@ -137,6 +137,9 @@
     h1,
     h2,
     h3,
+    h4,
+    h5,
+    h6,
     p,
     strong,
     em,
@@ -152,12 +155,30 @@
     }
 
     h2 {
-      @apply border-t border-dashed border-grey-80 pt-10 font-mono dark:border-grey-40;
+      @apply border-t border-dashed border-grey-80 pt-10 font-mono text-3xl font-semibold leading-tight dark:border-grey-40 xl:text-2xl md:text-xl;
+    }
+
+    h3 {
+      @apply text-xl font-semibold leading-tight md:text-lg;
+    }
+
+    h4 {
+      @apply text-md font-semibold leading-normal;
     }
 
     ol,
     ul {
       @apply !pl-[45px];
+
+      li,
+      p {
+        @apply m-0;
+      }
+    }
+
+    td > ol,
+    td > ul {
+      @apply !pl-[1.625em];
 
       li,
       p {
@@ -188,7 +209,10 @@
     }
   }
 
-  h3 {
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-mono;
   }
 

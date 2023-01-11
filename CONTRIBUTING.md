@@ -8,6 +8,31 @@ If something confuses you or feels lacking about the docs, please feel free to m
 
 If you haven't previously contributed to other open source project, make sure to familiarize yourself with the [Contributor Covenant](https://contributor-covenant.org/).
 
+## Prerequisites
+
+### MDX
+
+The documentation content is [MDX-based](https://mdxjs.com/docs/what-is-mdx/#markdown), specifically the second version. Make sure you know how to write proper MDX before you dive in!
+
+A list of common gotchas:
+
+- MDX supports standard markdown (a.k.a `CommonMark`). GFM, which stands for GitHub-Flavoured Markdown, **is not supported**
+- Know what is [interleaving](https://mdxjs.com/docs/what-is-mdx/#interleaving)
+- Pass HTML attributes as JSX (e.g. use `className` instead of `class`)
+
+### Path-prefixing
+
+Documentation is connected to the main Configu's website using [rewrite proxy](https://www.gatsbyjs.com/docs/how-to/cloud/working-with-redirects-and-rewrites/#rewrites-and-reverse-proxies), and the documentation part is build using Gatsby's `--path-prefix` flag.
+
+What's important to understand:
+
+- in dev mode, when working locally, there won't be any `/docs` part visible in documentation urls. Your entry point will be `localhost:8000`
+- in production, or when you run `npm run build` command, the `/docs` prefix will be added to all paths on the site, making entry point `localhost:9000/docs`
+
+:warning: you should not specify `/docs` prefix manually in your relative links inside mdx content!
+
+Learn more on [path prefixing here](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)
+
 ## Writing
 
 For small changes and spelling fixes, the GitHub UI is most convenient.
@@ -45,6 +70,12 @@ To add a top-level sidebar section, place a sibling in a desired position inside
       "items": [
         // add entries to pupulate the section with subpages
       ]
+    },
+    // an item that will lead user elsewhere from Configu's docs,
+    // an external link. Must begin with `http`
+    {
+      "title": "An external link to app",
+      "slug": "https://app.configu.com"
     },
     {
       "title": "Overview",
@@ -159,7 +190,9 @@ curl https://cli.configu.com/install.sh | sh
 
 ## The rest
 
-The rest of elements you could write as you would in native md: images, inline code, tables etc.
+The rest of elements you could write as you would in native md: links, images, inline code, tables etc.
+
+:warning: Note, that external links will appear with a little 🔗 icon and should be start with `https` protocol. So internal links to other documentation pages should start with `/`.
 
 ## Custom
 
@@ -168,6 +201,16 @@ It is also possible that you want to use a custom UI block in a certain `.md` do
 By no means do not copypaste generated html into md file, just import the component you need right into `md` exactly the way you would import it on any react page and provide necessary props.
 
 If you feel like you could use another custom component, feel free to raise an issue on this matter.
+
+### Creating custom components
+
+If the time is of the essence, you can create your own custom mdx component in no time.
+
+1. Check out the [Gatsby documentation on this matter](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider)
+2. Create your component in `components/shared/your-component`
+3. Import it in the [content.mdx](/src/components/pages/doc/content/content.jsx)
+4. Extend the `components` constant accordingly
+5. Use it like you would use `Admonition` or `CodeTabs`!
 
 ## Known limitations
 
@@ -232,3 +275,44 @@ Piece of \[text\]\[that\] uses reserved symbols
 
 Piece of \{\{text\}\} that uses reserved symbols
 ```
+
+### validateDOMNesting error in console on pages with tables
+
+There is a bug with falsy white space warning when using tables in mdx content:
+
+```shell
+Warning: validateDOMNesting(...): Whitespace text nodes cannot appear as a child of <tr>. Make sure you don't have any extra whitespace between tags on each line of your source code..
+```
+
+The issue is open in MDX repo and can be tracked [here](https://github.com/mdx-js/mdx/issues/2000).
+
+Current workaround is to wrap `thead` with curly brackets.
+
+Example:
+
+```mdx
+{/* rest of content */}
+
+  <table>
+    {
+    <thead>
+      <tr>
+        <th>Concept</th>
+        <th>Explanation</th>
+        <th>Resources</th>
+      </tr>
+    </thead>
+    }
+    <tbody>
+{/* rest of content */}
+```
+
+### Invalid left-hand side in prefix operation
+
+This erorr usually pops up when your syntax is incorrect and the parser doesn't get a proper content to digest, thus failing to recognize the piece of content starting from the `frontmatter` record itself.
+
+There is no know workaround on how to make this error more informative. Please, try to:
+
+1. Check your mdx content is aligned with MDX spec
+2. Check the usage of custom components
+3. Check if you have screened out all the special characters that can be mistreated

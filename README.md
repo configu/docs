@@ -22,7 +22,7 @@
 npm install
 ```
 
-2. Fill environment variables
+2. Fill up the environment variables
 
 ```bash
 cp .env.example .env

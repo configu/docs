@@ -1,6 +1,6 @@
 export default {
   doc: ({ title, description }) => ({
-    title: `${title} — Configu`,
+    title: `${title} | Configu`,
     description,
   }),
 };

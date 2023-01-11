@@ -3,8 +3,6 @@ slug: config-store
 title: ConfigStore
 ---
 
-import { getStoreConnectionStringPlaceholder } from '@configu/lib';
-
 A ConfigStore is a storage system for Configs, which can be any system or service that is capable of storing data. This can include text files, databases, secret managers, and Configu's SaaS Configuration Store. ConfigStores are responsible for storing, retrieving, and managing configuration data, and developers can choose the ConfigStore that best fits their needs and workflow.
 
 ConfigStores are unique in their type, and can be referenced as instances of their class implementation when using Configu's SDK. When using Configu's CLI, ConfigStores are referenced using connection strings, which can also be cached as short labels for convenience.

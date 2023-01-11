@@ -21,7 +21,8 @@ const Item = ({ title, slug, items, isOpenByDefault, currentSlug }) => {
               '!text-blue-light dark:!text-blue-dark': currentSlug === slug,
             }
           )}
-          to={slugToHref(slug)}
+          to={slug.includes('http') ? slug : slugToHref(slug)}
+          target={slug.includes('http') ? '_blank' : undefined}
           theme="black"
         >
           {title}
