@@ -35,7 +35,7 @@ const TableOfContents = ({ items, fileUrl }) => {
           <>
             <div className="mt-5 flex items-center text-grey-25 dark:text-grey-88">
               <ContentsIcon className="mb-0.5 text-grey-25 dark:text-grey-88" />
-              <h3 className="pl-2 font-mono text-sm font-bold">Contents</h3>
+              <h3 className="pl-2 font-mono text-sm font-bold">On this page</h3>
             </div>
             <ul className="flex flex-col">
               {items.map(({ title }, index) => {
