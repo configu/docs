@@ -202,6 +202,16 @@ By no means do not copypaste generated html into md file, just import the compon
 
 If you feel like you could use another custom component, feel free to raise an issue on this matter.
 
+### Creating custom components
+
+If the time is of the essence, you can create your own custom mdx component in no time.
+
+1. Check out the [Gatsby documentation on this matter](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider)
+2. Create your component in `components/shared/your-component`
+3. Import it in the [content.mdx](/src/components/pages/doc/content/content.jsx)
+4. Extend the `components` constant accordingly
+5. Use it like you would use `Admonition` or `CodeTabs`!
+
 ## Known limitations
 
 ### Make sure custom components' content is wrapped with empty lines
