@@ -13,18 +13,25 @@ A ConfigStore connection-string consists of its type and the configuration neede
 
 Here are some examples of ConfigStore connection strings:
 
+<CodeTabs labels={["Configu", "JSON", "SQLite", "Postgres"]}>
+
 <pre>
-  <code>
-    {getStoreConnectionStringPlaceholder('configu')}
-      <br />
-      {getStoreConnectionStringPlaceholder('json-file')}
-      <br />
-      {getStoreConnectionStringPlaceholder('sqlite')}
-      <br />
-      {getStoreConnectionStringPlaceholder('postgres')}
-      <br />
-  </code>
+  <code>{getStoreConnectionStringPlaceholder('configu')}</code>
 </pre>
+
+<pre>
+  <code>{getStoreConnectionStringPlaceholder('json-file')}</code>
+</pre>
+
+<pre>
+  <code>{getStoreConnectionStringPlaceholder('sqlite')}</code>
+</pre>
+
+<pre>
+  <code>{getStoreConnectionStringPlaceholder('postgres')}</code>
+</pre>
+
+</CodeTabs>
 
 <Admonition type="info">
 

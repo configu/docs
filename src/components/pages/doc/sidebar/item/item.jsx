@@ -22,6 +22,7 @@ const Item = ({ title, slug, items, isOpenByDefault, currentSlug }) => {
             }
           )}
           to={slug.includes('http') ? slug : slugToHref(slug)}
+          target={slug.includes('http') ? '_blank' : undefined}
           theme="black"
         >
           {title}

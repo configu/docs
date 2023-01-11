@@ -176,6 +176,16 @@
       }
     }
 
+    td > ol,
+    td > ul {
+      @apply !pl-[1.625em];
+
+      li,
+      p {
+        @apply m-0;
+      }
+    }
+
     ul.collapsible {
       @apply !pl-0;
 

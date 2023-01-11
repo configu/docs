@@ -4,7 +4,6 @@ require('dotenv').config();
 
 module.exports = {
   flags: {
-    FAST_DEV: true,
     DEV_SSR: process.env.GATSBY_DEV_SSR || false,
   },
   pathPrefix: '/docs',

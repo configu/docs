@@ -1,33 +1,78 @@
 {
   "items": [
-    { "title": "Introduction", "slug": "/" },
+    {
+      "title": "Introduction",
+      "slug": "/"
+    },
     {
       "title": "Overview",
       "items": [
-        { "title": "Get Started", "slug": "get-started" },
-        { "title": "Architecture", "slug": "architecture" }
+        {
+          "title": "Get Started",
+          "slug": "get-started"
+        },
+        {
+          "title": "Architecture",
+          "slug": "architecture"
+        }
       ]
     },
     {
       "title": "Concepts",
       "items": [
-        { "title": "Terminology", "slug": "terminology" },
-        { "title": "Config Store", "slug": "config-store" },
-        { "title": "Config Set", "slug": "config-set" },
-        { "title": "Config Schema", "slug": "config-schema" },
-        { "title": "Cfgu Types", "slug": "cfgu-types" },
-        { "title": "Commands", "slug": "commands" }
+        {
+          "title": "Terminology",
+          "slug": "terminology"
+        },
+        {
+          "title": "Config Store",
+          "slug": "config-store"
+        },
+        {
+          "title": "Config Set",
+          "slug": "config-set"
+        },
+        {
+          "title": "Config Schema",
+          "slug": "config-schema"
+        },
+        {
+          "title": "Cfgu Types",
+          "slug": "cfgu-types"
+        },
+        {
+          "title": "Commands",
+          "slug": "commands"
+        }
       ]
     },
     {
       "title": "CLI",
       "items": [
-        { "title": "Setup", "slug": "cli-setup" },
-        { "title": "Command Reference", "slug": "cli-commands" },
-        { "title": "store", "slug": "cli-store" },
-        { "title": "init", "slug": "cli-init" },
-        { "title": "upsert", "slug": "cli-upsert" },
-        { "title": "export", "slug": "cli-export" }
+        {
+          "title": "Setup",
+          "slug": "cli-setup"
+        },
+        {
+          "title": "Command Reference",
+          "slug": "cli-commands"
+        },
+        {
+          "title": "store",
+          "slug": "cli-store"
+        },
+        {
+          "title": "init",
+          "slug": "cli-init"
+        },
+        {
+          "title": "upsert",
+          "slug": "cli-upsert"
+        },
+        {
+          "title": "export",
+          "slug": "cli-export"
+        }
       ]
     }
   ]

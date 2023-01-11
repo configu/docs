@@ -39,7 +39,7 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
     );
   });
 
-  const title = getTitle(sidebar, currentSlug) ?? 'Navigation';
+  const title = getTitle(sidebar, currentSlug) ?? 'Docs navigation';
 
   return (
     <aside className={className}>
