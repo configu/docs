@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connectSearchBox } from 'react-instantsearch-dom';
 
+import HotkeysDarkIcon from './images/hotkeys-dark.inline.svg';
+import HotkeysLightIcon from './images/hotkeys-light.inline.svg';
 import SearchIconLg from './images/search-lg.inline.svg';
 import SearchIcon from './images/search.inline.svg';
 
@@ -41,6 +43,14 @@ const Input = connectSearchBox(
           aria-label="Search"
           onChange={(e) => refine(e.target.value)}
           onFocus={onFocus}
+        />
+        <HotkeysDarkIcon
+          className="pointer-events-none absolute top-1/2 right-2.5 hidden -translate-y-1/2 dark:block"
+          aria-hidden
+        />
+        <HotkeysLightIcon
+          className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 dark:hidden"
+          aria-hidden
         />
       </div>
     );

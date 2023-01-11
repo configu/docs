@@ -1,7 +1,7 @@
 import algoliasearch from 'algoliasearch/lite';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
 import { InstantSearch } from 'react-instantsearch-dom';
 
 import useDebounce from 'hooks/use-debounce';
@@ -17,7 +17,7 @@ const Search = ({
   className,
   inputClassName,
   placeholderText,
-  searhIconSize,
+  searchIconSize,
   additionalResultsStyles,
 }) => {
   const ref = useRef(null);
@@ -29,6 +29,21 @@ const Search = ({
     () => algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY),
     []
   );
+
+  const handleKeyPress = useCallback((event) => {
+    if (event.metaKey && event.which === 75) {
+      ref.current.querySelector('input').focus();
+      setFocus(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   useOnClickOutside(ref, () => setFocus(false));
 
@@ -46,10 +61,13 @@ const Search = ({
         onSearchStateChange={({ query }) => setQuery(query)}
       >
         <Input
-          additionalClassName={inputClassName}
+          additionalClassName={clsx(inputClassName, {
+            'transition duration-200 focus:border-blue-light dark:focus:border-blue-dark':
+              !shouldShowResult,
+          })}
           placeholder={placeholderText}
           hasFocus={hasFocus}
-          iconSize={searhIconSize}
+          iconSize={searchIconSize}
           onFocus={() => setFocus(true)}
         />
         {shouldShowResult && (
@@ -64,7 +82,7 @@ Search.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
   placeholderText: PropTypes.string,
-  searhIconSize: PropTypes.string,
+  searchIconSize: PropTypes.string,
   additionalResultsStyles: PropTypes.string,
 };
 
@@ -72,7 +90,7 @@ Search.defaultProps = {
   className: null,
   inputClassName: null,
   placeholderText: null,
-  searhIconSize: null,
+  searchIconSize: null,
   additionalResultsStyles: null,
 };
 
