@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 
+import { SidebarContextAPI } from './src/context/sidebar-context';
+
 const SITE_DOMAIN = 'configu.com';
 const PLAUSIBLE_DOMAIN = 'plausible.io';
 const SCRIPT_URI = '/js/plausible.js';
@@ -54,3 +56,5 @@ export const onRenderBody = ({ setPreBodyComponents, setHtmlAttributes, setHeadC
 
   return null;
 };
+
+export const wrapRootElement = ({ element }) => <SidebarContextAPI>{element}</SidebarContextAPI>;
