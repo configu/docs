@@ -80,7 +80,7 @@ const TableOfContents = ({ items, fileUrl }) => {
               })}
             </ul>
             <motion.button
-              className="my-3 font-mono text-sm text-black text-grey-25 transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark"
+              className="my-3 inline-flex items-center gap-2 font-mono text-sm font-semibold text-black transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark"
               initial="from"
               variants={{
                 from: {
@@ -100,7 +100,7 @@ const TableOfContents = ({ items, fileUrl }) => {
               type="button"
               onClick={handleBackToTopClick}
             >
-              <BackToTop className="mr-2 inline-flex align-middle" />
+              <BackToTop />
               Back to top
             </motion.button>
           </>
