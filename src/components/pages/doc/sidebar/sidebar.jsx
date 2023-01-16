@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
 import Search from 'components/shared/search';
+import { useSidebarContext } from 'context/sidebar-context';
 
 import Item from './item';
 
@@ -27,19 +28,38 @@ const getTitle = (sidebar, currentSlug) => {
 };
 
 const Sidebar = ({ className, sidebar, currentSlug }) => {
-  const activeItemIndex = sidebar.findIndex(({ slug, items }) => {
-    if (slug) {
-      return slug === currentSlug;
-    }
+  const { sidebarOpenItems, setSidebarOpenItems, handleSidebarSectionState } = useSidebarContext();
+  const activePageItemIndex = useMemo(
+    () =>
+      sidebar.findIndex(({ slug, items }) => {
+        if (slug) {
+          return slug === currentSlug;
+        }
 
-    return (
-      items?.find(
-        ({ slug, items }) => slug === currentSlug || items?.find(({ slug }) => slug === currentSlug)
-      ) !== undefined
-    );
-  });
+        return (
+          items?.find(
+            ({ slug, items }) =>
+              slug === currentSlug || items?.find(({ slug }) => slug === currentSlug)
+          ) !== undefined
+        );
+      }),
+    [currentSlug, sidebar]
+  );
 
   const title = getTitle(sidebar, currentSlug) ?? 'Docs navigation';
+
+  useEffect(() => {
+    if (JSON.stringify(sidebarOpenItems) === '{}') {
+      setSidebarOpenItems({ [activePageItemIndex]: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleItemClick = (e) => {
+    const id = e.target.getAttribute('id');
+    if (!id) return;
+    handleSidebarSectionState(id);
+  };
 
   return (
     <aside className={className}>
@@ -49,9 +69,12 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
           {sidebar.map((item, index) => (
             <Item
               {...item}
-              isOpenByDefault={index === activeItemIndex}
+              id={index}
+              isOpen={sidebarOpenItems[index]}
               currentSlug={currentSlug}
               key={index}
+              onClick={handleItemClick}
+              onKeyDown={handleItemClick}
             />
           ))}
         </ul>
@@ -67,9 +90,12 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
             {sidebar.map((item, index) => (
               <Item
                 {...item}
-                isOpenByDefault={index === activeItemIndex}
+                id={index}
+                isOpen={sidebarOpenItems[index]}
                 currentSlug={currentSlug}
                 key={index}
+                onClick={handleItemClick}
+                onKeyDown={handleItemClick}
               />
             ))}
           </ul>
