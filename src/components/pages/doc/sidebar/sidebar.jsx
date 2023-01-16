@@ -28,8 +28,7 @@ const getTitle = (sidebar, currentSlug) => {
 };
 
 const Sidebar = ({ className, sidebar, currentSlug }) => {
-  const { sidebarOpenItems, setSidebarOpenItems, handleCloseItem, handleOpenItem } =
-    useSidebarContext();
+  const { sidebarOpenItems, setSidebarOpenItems, handleSidebarSectionState } = useSidebarContext();
   const activePageItemIndex = useMemo(
     () =>
       sidebar.findIndex(({ slug, items }) => {
@@ -58,23 +57,15 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
 
   const handleItemClick = (e) => {
     const id = e.target.getAttribute('id');
-
     if (!id) return;
-
-    const isOpen = sidebarOpenItems[id];
-
-    if (isOpen) {
-      handleCloseItem(id);
-    } else {
-      handleOpenItem(id);
-    }
+    handleSidebarSectionState(id);
   };
 
   return (
     <aside className={className}>
       <Search additionalResultsStyles="max-h-[70vh]" />
       <nav className="mt-5 md:hidden">
-        <ul onClick={handleItemClick} onKeyDown={handleItemClick}>
+        <ul>
           {sidebar.map((item, index) => (
             <Item
               {...item}
@@ -82,6 +73,8 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
               isOpen={sidebarOpenItems[index]}
               currentSlug={currentSlug}
               key={index}
+              onClick={handleItemClick}
+              onKeyDown={handleItemClick}
             />
           ))}
         </ul>
@@ -93,11 +86,7 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
           title={title}
           type="navigation"
         >
-          <ul
-            className="border-b border-dashed border-grey-80 py-3 dark:border-grey-40"
-            onClick={handleItemClick}
-            onKeyDown={handleItemClick}
-          >
+          <ul className="border-b border-dashed border-grey-80 py-3 dark:border-grey-40">
             {sidebar.map((item, index) => (
               <Item
                 {...item}
@@ -105,6 +94,8 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
                 isOpen={sidebarOpenItems[index]}
                 currentSlug={currentSlug}
                 key={index}
+                onClick={handleItemClick}
+                onKeyDown={handleItemClick}
               />
             ))}
           </ul>
