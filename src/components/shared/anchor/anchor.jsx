@@ -8,7 +8,7 @@ const Anchor = ({ children, href, ...otherProps }) =>
   href.startsWith('http') ? (
     <a href={href} target="_blank" rel="noreferrer" {...otherProps}>
       {children}
-      <LinkIcon className="ml-1 inline-flex align-sub" />
+      <LinkIcon className="ml-1 inline-flex align-baseline" />
     </a>
   ) : (
     <Link to={href} {...otherProps}>
