@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import ChevronIcon from 'icons/chevron.inline.svg';
+import ExpandIcon from 'icons/expand-icon.inline.svg';
 
 const itemHeadingChevronVariants = {
   from: {
@@ -47,6 +48,7 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
         {
           'border-t border-solid border-grey-88 py-3 dark:border-grey-40': type === 'default',
           'border-b border-dashed border-grey-80 py-8 first:border-t ': type === 'faq',
+          'md:pb-3 md:pt-3 sm:pb-3': type === 'navigation',
         },
         className
       )}
@@ -54,9 +56,7 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
       animate={isExpanded ? 'to' : 'exit'}
     >
       <div
-        className={clsx('flex items-center justify-between', {
-          'border-b border-grey-80 pb-1.5 dark:border-grey-40': type === 'navigation',
-        })}
+        className={clsx('flex items-center justify-between')}
         role="button"
         onClick={handleHeaderClick}
       >
@@ -64,22 +64,25 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
           className={clsx('font-mono font-semibold text-black dark:text-white sm:text-md', {
             'm-0 text-md xl:text-base': type === 'default',
             'text-lg': type === 'faq',
-            '!text-sm': type === 'navigation',
+            'font-sans !text-sm': type === 'navigation',
           })}
         >
           {title}
         </h3>
 
-        <motion.span
-          className={clsx({
-            'ml-3 block h-1.5 w-3 min-w-[12px]': type === 'default',
-            'mt-2 mb-auto min-w-[14px]': type === 'faq',
-            'min-w-[12px]': type === 'navigation',
-          })}
-          variants={itemHeadingChevronVariants}
-        >
-          <ChevronIcon className="dark:text-white" />
-        </motion.span>
+        {type === 'navigation' ? (
+          <ExpandIcon className="dark:text-white" />
+        ) : (
+          <motion.span
+            className={clsx({
+              'ml-3 block h-1.5 w-3 min-w-[12px]': type === 'default',
+              'mt-2 mb-auto min-w-[14px]': type === 'faq',
+            })}
+            variants={itemHeadingChevronVariants}
+          >
+            <ChevronIcon className="dark:text-white" />
+          </motion.span>
+        )}
       </div>
 
       <motion.div className="overflow-hidden" variants={itemContentVariants}>

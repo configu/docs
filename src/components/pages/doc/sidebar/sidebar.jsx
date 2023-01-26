@@ -7,26 +7,6 @@ import { useSidebarContext } from 'context/sidebar-context';
 
 import Item from './item';
 
-const getTitle = (sidebar, currentSlug) => {
-  let result;
-
-  sidebar.forEach(({ slug, title, items }) => {
-    if (slug && title) {
-      return title;
-    }
-
-    items.forEach(({ title, slug, items }) => {
-      if (slug === currentSlug) result = title;
-
-      items?.forEach(({ title, slug }) => {
-        if (slug === currentSlug) result = title;
-      });
-    });
-  });
-
-  return result;
-};
-
 const Sidebar = ({ className, sidebar, currentSlug }) => {
   const { sidebarOpenItems, setSidebarOpenItems, handleSidebarSectionState } = useSidebarContext();
   const activePageItemIndex = useMemo(
@@ -46,8 +26,6 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
     [currentSlug, sidebar]
   );
 
-  const title = getTitle(sidebar, currentSlug) ?? 'Docs navigation';
-
   useEffect(() => {
     if (JSON.stringify(sidebarOpenItems) === '{}') {
       setSidebarOpenItems({ [activePageItemIndex]: true });
@@ -63,7 +41,7 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
 
   return (
     <aside className={className}>
-      <Search additionalResultsStyles="max-h-[70vh]" />
+      <Search className="md:hidden" additionalResultsStyles="max-h-[70vh]" />
       <nav className="mt-5 md:hidden">
         <ul>
           {sidebar.map((item, index) => (
@@ -79,14 +57,9 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
           ))}
         </ul>
       </nav>
-
-      <nav className="mt-5 hidden md:block">
-        <CollapsibleItem
-          className="border-t border-dashed border-grey-80 !pb-0 dark:border-grey-40"
-          title={title}
-          type="navigation"
-        >
-          <ul className="border-b border-dashed border-grey-80 py-3 dark:border-grey-40">
+      <nav className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] hidden w-screen bg-grey-96 dark:bg-grey-25 md:block md:px-7 sm:px-4">
+        <CollapsibleItem title="Docs navigation" type="navigation">
+          <ul className="pt-3">
             {sidebar.map((item, index) => (
               <Item
                 {...item}
