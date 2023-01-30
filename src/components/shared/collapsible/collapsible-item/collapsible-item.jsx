@@ -34,7 +34,7 @@ const itemContentVariants = {
   },
 };
 
-const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) => {
+const CollapsibleItem = ({ children, title, isOpen, type, className }) => {
   const [isExpanded, setIsExpanded] = useState(isOpen);
 
   const handleHeaderClick = () => {
@@ -44,10 +44,10 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
   return (
     <motion.div
       className={clsx(
-        'overflow-hidden hover:cursor-pointer md:pb-6 md:pt-[18px] sm:pb-5',
+        'overflow-hidden hover:cursor-pointer',
         {
-          'border-t border-solid border-grey-88 py-3 dark:border-grey-40': type === 'default',
-          'border-b border-dashed border-grey-80 py-8 first:border-t ': type === 'faq',
+          'border-t border-b border-solid border-grey-88 py-3 dark:border-grey-40':
+            type === 'default',
           'md:pb-3 md:pt-3 sm:pb-3': type === 'navigation',
         },
         className
@@ -60,13 +60,7 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
         role="button"
         onClick={handleHeaderClick}
       >
-        <h3
-          className={clsx('font-mono font-semibold text-black dark:text-white sm:text-md', {
-            'm-0 text-md xl:text-base': type === 'default',
-            'text-lg': type === 'faq',
-            'font-sans !text-sm': type === 'navigation',
-          })}
-        >
+        <h3 className={clsx('m-0 font-sans !text-sm font-semibold text-black dark:text-white')}>
           {title}
         </h3>
 
@@ -74,10 +68,7 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
           <ExpandIcon className="dark:text-white" />
         ) : (
           <motion.span
-            className={clsx({
-              'ml-3 block h-1.5 w-3 min-w-[12px]': type === 'default',
-              'mt-2 mb-auto min-w-[14px]': type === 'faq',
-            })}
+            className="ml-3 block h-1.5 w-3 min-w-[12px]"
             variants={itemHeadingChevronVariants}
           >
             <ChevronIcon className="dark:text-white" />
@@ -86,11 +77,7 @@ const CollapsibleItem = ({ children, title, isOpen, nonMdx, type, className }) =
       </div>
 
       <motion.div className="overflow-hidden" variants={itemContentVariants}>
-        {nonMdx ? (
-          <p className={clsx({ 'text-base sm:text-sm': type === 'faq' })}>{children}</p>
-        ) : (
-          children
-        )}
+        {children}
       </motion.div>
     </motion.div>
   );
@@ -101,15 +88,13 @@ CollapsibleItem.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
-  nonMdx: PropTypes.bool,
-  type: PropTypes.oneOf(['default', 'faq', 'navigation']),
+  type: PropTypes.oneOf(['default', 'navigation']),
 };
 
 CollapsibleItem.defaultProps = {
   className: null,
   children: null,
   isOpen: false,
-  nonMdx: false,
   type: 'default',
 };
 

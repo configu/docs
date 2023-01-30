@@ -7,28 +7,11 @@ import Link from 'components/shared/link';
 import BackToTop from 'icons/back-top.inline.svg';
 import ContentsIcon from 'icons/contents.inline.svg';
 import getIdFromChildren from 'utils/get-id-from-children';
+import anchorClickHandler from 'utils/handle-anchor-link-click';
 
 const TableOfContents = ({ items, fileUrl }) => {
   const stickyTOCRef = useRef(null);
   const [isButtonShown, setIsButtonShown] = useState(false);
-
-  const handleAnchorClick = (e, id) => {
-    e.preventDefault();
-    document.getElementById(id).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-    const anchor = `#${id}`;
-    // changing hash without default jumps to anchor
-    // eslint-disable-next-line no-restricted-globals
-    if (history.pushState) {
-      // eslint-disable-next-line no-restricted-globals
-      history.pushState(false, false, anchor);
-    } else {
-      // old browser support
-      window.location.hash = anchor;
-    }
-  };
 
   const handleBackToTopClick = (event) => {
     event.preventDefault();
@@ -71,7 +54,7 @@ const TableOfContents = ({ items, fileUrl }) => {
                     <Link
                       className="font-mono text-sm text-grey-25 transition-colors duration-200"
                       to={`#${href}`}
-                      onClick={(e) => handleAnchorClick(e, href)}
+                      onClick={(e) => anchorClickHandler(e, href)}
                     >
                       {title}
                     </Link>

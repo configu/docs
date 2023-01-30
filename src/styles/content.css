@@ -130,7 +130,7 @@
       }
     }
 
-    a {
+    a:not(.toc-list a) {
       @apply font-semibold text-blue-light no-underline transition-colors duration-200 hover:text-blue-light-hover dark:text-blue-dark dark:hover:text-blue-light;
     }
 

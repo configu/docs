@@ -37,6 +37,7 @@ const DocTemplate = (props) => {
               content={children}
               fileUrl={fileOriginPath}
               ref={contentRef}
+              items={tableOfContents || []}
             />
             <Navigation previousLink={previousLink} nextLink={nextLink} />
           </div>
