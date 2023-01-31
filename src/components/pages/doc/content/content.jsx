@@ -46,7 +46,7 @@ const Content = forwardRef(({ title, content, items, fileUrl }, ref) => (
       </h1>
       {items.length > 0 && (
         <nav className="hidden md:block">
-          <CollapsibleItem title="Content of the page">
+          <CollapsibleItem title="On this page">
             <nav className="toc-list flex flex-col space-y-3 pt-4">
               {items.map(({ title }, index) => {
                 const href = getIdFromChildren(title);
