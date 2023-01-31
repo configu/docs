@@ -9,6 +9,9 @@ import CodeBlock from 'components/shared/code-block';
 import CodeTabs from 'components/shared/code-tabs';
 import Collapsible from 'components/shared/collapsible';
 import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
+import Link from 'components/shared/link';
+import getIdFromChildren from 'utils/get-id-from-children';
+import anchorClickHandler from 'utils/handle-anchor-link-click';
 
 import EditDocLink from '../edit-doc-link';
 
@@ -36,23 +39,47 @@ const components = {
   CollapsibleItem,
 };
 
-const Content = forwardRef(({ title, content, fileUrl }, ref) => (
-  <div className="prose prose-base max-w-[800px] lg:max-w-full" ref={ref}>
-    <h1 className="mb-3 flex font-mono text-5xl font-semibold leading-tight xl:text-3xl sm:flex-col-reverse">
-      {title}
-      <EditDocLink
-        className="ml-auto hidden pl-4 pt-3 hover:border-blue-light-hover dark:hover:border-blue-light lg:inline-flex md:pt-2 sm:ml-0 sm:mb-4 sm:w-full sm:justify-center sm:rounded sm:border sm:border-blue-light sm:p-2 dark:sm:border-blue-dark"
-        to={fileUrl}
-      />
-    </h1>
-    <MDXProvider components={components}>{content}</MDXProvider>
-  </div>
-));
+const Content = forwardRef(({ title, content, items, fileUrl }, ref) => (
+    <div className="prose prose-base max-w-[800px] lg:max-w-full" ref={ref}>
+      <h1 className="mb-3 font-mono text-5xl font-semibold leading-tight xl:text-3xl md:mb-4">
+        {title}
+      </h1>
+      {items.length > 0 && (
+        <nav className="hidden md:block">
+          <CollapsibleItem title="On this page">
+            <nav className="toc-list flex flex-col space-y-3 pt-4">
+              {items.map(({ title }, index) => {
+                const href = getIdFromChildren(title);
+
+                return (
+                  <Link
+                    className="font-mono text-sm font-semibold leading-tight text-grey-25 no-underline transition-colors duration-200"
+                    to={`#${href}`}
+                    key={index}
+                    onClick={(e) => anchorClickHandler(e, href)}
+                  >
+                    {title}
+                  </Link>
+                );
+              })}
+            </nav>
+          </CollapsibleItem>
+        </nav>
+      )}
+      <MDXProvider components={components}>{content}</MDXProvider>
+      <EditDocLink className="mt-8 hidden lg:inline-flex md:mt-1 sm:text-sm" to={fileUrl} />
+    </div>
+  ));
 
 Content.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
   fileUrl: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Content;

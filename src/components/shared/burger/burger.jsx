@@ -7,7 +7,7 @@ const ANIMATION_DURATION = 0.2;
 
 const Burger = ({ className, isToggled, onClick }) => (
   <motion.button
-    className={clsx('relative h-[22px] w-7', className)}
+    className={clsx('relative h-[21px] w-6', className)}
     type="button"
     animate={isToggled ? 'toggled' : 'initial'}
     aria-label={isToggled ? 'Close menu' : 'Open menu'}

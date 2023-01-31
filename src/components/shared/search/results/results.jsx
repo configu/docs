@@ -37,15 +37,23 @@ const NoResults = connectStateResults(({ searchResults }) => {
   );
 });
 
-const PageHit = ({ hit }) => (
+const PageHit = ({ hit, type }) => (
   <div className="with-highlighted-text">
     <Link className="block" to={hit.slug}>
-      <h4 className="highlight-text font-mono text-xs font-semibold">
+      <h4
+        className={clsx(
+          'highlight-text font-mono font-semibold',
+          type === 'mobile' ? 'text-sm' : 'text-xs'
+        )}
+      >
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
     </Link>
     <Snippet
-      className="mt-1.5 block text-xs leading-relaxed text-grey-50"
+      className={clsx(
+        'mt-1.5 block leading-relaxed text-grey-50',
+        type === 'mobile' ? 'text-sm' : 'text-xs'
+      )}
       attribute="excerpt"
       hit={hit}
       tagName="mark"
@@ -60,14 +68,24 @@ PageHit.propTypes = {
     excerpt: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
   }).isRequired,
+  type: PropTypes.oneOf(['default', 'mobile']),
 };
 
-const Hits = connectHits(({ hits, showAll }) =>
+PageHit.defaultProps = {
+  type: 'default',
+};
+
+const Hits = connectHits(({ hits, showAll, type }) =>
   hits?.length ? (
-    <ul className="divide-y divide-dashed divide-grey-80 px-2.5 dark:divide-grey-25">
+    <ul
+      className={clsx(
+        'divide-y divide-dashed divide-grey-80 dark:divide-grey-25',
+        type === 'mobile' ? 'md:px-7 sm:px-4' : 'px-2.5'
+      )}
+    >
       {hits.slice(0, showAll ? hits.length : 5).map((hit) => (
-        <li className="py-2.5 first:pt-0" key={hit.objectID}>
-          <PageHit hit={hit} />
+        <li className="py-2.5 font-mono first:pt-0" key={hit.objectID}>
+          <PageHit type={type} hit={hit} />
         </li>
       ))}
     </ul>
@@ -76,16 +94,22 @@ const Hits = connectHits(({ hits, showAll }) =>
   )
 );
 
-const Results = ({ indices, additionalStyles }) => (
-  <div className="absolute left-0 right-0 bottom-0 z-10 translate-y-full overflow-hidden rounded-b border border-t-0 border-grey-80 bg-white dark:border-grey-40 dark:bg-grey-15">
+const containerClassNames = {
+  default:
+    'absolute left-0 right-0 bottom-0 z-10 translate-y-full overflow-hidden rounded-b border border-t-0 border-grey-80 bg-white dark:border-grey-40 dark:bg-grey-15',
+  mobile: 'flex flex-col h-[calc(100%-65px)]',
+};
+
+const Results = ({ indices, additionalStyles, type }) => (
+  <div className={clsx('', containerClassNames[type])}>
     <div className={clsx('overflow-y-scroll pt-2.5', additionalStyles)}>
       {indices.map(({ name }) => (
         <Index indexName={name} key={name}>
-          <Hits showAll />
+          <Hits type={type} showAll />
         </Index>
       ))}
     </div>
-    <div className="flex justify-between border-t border-grey-80 bg-[#fbfcfd] p-2.5 dark:border-grey-40 dark:bg-grey-25">
+    <div className="flex justify-between border-t border-grey-96 bg-[#fbfcfd] p-2.5 dark:border-grey-40 dark:bg-grey-25">
       <Link
         className="font-mono text-xs font-normal text-grey-50 transition-colors duration-200 dark:text-grey-50"
         to="https://www.algolia.com/"
@@ -98,6 +122,7 @@ const Results = ({ indices, additionalStyles }) => (
     </div>
   </div>
 );
+
 Results.propTypes = {
   indices: PropTypes.arrayOf(
     PropTypes.exact({
@@ -107,10 +132,12 @@ Results.propTypes = {
     })
   ).isRequired,
   additionalStyles: PropTypes.string,
+  type: PropTypes.oneOf(['default', 'mobile']),
 };
 
 Results.defaultProps = {
   additionalStyles: null,
+  type: 'default',
 };
 
 export default Results;

@@ -4,6 +4,7 @@ import React from 'react';
 
 import Burger from 'components/shared/burger';
 import Link from 'components/shared/link';
+import SearchIcon from 'icons/search-icon.inline.svg';
 import Logo from 'images/logo.inline.svg';
 
 const headerStyles = {
@@ -31,9 +32,9 @@ const headerStyles = {
   },
 };
 
-const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
+const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
   <header className={clsx('header safe-paddings', headerStyles[headerTheme].background)}>
-    <div className="container-lg flex h-20 items-center justify-end xl:px-10 md:h-[72px] md:px-7 sm:px-4 sm:pb-4">
+    <div className="container-lg flex h-20 items-center justify-end xl:px-16 md:h-16 md:px-7 sm:px-4">
       <Link to={process.env.GATSBY_CONFIGU_SITE_URL} className="z-50 mr-auto h-6">
         <span className="sr-only">Configu</span>
         <Logo
@@ -78,14 +79,25 @@ const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
         </Link>
       </nav>
 
-      <Burger
-        className={clsx(
-          'z-50 hidden md:block',
-          isMobileMenuOpen ? 'text-black dark:text-white' : headerStyles[headerTheme]?.burger
-        )}
-        isToggled={isMobileMenuOpen}
-        onClick={onBurgerClick}
-      />
+      <div className="hidden items-center md:flex">
+        <button
+          className="mr-5"
+          type="button"
+          aria-label="Open Search modal"
+          onClick={onSearchClick}
+        >
+          <SearchIcon className="dark:text-white" />
+        </button>
+
+        <Burger
+          className={clsx(
+            'z-50',
+            isMobileMenuOpen ? 'text-black dark:text-white' : headerStyles[headerTheme]?.burger
+          )}
+          isToggled={isMobileMenuOpen}
+          onClick={onBurgerClick}
+        />
+      </div>
     </div>
   </header>
 );
@@ -100,10 +112,12 @@ Header.propTypes = {
       to: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onSearchClick: PropTypes.func,
 };
 
 Header.defaultProps = {
   isMobileMenuOpen: false,
+  onSearchClick: null,
 };
 
 export default Header;

@@ -5,7 +5,7 @@ import Link from 'components/shared/link';
 import slugToHref from 'utils/slug-to-href';
 
 const Navigation = ({ previousLink, nextLink }) => (
-  <div className="mt-10 flex w-full border-t border-dashed border-grey-80 pt-10 dark:border-grey-40">
+  <div className="mt-10 flex w-full border-t border-dashed border-grey-80 pt-10 dark:border-grey-40 md:mt-5 md:pt-6">
     {previousLink && (
       <Link
         className="mr-auto max-w-[50%] xl:text-sm"

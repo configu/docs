@@ -17,23 +17,22 @@ const Input = connectSearchBox(
     additionalClassName,
     placeholder,
     iconSize,
+    type,
   }) => {
     const Placeholder = placeholder || 'Search';
 
     return (
       <div className="relative">
-        {iconSize === 'lg' && (
+        {iconSize === 'lg' ? (
           <SearchIconLg className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
+        ) : (
+          <SearchIcon className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
         )}
-        {iconSize === 'md' ||
-          (iconSize === null && (
-            <SearchIcon className="absolute top-1/2 left-2.5 -translate-y-1/2 dark:text-grey-60" />
-          ))}
         <input
           id="search-input"
           className={clsx(
             'search-input h-8 w-full appearance-none rounded border border-grey-80 bg-white pl-9 pr-2.5 font-mono text-base text-black placeholder-grey-25 outline-none dark:border-grey-40 dark:bg-grey-15 dark:text-white dark:placeholder-grey-40',
-            hasFocus && currentRefinement && 'rounded-b-none',
+            type !== 'mobile' && hasFocus && currentRefinement && 'rounded-b-none',
             additionalClassName
           )}
           type="search"
@@ -65,6 +64,7 @@ Input.propTypes = {
   iconSize: PropTypes.string,
   onFocus: PropTypes.func.isRequired,
   hasFocus: PropTypes.bool,
+  type: PropTypes.oneOf(['default', 'mobile']),
 };
 
 Input.defaultProps = {
@@ -72,6 +72,7 @@ Input.defaultProps = {
   currentRefinement: null,
   hasFocus: false,
   iconSize: 'md',
+  type: 'default',
 };
 
 export default Input;
