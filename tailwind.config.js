@@ -73,6 +73,11 @@ module.exports = {
       spacing: {
         4.5: '1.125rem', // 18px
       },
+      content: {
+        externalIconLight: "url('icons/external-link-light.svg')",
+        externalIconLightHover: "url('icons/external-link-light-hover.svg')",
+        externalIconDark: "url('icons/external-link-dark.svg')",
+      },
       backgroundImage: {
         'close-light': "url('components/shared/search/input/images/close-light.svg')",
         'close-dark': "url('components/shared/search/input/images/close-dark.svg')",

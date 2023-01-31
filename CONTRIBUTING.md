@@ -146,7 +146,9 @@ A video element can contain one or more video sources. To specify the source of 
 
 ## Links
 
-Media links should be the relative path to the file (image or video). External links should be start with `https` protocol and will be displayed with the small 🔗 icon. The relative links to other documentation pages should start with the slash `/`.
+- Media links should be the relative path to the file (image or video) `./image.png`.
+- External links should be start with `https` protocol. External links with mdx syntax `()[]` will be displayed with the small 🔗 icon automatically. If you want to get an icon at the jsx link `<a href...>` inside content, you need to specify the className as `external-link`.
+- The relative links to other documentation pages should start with the slash `/`.
 
 :warning: Note, that you should not specify `/docs` prefix manually in your relative links inside mdx content! It works automatically according to [path-prefix feature](#path-prefixing)
 

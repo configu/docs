@@ -207,6 +207,10 @@
     hr {
       @apply border-grey-40;
     }
+
+    .external-link {
+      @apply relative transition-all duration-300 after:ml-1 after:inline-flex after:h-4 after:w-4 after:align-baseline after:text-blue-light after:content-externalIconLight hover:after:content-externalIconLightHover dark:after:content-externalIconDark dark:hover:after:content-externalIconLight;
+    }
   }
 
   h3,
