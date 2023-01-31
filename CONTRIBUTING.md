@@ -29,8 +29,6 @@ What's important to understand:
 - in dev mode, when working locally, there won't be any `/docs` part visible in documentation urls. Your entry point will be `localhost:8000`
 - in production, or when you run `npm run build` command, the `/docs` prefix will be added to all paths on the site, making entry point `localhost:9000/docs`
 
-:warning: you should not specify `/docs` prefix manually in your relative links inside mdx content!
-
 Learn more on [path prefixing here](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)
 
 ## Writing
@@ -90,7 +88,7 @@ To add a top-level sidebar section, place a sibling in a desired position inside
 }
 ```
 
-:warning: note, that it is not enough to define a page in a sidebar for it to appear! For each page there has to be a corresponding `.md` file used for page generation.
+:warning: Note, that it is not enough to define a page in a sidebar for it to appear! For each page there has to be a corresponding `.md` file used for page generation.
 
 **Attributes breakdown**:
 
@@ -146,6 +144,12 @@ A video element can contain one or more video sources. To specify the source of 
 
 > Don't forget that videos can and should be optimised. Finding the right format and how to optimise your video will help you in this [article](https://pixelpoint.io/blog/web-optimized-video-ffmpeg/)
 
+## Links
+
+Media links should be the relative path to the file (image or video). External links should be start with `https` protocol and will be displayed with the small 🔗 icon. The relative links to other documentation pages should start with the slash `/`.
+
+:warning: Note, that you should not specify `/docs` prefix manually in your relative links inside mdx content! It works automatically according to [path-prefix feature](#path-prefixing)
+
 ## Admonition
 
 To improve the documentation readability, one can leverage an Admonition custom component. Wrap your piece of text with `<Admonition></Admonition>`, make sure content within starts end end with an empty line, and pass the type.
@@ -193,8 +197,6 @@ curl https://cli.configu.com/install.sh | sh
 ## The rest
 
 The rest of elements you could write as you would in native md: links, images, inline code, tables etc.
-
-:warning: Note, that external links will appear with a little 🔗 icon and should be start with `https` protocol. So internal links to other documentation pages should start with `/`.
 
 ## Custom
 
