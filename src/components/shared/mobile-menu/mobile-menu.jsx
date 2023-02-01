@@ -36,7 +36,7 @@ const MobileMenu = ({ isOpen, items }) => {
 
   return (
     <motion.nav
-      className="safe-paddings fixed inset-0 z-[-1] hidden overflow-x-hidden bg-white px-8 pb-5 dark:bg-grey-15 lg:flex lg:flex-col lg:justify-between"
+      className="safe-paddings fixed inset-0 z-[-1] hidden overflow-x-hidden bg-white px-8 pb-5 dark:bg-grey-15 lg:flex-col lg:justify-between md:flex"
       initial="from"
       animate={controls}
       variants={variants}
