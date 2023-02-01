@@ -73,14 +73,12 @@ module.exports = {
       spacing: {
         4.5: '1.125rem', // 18px
       },
-      content: {
-        externalIconLight: "url('icons/external-link-light.svg')",
-        externalIconLightHover: "url('icons/external-link-light-hover.svg')",
-        externalIconDark: "url('icons/external-link-dark.svg')",
-      },
       backgroundImage: {
         'close-light': "url('components/shared/search/input/images/close-light.svg')",
         'close-dark': "url('components/shared/search/input/images/close-dark.svg')",
+        'external-icon-light': "url('icons/external-link-light.svg')",
+        'external-icon-light-hover': "url('icons/external-link-light-hover.svg')",
+        'external-icon-dark': "url('icons/external-link-dark.svg')",
       },
       boxShadow: {
         select: '0px 0px 6px rgba(0, 0, 0, 0.1)',

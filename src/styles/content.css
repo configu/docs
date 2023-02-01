@@ -209,7 +209,7 @@
     }
 
     .external-link {
-      @apply relative transition-all duration-300 after:ml-1 after:inline-flex after:h-4 after:w-4 after:align-baseline after:text-blue-light after:content-externalIconLight hover:after:content-externalIconLightHover dark:after:content-externalIconDark dark:hover:after:content-externalIconLight;
+      @apply relative after:ml-1 after:inline-block after:h-[14px] after:w-[14px] after:bg-external-icon-light after:bg-contain after:align-baseline after:text-blue-light after:transition-all after:duration-200 hover:after:bg-external-icon-light-hover dark:after:bg-external-icon-dark dark:hover:after:bg-external-icon-light;
     }
   }
 
