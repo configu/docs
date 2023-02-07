@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types, jsx-a11y/html-has-lang */
 import React from 'react';
 
-const fontsBasePath = process.env.NODE_ENV === 'production' ? '/docs/fonts' : '/fonts';
+const fontsBasePath = '/fonts';
 
 const fontsPaths = [
   '/plus-jakarta-sans/plus-jakarta-sans-600.woff2',
@@ -42,7 +42,7 @@ const HTML = ({
         as="style"
       />
       <link
-        href={`${fontsBasePath}/fonts-${process.env.NODE_ENV}.css`}
+        href={`${fontsBasePath}/fonts-development.css`}
         rel="stylesheet"
         type="text/css"
         as="style"
