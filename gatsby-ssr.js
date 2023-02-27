@@ -4,13 +4,14 @@ import React from 'react';
 import { SidebarContextAPI } from './src/context/sidebar-context';
 
 const SITE_DOMAIN = 'configu.com';
+const ROLLUP_DOMAIN = 'rollup.configu.com';
 const PLAUSIBLE_DOMAIN = 'plausible.io';
 const SCRIPT_URI = '/js/plausible.js';
 
 export const onRenderBody = ({ setPreBodyComponents, setHtmlAttributes, setHeadComponents }) => {
   if (process.env.NODE_ENV === 'production') {
     const scriptProps = {
-      'data-domain': SITE_DOMAIN,
+      'data-domain': `${SITE_DOMAIN}, ${ROLLUP_DOMAIN}`,
       src: `https://${PLAUSIBLE_DOMAIN}${SCRIPT_URI}`,
     };
 
