@@ -6,7 +6,7 @@ module.exports = {
   flags: {
     DEV_SSR: process.env.GATSBY_DEV_SSR || false,
   },
-  pathPrefix: '/',
+  pathPrefix: '/docs',
   siteMetadata: {
     siteTitle: 'Configu - Rethinking Configuration Management',
     siteDescription:
