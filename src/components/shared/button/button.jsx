@@ -44,7 +44,23 @@ const Button = ({
   const Tag = to ? Link : 'button';
 
   return (
-    <Tag className={className} to={to} {...otherProps}>
+    <Tag
+      className={className}
+      to={to}
+      onClick={() => {
+        if (window.analytics) {
+          if (to && to.includes('app.configu.com')) {
+            window.analytics.track('Sign In', {
+              category: 'Website sign in click',
+              from: to,
+            });
+          }
+        }
+
+        return false;
+      }}
+      {...otherProps}
+    >
       {children}
     </Tag>
   );

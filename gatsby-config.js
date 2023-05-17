@@ -124,6 +124,16 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-segment-js',
+      options: {
+        prodKey: process.env.SEGMENT_WRITE_PROD_KEY,
+        devKey: process.env.SEGMENT_WRITE_DEV_KEY,
+        trackPage: true,
+        trackPageImmediately: true,
+        trackPageOnlyIfReady: false,
+      },
+    },
     ...(process.env.NODE_ENV === 'production' &&
     process.env.ALGOLIA_ADMIN_KEY &&
     process.env.GATSBY_ALGOLIA_APP_ID &&

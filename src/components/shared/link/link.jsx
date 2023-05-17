@@ -161,6 +161,18 @@ const Link = ({
       href={to}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
+      onClick={() => {
+        if (window.analytics) {
+          if (to.includes('app.configu.com')) {
+            window.analytics.track('Sign In', {
+              category: 'Website sign in click',
+              from: to,
+            });
+          }
+        }
+
+        return false;
+      }}
       {...props}
     >
       {nav === 'prev' && (
