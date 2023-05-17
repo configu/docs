@@ -1,8 +1,10 @@
+import { useLocation } from '@reach/router';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'components/shared/link';
+import handleSegmentEvent from 'utils/handle-segment-event';
 
 const styles = {
   base: 'inline-flex items-center justify-center text-center font-sans font-semibold px-8 transition-colors duration-200 leading-none outline-none',
@@ -33,6 +35,7 @@ const Button = ({
   children,
   ...otherProps
 }) => {
+  const location = useLocation();
   const className = clsx(
     styles.base,
     styles.size[size],
@@ -47,18 +50,7 @@ const Button = ({
     <Tag
       className={className}
       to={to}
-      onClick={() => {
-        if (window.analytics) {
-          if (to && to.includes('app.configu.com')) {
-            window.analytics.track('Sign In', {
-              category: 'Website sign in click',
-              from: to,
-            });
-          }
-        }
-
-        return false;
-      }}
+      onClick={(e) => handleSegmentEvent(e, to, children, location?.href)}
       {...otherProps}
     >
       {children}

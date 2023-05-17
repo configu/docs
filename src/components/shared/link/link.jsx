@@ -1,3 +1,4 @@
+import { useLocation } from '@reach/router';
 import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
 import { Link as GatsbyLink } from 'gatsby';
@@ -5,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Arrow from 'icons/arrow.inline.svg';
+import handleSegmentEvent from 'utils/handle-segment-event';
 
 const styles = {
   base: 'font-semibold inline-flex items-baseline leading-none transition-colors duration-200 group relative',
@@ -70,6 +72,7 @@ const Link = ({
   children,
   ...props
 }) => {
+  const location = useLocation();
   const [, setIsHovered] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
@@ -161,18 +164,7 @@ const Link = ({
       href={to}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
-      onClick={() => {
-        if (window.analytics) {
-          if (to.includes('app.configu.com')) {
-            window.analytics.track('Sign In', {
-              category: 'Website sign in click',
-              from: to,
-            });
-          }
-        }
-
-        return false;
-      }}
+      onClick={(e) => handleSegmentEvent(e, to, children, location.href)}
       {...props}
     >
       {nav === 'prev' && (
