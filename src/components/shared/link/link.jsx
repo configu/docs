@@ -4,6 +4,7 @@ import { Link as GatsbyLink } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import useSegmentEvent from 'hooks/use-segment-event';
 import Arrow from 'icons/arrow.inline.svg';
 
 const styles = {
@@ -68,8 +69,10 @@ const Link = ({
   to,
   nav,
   children,
+  isClickTracked,
   ...props
 }) => {
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
   const [, setIsHovered] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
@@ -140,6 +143,7 @@ const Link = ({
         to={to}
         onMouseEnter={onMouseEnter}
         onMouseOut={onMouseOut}
+        onClick={handleSegmentEvent(to, children)}
         {...props}
       >
         {nav === 'prev' && (
@@ -161,6 +165,7 @@ const Link = ({
       href={to}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
+      onClick={handleSegmentEvent(to, children)}
       {...props}
     >
       {nav === 'prev' && (
@@ -182,6 +187,7 @@ Link.propTypes = {
   theme: PropTypes.oneOf(Object.keys(styles.theme)),
   children: PropTypes.node.isRequired,
   nav: PropTypes.oneOf(['prev', 'next']),
+  isClickTracked: PropTypes.bool,
 };
 
 Link.defaultProps = {
@@ -190,6 +196,7 @@ Link.defaultProps = {
   size: null,
   theme: 'black',
   nav: null,
+  isClickTracked: false,
 };
 
 export default Link;

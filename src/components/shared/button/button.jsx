@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'components/shared/link';
+import useSegmentEvent from 'hooks/use-segment-event';
 
 const styles = {
   base: 'inline-flex items-center justify-center text-center font-sans font-semibold px-8 transition-colors duration-200 leading-none outline-none',
@@ -31,8 +32,10 @@ const Button = ({
   theme,
   isDisabled,
   children,
+  isClickTracked,
   ...otherProps
 }) => {
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
   const className = clsx(
     styles.base,
     styles.size[size],
@@ -44,7 +47,7 @@ const Button = ({
   const Tag = to ? Link : 'button';
 
   return (
-    <Tag className={className} to={to} {...otherProps}>
+    <Tag className={className} to={to} onClick={handleSegmentEvent(to, children)} {...otherProps}>
       {children}
     </Tag>
   );
@@ -57,12 +60,14 @@ Button.propTypes = {
   size: PropTypes.oneOf(Object.keys(styles.size)).isRequired,
   theme: PropTypes.oneOf(Object.keys(styles.theme)).isRequired,
   children: PropTypes.node.isRequired,
+  isClickTracked: PropTypes.bool,
 };
 
 Button.defaultProps = {
   className: null,
   to: null,
   isDisabled: false,
+  isClickTracked: false,
 };
 
 export default Button;
