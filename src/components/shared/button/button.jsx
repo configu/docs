@@ -1,10 +1,9 @@
-import { useLocation } from '@reach/router';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'components/shared/link';
-import handleSegmentEvent from 'utils/handle-segment-event';
+import useSegmentEvent from 'hooks/use-segment-event';
 
 const styles = {
   base: 'inline-flex items-center justify-center text-center font-sans font-semibold px-8 transition-colors duration-200 leading-none outline-none',
@@ -33,9 +32,10 @@ const Button = ({
   theme,
   isDisabled,
   children,
+  isClickTracked,
   ...otherProps
 }) => {
-  const location = useLocation();
+  const { handleSegmentEvent } = useSegmentEvent();
   const className = clsx(
     styles.base,
     styles.size[size],
@@ -50,7 +50,7 @@ const Button = ({
     <Tag
       className={className}
       to={to}
-      onClick={(e) => handleSegmentEvent(e, to, children, location?.href)}
+      onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
       {...otherProps}
     >
       {children}
@@ -65,12 +65,14 @@ Button.propTypes = {
   size: PropTypes.oneOf(Object.keys(styles.size)).isRequired,
   theme: PropTypes.oneOf(Object.keys(styles.theme)).isRequired,
   children: PropTypes.node.isRequired,
+  isClickTracked: PropTypes.bool,
 };
 
 Button.defaultProps = {
   className: null,
   to: null,
   isDisabled: false,
+  isClickTracked: false,
 };
 
 export default Button;

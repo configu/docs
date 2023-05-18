@@ -1,12 +1,11 @@
-import { useLocation } from '@reach/router';
 import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
 import { Link as GatsbyLink } from 'gatsby';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import useSegmentEvent from 'hooks/use-segment-event';
 import Arrow from 'icons/arrow.inline.svg';
-import handleSegmentEvent from 'utils/handle-segment-event';
 
 const styles = {
   base: 'font-semibold inline-flex items-baseline leading-none transition-colors duration-200 group relative',
@@ -70,9 +69,10 @@ const Link = ({
   to,
   nav,
   children,
+  isClickTracked,
   ...props
 }) => {
-  const location = useLocation();
+  const { handleSegmentEvent } = useSegmentEvent();
   const [, setIsHovered] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
@@ -143,6 +143,7 @@ const Link = ({
         to={to}
         onMouseEnter={onMouseEnter}
         onMouseOut={onMouseOut}
+        onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
         {...props}
       >
         {nav === 'prev' && (
@@ -164,7 +165,7 @@ const Link = ({
       href={to}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
-      onClick={(e) => handleSegmentEvent(e, to, children, location.href)}
+      onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
       {...props}
     >
       {nav === 'prev' && (
@@ -186,6 +187,7 @@ Link.propTypes = {
   theme: PropTypes.oneOf(Object.keys(styles.theme)),
   children: PropTypes.node.isRequired,
   nav: PropTypes.oneOf(['prev', 'next']),
+  isClickTracked: PropTypes.bool,
 };
 
 Link.defaultProps = {
@@ -194,6 +196,7 @@ Link.defaultProps = {
   size: null,
   theme: 'black',
   nav: null,
+  isClickTracked: false,
 };
 
 export default Link;

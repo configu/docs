@@ -67,6 +67,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
           to={process.env.GATSBY_CONFIGU_APP_URL}
           size="sm"
           theme={headerStyles[headerTheme].menu}
+          isClickTracked
         >
           Login
         </Link>
@@ -74,6 +75,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
           to={process.env.GATSBY_CONFIGU_APP_URL}
           size="sm"
           theme={headerStyles[headerTheme].cta}
+          isClickTracked
         >
           Get it free
         </Link>
