@@ -7,6 +7,10 @@ export default function useSegmentEvent(shouldUse = false) {
 
   const handleSegmentEvent = useCallback(
     (href, eventName) => (event) => {
+      if (!shouldUse) {
+        return () => {};
+      }
+
       event.preventDefault();
 
       if (window.analytics) {
@@ -27,8 +31,8 @@ export default function useSegmentEvent(shouldUse = false) {
 
       return false;
     },
-    [location]
+    [location.href, shouldUse]
   );
 
-  return !shouldUse ? { handleSegmentEvent: () => {} } : { handleSegmentEvent };
+  return { handleSegmentEvent };
 }
