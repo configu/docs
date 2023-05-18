@@ -1,30 +1,34 @@
 import { useLocation } from '@reach/router';
 import { navigate } from 'gatsby';
+import { useCallback } from 'react';
 
-export default function useSegmentEvent() {
+export default function useSegmentEvent(shouldUse = false) {
   const location = useLocation();
 
-  const handleSegmentEvent = (event, href, eventName) => {
-    event.preventDefault();
+  const handleSegmentEvent = useCallback(
+    (href, eventName) => (event) => {
+      event.preventDefault();
 
-    if (window.analytics) {
-      window.analytics
-        .track(eventName, {
-          category: `Website ${eventName} click`,
-          from: location.href,
-        })
-        .then(() => {
-          navigate(href);
-        })
-        .catch(() => {
-          navigate(href);
-        });
-    } else {
-      navigate(href);
-    }
+      if (window.analytics) {
+        window.analytics
+          .track(eventName, {
+            category: `Website ${eventName} click`,
+            from: location.href,
+          })
+          .then(() => {
+            navigate(href);
+          })
+          .catch(() => {
+            navigate(href);
+          });
+      } else {
+        navigate(href);
+      }
 
-    return false;
-  };
+      return false;
+    },
+    [location]
+  );
 
-  return { handleSegmentEvent };
+  return !shouldUse ? { handleSegmentEvent: () => {} } : { handleSegmentEvent };
 }

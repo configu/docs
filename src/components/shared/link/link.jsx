@@ -72,7 +72,7 @@ const Link = ({
   isClickTracked,
   ...props
 }) => {
-  const { handleSegmentEvent } = useSegmentEvent();
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
   const [, setIsHovered] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
@@ -143,7 +143,7 @@ const Link = ({
         to={to}
         onMouseEnter={onMouseEnter}
         onMouseOut={onMouseOut}
-        onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
+        onClick={handleSegmentEvent(to, children)}
         {...props}
       >
         {nav === 'prev' && (
@@ -165,7 +165,7 @@ const Link = ({
       href={to}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
-      onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
+      onClick={handleSegmentEvent(to, children)}
       {...props}
     >
       {nav === 'prev' && (

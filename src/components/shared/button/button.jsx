@@ -35,7 +35,7 @@ const Button = ({
   isClickTracked,
   ...otherProps
 }) => {
-  const { handleSegmentEvent } = useSegmentEvent();
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
   const className = clsx(
     styles.base,
     styles.size[size],
@@ -47,12 +47,7 @@ const Button = ({
   const Tag = to ? Link : 'button';
 
   return (
-    <Tag
-      className={className}
-      to={to}
-      onClick={(e) => (isClickTracked ? handleSegmentEvent(e, to, children) : undefined)}
-      {...otherProps}
-    >
+    <Tag className={className} to={to} onClick={handleSegmentEvent(to, children)} {...otherProps}>
       {children}
     </Tag>
   );
