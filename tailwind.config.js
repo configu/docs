@@ -40,6 +40,8 @@ module.exports = {
       'blue-lighter': '#006AFF',
       'blue-light-hover': '#005CDB',
       'blue-dark': '#198CFF',
+      green: '#00B268',
+
       grey: {
         15: '#242429',
         25: '#3B3B44',

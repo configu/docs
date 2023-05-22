@@ -10,6 +10,7 @@ import CodeTabs from 'components/shared/code-tabs';
 import Collapsible from 'components/shared/collapsible';
 import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
 import DefinitionList from 'components/shared/definition-list';
+import Version from 'components/shared/definition-list/version';
 import Link from 'components/shared/link';
 import getIdFromChildren from 'utils/get-id-from-children';
 import anchorClickHandler from 'utils/handle-anchor-link-click';
@@ -39,6 +40,7 @@ const components = {
   CodeTabs,
   CollapsibleItem,
   DefinitionList,
+  Version,
 };
 
 const Content = forwardRef(({ title, content, items, fileUrl }, ref) => (

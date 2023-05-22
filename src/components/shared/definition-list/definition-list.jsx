@@ -3,6 +3,9 @@ import React, { Fragment } from 'react';
 import slugify from 'slugify';
 
 import AnchorIcon from 'icons/anchor.inline.svg';
+
+import Version from './version';
+
 // local constants
 const termDelimiterRegEx = /\n/;
 const listDelimiterRegEx = /\n:/;
@@ -83,20 +86,26 @@ const DefinitionList = ({ children }) => {
           <Fragment key={idx}>
             {terms.map((term, termIdx) => {
               const anchorMold = slugify(termTextContent, { lower: true });
+              const versionComponent = term.find((item) => item.type === 'Version');
+              const termWithoutVersion = term.filter((item) => item.type !== 'Version');
+
               return (
                 <dt
-                  className="group relative mb-4 flex items-start gap-x-3 font-bold first:mt-0"
+                  className="group relative mb-4 flex w-full items-center gap-x-3 font-bold first:mt-0"
                   id={!termIdx ? anchorMold : termIdx}
                   key={termIdx}
                 >
-                  {term}
+                  {termWithoutVersion}
                   {!termIdx && (
                     <a
-                      className="ml-2 mt-2.5 !border-b-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      className="!border-b-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                       href={`#${anchorMold}`}
                     >
                       <AnchorIcon className="h-4 w-4" />
                     </a>
+                  )}
+                  {versionComponent && (
+                    <Version type={versionComponent.props.type} id={anchorMold} />
                   )}
                 </dt>
               );
