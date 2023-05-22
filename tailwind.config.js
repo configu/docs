@@ -84,6 +84,7 @@ module.exports = {
         select: '0px 0px 6px rgba(0, 0, 0, 0.1)',
       },
       opacity: {
+        8: '.08',
         16: '.16',
       },
     },
