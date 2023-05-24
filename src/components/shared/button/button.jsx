@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { getCookieConsentValue } from 'react-cookie-consent';
 
 import Link from 'components/shared/link';
 import useSegmentEvent from 'hooks/use-segment-event';
@@ -35,7 +36,8 @@ const Button = ({
   isClickTracked,
   ...otherProps
 }) => {
-  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
+  const isCookieAccepted = useMemo(() => getCookieConsentValue() === 'true', []);
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked && isCookieAccepted);
   const className = clsx(
     styles.base,
     styles.size[size],

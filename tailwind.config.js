@@ -82,6 +82,7 @@ module.exports = {
       },
       boxShadow: {
         select: '0px 0px 6px rgba(0, 0, 0, 0.1)',
+        modal: '0px 0px 40px rgba(11, 11, 14, 0.12)',
       },
       opacity: {
         16: '.16',

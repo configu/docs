@@ -2,7 +2,8 @@ import clsx from 'clsx';
 import { motion, useAnimation } from 'framer-motion';
 import { Link as GatsbyLink } from 'gatsby';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { getCookieConsentValue } from 'react-cookie-consent';
 
 import useSegmentEvent from 'hooks/use-segment-event';
 import Arrow from 'icons/arrow.inline.svg';
@@ -72,7 +73,8 @@ const Link = ({
   isClickTracked,
   ...props
 }) => {
-  const { handleSegmentEvent } = useSegmentEvent(isClickTracked);
+  const isCookieAccepted = useMemo(() => getCookieConsentValue() === 'true', []);
+  const { handleSegmentEvent } = useSegmentEvent(isClickTracked && isCookieAccepted);
   const [, setIsHovered] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
