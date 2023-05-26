@@ -91,7 +91,7 @@ const DefinitionList = ({ children }) => {
 
               return (
                 <dt
-                  className="group relative mb-4 flex w-full items-center gap-x-3 font-bold first:mt-0"
+                  className="group relative mb-4 flex w-full flex-wrap items-center gap-x-3 font-bold first:mt-0 2xs:gap-y-3"
                   id={!termIdx ? anchorMold : termIdx}
                   key={termIdx}
                 >
@@ -111,7 +111,7 @@ const DefinitionList = ({ children }) => {
               );
             })}
             {descriptions.map((description, index) => (
-              <dd className="mb-8 pl-6 first:mt-1" key={index}>
+              <dd className="mb-8 pl-6 first:mt-1 dark:text-white" key={index}>
                 {description}
               </dd>
             ))}

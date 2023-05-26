@@ -96,6 +96,7 @@ module.exports = {
       lg: { max: '1279px' },
       md: { max: '1023px' },
       sm: { max: '767px' },
+      '2xs': { max: '413px' },
       xs: { max: '359px' },
     },
   },
