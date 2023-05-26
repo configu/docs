@@ -5,7 +5,7 @@ import React from 'react';
 const Version = ({ children, type }) => (
   <span
     className={clsx(
-      'order-last ml-auto whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold uppercase leading-tight tracking-wide duration-200 sm:px-3 2xs:ml-0',
+      'order-last whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold uppercase leading-tight tracking-wide duration-200 sm:px-3',
       {
         'border-blue-light text-blue-light duration-200 hover:bg-blue-light hover:text-white dark:!text-blue-light dark:hover:!text-white':
           type === 'blue',

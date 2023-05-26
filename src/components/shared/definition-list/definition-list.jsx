@@ -91,14 +91,14 @@ const DefinitionList = ({ children }) => {
 
               return (
                 <dt
-                  className="group relative mb-4 flex w-full flex-wrap items-center gap-x-3 font-bold first:mt-0 2xs:gap-y-3"
+                  className="group relative mb-4 flex w-full flex-wrap items-center gap-x-3 gap-y-3 font-bold first:mt-0"
                   id={!termIdx ? anchorMold : termIdx}
                   key={termIdx}
                 >
                   {termWithoutVersion}
                   {!termIdx && (
                     <a
-                      className="!border-b-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      className="mr-auto !border-b-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                       href={`#${anchorMold}`}
                     >
                       <AnchorIcon className="h-4 w-4" />
