@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
 
+import AnchorIcon from 'icons/anchor.inline.svg';
 import getIdFromChildren from 'utils/get-id-from-children';
-
-import AnchorIcon from './images/anchor.inline.svg';
 
 const AnchorHeading =
   (Tag) =>
