@@ -1,0 +1,25 @@
+---
+id: webhook-github-action
+slug: webhooks-github-action
+title: Trigger Github Action using Configu Webhook
+---
+
+Learn how to trigger a [GitHub workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) 
+from a webhook invocation.
+
+## Prerequisites
+- Access permissions to create a WebHook for your Discord channel.
+- Configu Cloud organization with admin permissions
+
+## Create a Configu Webhook
+
+1. Define your target workflow payload URL: `https://api.github.com/repos/{owner}/{repo}/actions/workflows/{action-id}/dispatches`, example:
+![image](./img/webhooks/github-customize-your-payload.png)
+2. Customize your header to include an `Authorization` header with your GitHub personal access token. Example:
+![image](./img/webhooks/github-authorization-header.png)
+3. Customize your payload to contain the data you need, for this example:
+![image](./img/webhooks/github-customize-your-payload.png)
+you will need to send the following payload data:
+![image](./img/webhooks/github-customize-your-payload-2.png)
+- `ref` is the branch that contains the workflow definition
+- `inputs` is the data that the workflow will use that is sent from the webhook

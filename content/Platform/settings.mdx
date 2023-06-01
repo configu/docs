@@ -1,0 +1,68 @@
+---
+id: settings
+slug: settings
+title: Settings
+---
+
+## Organization Settings
+
+ You can manage your organization in your organization settings.
+
+### Organization Informations
+Here you can find the organization information, from the org name to who is the owner.
+
+![image](./img/settings/settings-general-org.png)
+
+### Feature settings
+- **Config Masking** - While we secure every value we receive, masked visibility helps teams to increase their security. When the Config Masking feature is on (by default), values are not displayed in the dashboard until there is an intent performed by the user to reveal the value.
+    - Unmasked - Always displayed - does not require an intention to reveal
+    - Masked - Masked (___****___), Value can be revealed by clicking the Show Config button
+
+![image](./img/settings/settings-general-masking.png)
+
+- **Domain Verification** - For increased security, we recommend Owners verify a domain via the Settings page so email accounts belonging to that domain can be added automatically to this organization.
+
+### Organization Plan
+
+Note: Configu orchestrator is an open-source and free forever
+We have a free tier and we expect most developers and teams to fall within this tier limits.
+In this section, you can track how much you use and upgrade if needed.
+
+![image](./img/settings/settings-general-plan.png)
+
+### Danger Zone
+
+The danger zone will be visible only to the organization owner.
+
+![image](./img/settings/settings-general-danger-zone.png)
+
+## Organization Members
+
+### Adding Users
+Users can be added to Configu using the following methods:
+- Send Invite
+- SAML Single Sign-On
+
+### Send Invite
+Users can be manually invited to join an organization from the member's page. The account must be able to receive mail.
+
+![image](./img/settings/setting-invite-member.png)
+
+### SAML Single Sign-On
+Configu supports SAML Single Sign-On for managing organization access and authentication using your Single Sign-On provider.
+For more information about SAML support please contact us at info@configu.com.
+
+## Organization Tokens
+Provide restricted Configs access to an application.
+
+A Configu Token is useful for:
+- Authenticating the Configu CLI from a non-interactive system (e.g. CI/CD, Docker)
+- Authenticating in real-time using one of our SDKs
+
+To generate a token, head over to the Token page in the settings tab.
+
+![image](./img/settings/setting-new-token.png)
+![image](./img/settings/setting-token-created.png)
+
+
+

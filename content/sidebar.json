@@ -14,6 +14,26 @@
         {
           "title": "Architecture",
           "slug": "architecture"
+        },
+        {
+          "title": "Configuration as code (CaC)",
+          "slug": "configuration-as-code"
+        },
+        {
+          "title": "Configu Orchestrator (open-source)",
+          "slug": "configu-orchestrator"
+        },
+        {
+          "title": "Configu Cloud Platform",
+          "slug": "configu-cloud"
+        },
+        {
+          "title": "CLI",
+          "slug": "cli-overview"
+        },
+        {
+          "title": "FAQ",
+          "slug": "faq"
         }
       ]
     },
@@ -29,12 +49,12 @@
           "slug": "config-store"
         },
         {
-          "title": "Config Set",
-          "slug": "config-set"
-        },
-        {
           "title": "Config Schema",
           "slug": "config-schema"
+        },
+        {
+          "title": "Config Set",
+          "slug": "config-set"
         },
         {
           "title": "Cfgu Types",
@@ -43,6 +63,27 @@
         {
           "title": "Commands",
           "slug": "commands"
+        }
+      ]
+    },
+    {
+      "title": "Configu Cloud",
+      "items": [
+        {
+          "title": "Configs",
+          "slug": "configs"
+        },
+        {
+          "title": "Activity Logs",
+          "slug": "audit-log"
+        },
+        {
+          "title": "Webhooks",
+          "slug": "webhooks"
+        },
+        {
+          "title": "Settings",
+          "slug": "settings"
         }
       ]
     },
@@ -74,6 +115,40 @@
           "slug": "cli-export"
         }
       ]
+    },
+    {
+      "title": "IDE Plugins",
+      "items": [
+        {
+          "title": "VS Code extension",
+          "slug": "vs-code"
+        },
+        {
+          "title": "IntelliJ extension",
+          "slug": "intellij"
+        }
+      ]
+    },
+    {
+      "title": "Recipes",
+      "items": [
+        {
+          "title": "Create a Slack Webhook",
+          "slug": "webhook-slack"
+        },
+        {
+          "title": "Create a Discord Webhook",
+          "slug": "webhook-discord"
+        },
+        {
+          "title": "Trigger Github Action",
+          "slug": "webhook-github-action"
+        }
+      ]
+    },
+    {
+      "title": "Contributing",
+      "slug": "https://github.com/configu/configu/blob/main/CONTRIBUTING.md"
     }
   ]
 }
