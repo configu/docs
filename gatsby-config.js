@@ -20,14 +20,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [process.env.GOOGLE_GTAG_ID],
-        gtagConfig: {
-          anonymize_ip: true, // Anonymizes ip addresses
-          cookie_expires: 63072000, // The cookie lives for two years (which is the standard lifetime for Google Analytics)
-        },
+        trackingIds: [
+          "G-BZJXN32RK1",
+        ],
         pluginConfig: {
           head: true,
-          exclude: ['/preview/**', '/do-not-track/me/too/'],
         },
       },
     },
