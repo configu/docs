@@ -18,6 +18,20 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ['G-BZJXN32RK1'],
+        gtagConfig: {
+          anonymize_ip: true, // Anonymizes ip addresses
+          cookie_expires: 63072000, // The cookie lives for two years (which is the standard lifetime for Google Analytics)
+        },
+        pluginConfig: {
+          head: true,
+          exclude: ['/preview/**', '/do-not-track/me/too/'],
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
