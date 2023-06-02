@@ -31,6 +31,21 @@ What's important to understand:
 
 Learn more on [path prefixing here](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)
 
+## Analytics
+
+We use Segment to track user behavior on the Configu website. It is configured for both `main` and `docs` projects. This helps us understand how people use the site and what we can do to improve it. The setup is abstracted into a `useSegmentEvent` which is being leveraged in `Link` and `Button` custom components. In case you ever need to add another tracking event, simply pass `isClickTracked` prop to one of the mentioned component, like so:
+
+```jsx
+<Button isClickTracked>Click me</Button>
+<Link isClickTracked>Follow for more</Link>
+```
+
+This will enable yet another event that will be sending passed `to` prop as a `url` and text content of the button as a `name` in Segment.
+
+_Note, that the `isClickTracked` prop is optional and defaults to `false`._
+
+_Also note, that though `isClickTracked` can be leveraged in `Button` component, but works only if your intention is to use `Button` as a link and `to` prop is passed._
+
 ## Writing
 
 For small changes and spelling fixes, the GitHub UI is most convenient.
