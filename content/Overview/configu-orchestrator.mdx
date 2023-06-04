@@ -7,7 +7,7 @@ title: Configu Orchestrator (open-source)
 As applications are becoming more dynamic and distributed in microservices, configurations are also fragmented. 
 They are saved as raw text that is spread across multiple stores, databases, files, git repositories, and third parties (An average company has between 5 to 10 different stores).
 
-The [Configu open-source](https://github.com/configu/configu) solution is a powerful standalone tool designed to address this challenge by providing a Configuration Orchestration along with CaC model.
+The [Configu open-source](https://github.com/configu/configu) solution is a powerful standalone tool designed to address this challenge by providing a Configuration Orchestration along with [CaC](/configuration-as-code) model.
 
 ## Configuration Orchestration 
 The Configu Orchestrator enables the seamless management of configurations across different storage systems (e.g. files in your git repo, secret managers, feature flags, DBs) and across various environments from code to runtime. 
@@ -16,15 +16,17 @@ entire software development lifecycle. By automating the configuration orchestra
 
 Configu orchestrator includes two interfaces that can sync to any configuration store that you use and manage (CRUN, test and automate) and automate the configuration process
 - [CLI interface](/cli) - single set of commands
-- [SDK interface](/sdk) - unified interface for each supported programing language
+- [SDK interface](/sdk) - unified interface for each supported programming language
 
 ## ConfigSchema - CFGU
-ConfigSchema file (.cfgu.json or .cfgu.yaml) is a human-readable and open-source format used for declaring configurations and their characteristics. 
-It is designed to be stored alongside code in source control, bind between the configurations to the code and helps to make the code the single source of truth. 
-It is treated as code since it does not contain sensitive data. The format provides a structured way to associate configuration keys in the code with their properties, 
-such as data type, requirement level, and constraints. By utilizing ConfigSchema, configuration data can be properly validated, preventing misconfigurations and errors 
+ConfigSchema file (.cfgu.json or .cfgu.yaml) is an open-source human-readable [CaC](/configuration-as-code) format used for declaring configurations and their characteristics. 
+The ConfigSchema provides a structured way to associate configuration keys in the code with their properties, 
+such as data type, requirement level, and constraints.
+By utilizing ConfigSchema, configuration data can be properly validated, preventing misconfigurations and errors 
 from reaching production. There isn't any unique identifier to the .cfgu files, and developers have the flexibility to organize and structure these files according to 
 their specific needs and workflows.
+It is designed to be stored alongside code in source control, binds between the configurations to the code and helps to make the code the single source of truth. 
+It is treated as code since it does not contain sensitive data. 
 
 Read more about the [CaC concept](/configuration-as-code) and the [CFGU format](/config-schema).
 

@@ -7,12 +7,12 @@ title: FAQ
 Frequently Asked Questions about Configu
 If you can't find the answer you are looking for, please join our [Discord community](https://discord.gg/cjSBxnB9z8).
 
-- What is the difference between secret manager, feature flag solution and Configu?
+- What is the difference between secret managers, feature flag solutions, and Configu?
 
     While both secrets and feature flags are implementations of application configurations, secret managers, feature flag solutions and Configu are different.
 
     Application configurations are fragmented, they are saved as raw text that is spread across multiple stores, databases, files, and third parties.
-    Part of this fragmentation happened since each nich of application configuration has its dedicated storage which specializes in this niche, 
+    Part of this fragmentation happened since each niche of application configuration has its dedicated storage which specializes in this niche, 
     like secret managers that securely store and manage sensitive information such as passwords or feature flag solutions that enable the management of feature releases and experiments dynamically.
 
     Configu, on the other hand, is not focused on a specific niche but rather on the fragmented workflow itself and can manage and fetch the configs from all these stores together using a single set of commands.
@@ -32,7 +32,7 @@ If you can't find the answer you are looking for, please join our [Discord commu
     configu eval --schema 'my-schema.cfgu.json' --defaults
     ```
     
-    - use the last fetch, Configu save the latest fetched configuration in a local cache.
+    - use the last fetch, Configu saves the latest fetched configuration in a local cache.
     - use the self-hosted store, if you're using Configu for orchestrating local files, local DB or running Configu's self-hosted version you can do everything offline.   
 
 - Is there a free version of Configu?
