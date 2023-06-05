@@ -26,11 +26,12 @@ If you can't find the answer you are looking for, please join our [Discord commu
 
 - Can I fetch configurations with Configu if I'm offline?
     Yes. you have three ways to fetch configs offline:
+    
     - fetch the default values directly from the .cfgu schema
     
-    ```shell
-    configu eval --schema 'my-schema.cfgu.json' --defaults
-    ```
+        ```shell
+        configu eval --schema 'my-schema.cfgu.json' --defaults
+        ```
     
     - use the last fetch, Configu saves the latest fetched configuration in a local cache.
     - use the self-hosted store, if you're using Configu for orchestrating local files, local DB or running Configu's self-hosted version you can do everything offline.   
