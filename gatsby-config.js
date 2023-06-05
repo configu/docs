@@ -18,6 +18,15 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ['G-BZJXN32RK1'],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',

@@ -40,6 +40,8 @@ module.exports = {
       'blue-lighter': '#006AFF',
       'blue-light-hover': '#005CDB',
       'blue-dark': '#198CFF',
+      green: '#00B268',
+
       grey: {
         15: '#242429',
         25: '#3B3B44',
@@ -85,6 +87,7 @@ module.exports = {
         modal: '0px 0px 40px rgba(11, 11, 14, 0.12)',
       },
       opacity: {
+        8: '.08',
         16: '.16',
       },
     },
@@ -94,6 +97,7 @@ module.exports = {
       lg: { max: '1279px' },
       md: { max: '1023px' },
       sm: { max: '767px' },
+      '2xs': { max: '413px' },
       xs: { max: '359px' },
     },
   },
