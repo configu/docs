@@ -5,16 +5,16 @@ title: Managing HashiCorp Vault using Configu
 ---
 
 Today's developer teams are tasked with having to manage Config Ops on the _platform_ as well,
-and Hashi Corp Vault is a great opportunity to show how Configu lets you only worry about your config
-[schemas](/schemas), with Configu providing the rest of what's needed, including talking
-to Vault's API to get your new config values in place. Check out the tutorial below
+and HashiCorp Vault is a great opportunity to show how Configu lets you only worry about your config
+[schemas](/config-schema), with Configu providing the rest of what's needed, including talking
+to Vault's API to get and validate your new config values in place. Check out the tutorial below
 
-In order to complete the tutorial, you'll need a Hashi Corp Vault account (or an on-prem version), Git, Configu's CLI,
+In order to complete the tutorial, you'll need a HashiCorp Vault Server and Credentials (easiest is having it installed as a [docker](https://github.com/hashicorp/docker-vault)), [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Configu's CLI](/cli-setup),
 and a simple hello world app to deploy which we've provided in this repo.
 
 In most cases, your application already has a configuration file, in this example, we will examine Python code that consumes a PostgreSQL connection URL and a .env file:
 
-```Python
+```python
     os.environ['DB_URL'] = 'psql://{user}:{password}@{host}:{port}/{name}'.format(
     user=os.environ['DB_USER'],
     password=os.environ['DB_PASSWORD'],
@@ -27,7 +27,7 @@ In most cases, your application already has a configuration file, in this exampl
 ```bash
     DB_USER=user
     DB_PASSWORD=123
-    DB_HOST=localhost
+    DB_HOST=127.0.0.1
     DB_PORT=5433
     DB_NAME=database
 ```
@@ -35,7 +35,7 @@ In most cases, your application already has a configuration file, in this exampl
 ## Step 1 - Create schema declaration
 
 Instead of maintaining a .env file for each environment or Vault for production and possibly for other sensitive environments, 
-we will create a CFGU schema declaration for this service so for every change that we will make we will need to change only the key only on the schema and initialize values using the same interface.
+create a .cfgu schema declaration for this service, so that each change will only have to be changed once (only the key in the schema) and then the values will be initialized by the same interface.
 Our schema will look like this:
 
 my-app.cfgu.json
@@ -79,30 +79,30 @@ Doing that increases the developers' velocity and helps them to avoid leaving th
 Running a local environment was never easier, choose your preferred way to inject your environment variables:
 - Run Configu seamlessly with your app
 ```bash
-configu export --schema "./my-app.cfgu.json" --defaults | configu export --run "py my-app.py"
+configu eval --schema "./my-app.cfgu.json" --defaults | configu export --run "py my-app.py"
 ```
 
 - Inject the variables into your shell
 ```bash
-configu export --schema "./my-app.cfgu.json" --defaults | configu export --source
+configu eval --schema "./my-app.cfgu.json" --defaults | configu export --source
 ```
 
 - Download and use .env file or any other format you want
 ```bash
-configu export --schema "./my-app.cfgu.json" --defaults | configu export --format "Dotenv" > .env.development
+configu eval --schema "./my-app.cfgu.json" --defaults | configu export --format "Dotenv" > .env.development
 ```
 
-## Step 3 - Manage configs in Hashi Corp Vault using Configu Orchestrator
+## Step 3 - Manage configs in HashiCorp Vault using Configu Orchestrator
 
 Using a single set of commands we can control any store from local files on git to secret managers.
-In the following example, we will manage our configs over our Hashi Corp Vault secret manage.
+In the following example, we will manage our configs over our HashiCorp Vault secret manage.
 
-## Authenticate HashiCorp Vault
+### Authenticate HashiCorp Vault
 
 Configu's CLI uses the standard env vars HashiCorp use, if you have the Vault CLI configured and working, there's no special action to take.
 If not please configure your environment with the required variables (See variables [here](https://github.com/hashicorp/vault/blob/api/v1.0.4/api/client.go#L28)).
 
-## Upsert values
+### Upsert values
 
 ```bash
 configu upsert --store "hashicorp-vault" --schema "./my-app.cfgu.json" --set "prod" \
@@ -110,7 +110,7 @@ configu upsert --store "hashicorp-vault" --schema "./my-app.cfgu.json" --set "pr
 --config "DB_PORT=5433" --config "DB_NAME=database"
 ```
 
-## Export values
+### Export values
 
 Same to the way we previously used the CFGU defaults we can evaluate and export from any store we need.
 

@@ -143,6 +143,10 @@
         {
           "title": "Trigger Github Action",
           "slug": "webhook-github-action"
+        },
+        {
+          "title": "Managing HashiCorp Vault using Configu",
+          "slug": "hc-vault-w-configu"
         }
       ]
     },
