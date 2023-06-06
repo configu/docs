@@ -12,7 +12,7 @@ to Vault's API to get and validate your new config values in place. Check out th
 In order to complete the tutorial, you'll need a HashiCorp Vault Server and Credentials (easiest is having it installed as a [docker](https://github.com/hashicorp/docker-vault)), [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Configu's CLI](/cli-setup),
 and a simple hello world app to deploy which we've provided in this repo.
 
-In most cases, your application already has a configuration file, in this example, we will examine Python code that consumes a PostgreSQL connection URL and a .env file:
+In most cases, your application already has a configuration file, in this example, we will examine Python code that consumes a PostgreSQL connection URL and a `.env` file:
 
 ```python
     os.environ['DB_URL'] = 'psql://{user}:{password}@{host}:{port}/{name}'.format(
@@ -23,22 +23,22 @@ In most cases, your application already has a configuration file, in this exampl
     name=os.environ['DB_NAME']
 )
 ```
-.env.development
+`.env.development`
 ```bash
-    DB_USER=user
-    DB_PASSWORD=123
-    DB_HOST=127.0.0.1
-    DB_PORT=5433
-    DB_NAME=database
+DB_USER=user
+DB_PASSWORD=123
+DB_HOST=127.0.0.1
+DB_PORT=5433
+DB_NAME=database
 ```
 
 ## Step 1 - Create schema declaration
 
-Instead of maintaining a .env file for each environment or Vault for production and possibly for other sensitive environments, 
-create a .cfgu schema declaration for this service, so that each change will only have to be changed once (only the key in the schema) and then the values will be initialized by the same interface.
+Instead of maintaining a `.env` file for each environment or Vault for production and possibly for other sensitive environments, 
+create a `.cfgu` schema declaration for this service, so that each change will only have to be changed once (only the key in the schema) and then the values will be initialized by the same interface.
 Our schema will look like this:
 
-my-app.cfgu.json
+`my-app.cfgu.json`
 ```json
 {
     "DB_USER": {
@@ -87,7 +87,7 @@ Running a local environment was never easier, choose your preferred way to injec
     configu eval --schema "./my-app.cfgu.json" --defaults | configu export --source
     ```
 
-- Download and use .env file or any other format you want
+- Download and use `.env` file or any other format you want
     ```bash
     configu eval --schema "./my-app.cfgu.json" --defaults | configu export --format "Dotenv" > .env.development
     ```
