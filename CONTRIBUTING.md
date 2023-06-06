@@ -31,6 +31,21 @@ What's important to understand:
 
 Learn more on [path prefixing here](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)
 
+## Analytics
+
+We use Segment to track user behavior on the Configu website. It is configured for both `main` and `docs` projects. This helps us understand how people use the site and what we can do to improve it. The setup is abstracted into a `useSegmentEvent` which is being leveraged in `Link` and `Button` custom components. In case you ever need to add another tracking event, simply pass `isClickTracked` prop to one of the mentioned component, like so:
+
+```jsx
+<Button isClickTracked>Click me</Button>
+<Link isClickTracked>Follow for more</Link>
+```
+
+This will enable yet another event that will be sending passed `to` prop as a `url` and text content of the button as a `name` in Segment.
+
+_Note, that the `isClickTracked` prop is optional and defaults to `false`._
+
+_Also note, that though `isClickTracked` can be leveraged in `Button` component, but works only if your intention is to use `Button` as a link and `to` prop is passed._
+
 ## Writing
 
 For small changes and spelling fixes, the GitHub UI is most convenient.
@@ -174,6 +189,31 @@ Example:
   The branch creation process does not increase load on the originating project. You can create a branch at any time without worrying about downtime or performance degradation.
 // note the empty line
 </Admonition>
+```
+
+## Definition List
+
+Custom `mdx` component that makes possible using [extended markdown syntax for descriptions lists](https://www.markdownguide.org/extended-syntax/#definition-lists). Fully [WCAG-compliant](https://www.w3.org/TR/WCAG20-TECHS/H40.html). It provides an accessible way to make term lists, and it's a generally good way to add structure to a text when a writer needs more than bullets and less than headings.
+
+To use the Version component, you need to include `<Version></Version>` and provide its type. The type can be one of three options: green, blue, or pink.
+
+```md
+<DefinitionList>
+
+`-c, --clip` <Version type='green'>New in v0.31.0</Version>
+: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing massa sed ultrices sed felis volutpat ac. Congue sit nibh sed ipsum, erat facilisis mauris. Amet, est urna facilisi tempus ut amet. Pharetra orci curabitur faucibus purus in nibh. Dolor, sodales malesuada nec vitae scelerisque leo convallis ac dictumst. Euismod.
+
+`-m, --multiline` **(boolean)** <Version type='blue'>New in v0.31.0</Version>
+: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing massa sed ultrices sed felis volutpat ac. Congue sit nibh sed ipsum, erat facilisis mauris. Amet, est urna facilisi tempus ut amet. Pharetra orci curabitur faucibus purus in nibh. Dolor, sodales malesuada nec vitae scelerisque leo convallis ac dictumst. Euismod.
+
+**(boolean)** <Version type='pink'>New in v0.31.0</Version>
+: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing massa sed ultrices sed felis volutpat ac. Congue sit nibh sed ipsum, erat facilisis mauris. Amet, est urna facilisi tempus ut amet. Pharetra orci curabitur faucibus purus in nibh. Dolor, sodales malesuada nec vitae scelerisque leo convallis ac dictumst. Euismod.
+
+[Stress test](/)
+: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Read more: [link](/)
+: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing massa sed ultrices sed felis volutpat ac. Congue sit nibh sed ipsum, erat facilisis mauris. Amet, est urna facilisi tempus ut amet. Pharetra orci curabitur faucibus purus in nibh. Dolor, sodales malesuada nec vitae scelerisque leo convallis ac dictumst. Euismod.
+
+</DefinitionList>
 ```
 
 ## Code Tabs
