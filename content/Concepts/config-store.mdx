@@ -9,23 +9,6 @@ ConfigStores are unique in their type, and can be referenced as instances of the
 
 Configu's interfaces support a wide range of ConfigStores and are open source, so if you don't see a ConfigStore that meets your needs, you can easily create your own by implementing a simple abstract class with get and set methods. This allows you to extend Configu to fit your specific configuration management needs.
 
-Here are some examples of using Configu SaaS Store with Configu's CLI:
-
-```shell
-configu store upsert --label "my-store" --interactive
-
-configu store upsert -l "my-store" --connection-string "store=configu;org=my-company;token=123abc;type=Token"
-
-configu store upsert --type "configu"
-
-configu store list
-
-configu [COMMAND] --store "my-store" ...
-configu [COMMAND] --store "store=configu;org=my-company;token=123abc;type=Token" ...
-
-configu store delete -l "my-store"
-```
-
 ## Supported stores:
 
 {/* todo: explain more on each of the sotres */}

@@ -17,17 +17,18 @@ Use `configu <command> --help` for information on a specific command. Use `confi
 
 ## Command Reference
 
-- [`configu store` - manage ConfigStore connections](/cli-store)
 - [`configu init` - create a .cfgu file](/cli-init)
-- [`configu upsert` - manage Configs](/cli-upsert)
-- [`configu export` - fetch configuration data](/cli-export)
-  {/* - [`configu delete` - delete Configs](/cli-delete) */}
+- [`configu test` - create a .cfgu file](/cli-test)
+- [`configu upsert` - create/update/delete Configs](/cli-upsert)
+- [`configu delete` - bulk delete Configs](/cli-delete)
+- [`configu eval` - fetch Configs](/cli-eval)
+- [`configu export` - foramt/inject configuration data](/cli-export)
 
 ## Other Commands
 
-### `configu autocomplete`
+### `configu login`
 
-Display autocomplete installation instructions
+Initiate interactive login session to connect to Configu ConfigStore
 
 ### `configu update`
 
@@ -48,3 +49,7 @@ Display the Configu CLI version
 ### `configu help`
 
 Display help for Configu CLI
+
+### `configu autocomplete`
+
+Display autocomplete installation instructions

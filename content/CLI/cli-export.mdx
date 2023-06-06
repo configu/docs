@@ -3,19 +3,13 @@ slug: cli-export
 title: configu export
 ---
 
-fetch [Configs](/terminology) as configuration data on-demand and in multiple output modes.
+exports [Configs](/terminology) as configuration data in multiple modes
 
 ```shell
 configu export [flags]
 ```
 
 ### Flags
-
-- `--store <label|cs>` (**required**) the ConfigStore to fetch Configs from.
-- `--set <hierarchy>` (**required**) the ConfigSet to fetch Configs from. use an empty string for the root set.
-- `--schema <path/to/cfgu/file>` (**required**) (**multiple**) path for a ConfigSchema file to operate the export against. the keys declared in the schema will be fetched from the store. in case of key duplication from mutliple schemas, the order of the schema will come to hand as the rightmost key overriding the rest.
-
-### Output-Mode Flags
 
 - `--format <option>` configuration format to apply on the exported Configs. run `configu export --help` to see all options. redirect the output to file, if needed.
 - `--template <path/to/file/contains/mustache/templates>` path to a file containnig mustache templates to render (inject/subtitute) the exported Configs into.
@@ -27,17 +21,3 @@ configu export [flags]
   ```
 
 ### Examples
-
-```shell
-# export Configs in json format from the root set of a store with label "my-store" using a schema file at ./config/schema.cfgu.json
-configu export --store my-store --set '' --schema ./config/schema.cfgu.json --format JSON
-
-# export Configs in dotenv format from a set called "prod" within a store with label "my-store" using a schema file at ./config/schema.cfgu.json and save the output to a file called ".env"
-configu export --store my-store --set 'prod' --schema ./config/schema.cfgu.json --format Dotenv > .env
-
-# export Configs from a set called "prod" within a store with label "my-store" using a schema file at ./config/schema.cfgu.json and inject them into a template file called "config.tmpl"
-configu export --store my-store --set 'prod' --schema ./config/schema.cfgu.json --template config.tmpl
-
-# export Configs from a set called "prod" within a store with label "my-store" using a schema file at ./config/schema.cfgu.json and inject them into a template file called "config.tmpl" as an array
-configu export --store my-store --set 'prod' --schema ./config/schema.cfgu.json --template config.tmpl --template-input array
-```

@@ -1,0 +1,18 @@
+---
+slug: cli-eval
+title: configu eval
+---
+
+fetches [Configs](/terminology) from ConfigStore on demand based on ConfigSet and ConfigSchema
+
+```shell
+configu eval [flags]
+```
+
+### Flags
+
+- `--store <type>` (**required**) the ConfigStore to fetch Configs from.
+- `--set <hierarchy>` (**required**) the ConfigSet to fetch Configs from. use an empty string for the root set.
+- `--schema <path/to/cfgu/file>` (**required**) (**multiple**) path for a ConfigSchema file to operate the export against. the keys declared in the schema will be fetched from the store. in case of key duplication from mutliple schemas, the order of the schema will come to hand as the rightmost key overriding the rest.
+
+### Examples
