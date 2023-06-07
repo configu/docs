@@ -3,7 +3,7 @@ slug: architecture
 title: Architecture
 ---
 
-To better understand the architecture and workflow with Configu, it can be helpful to familiarize yourself with the various components that make up the platform. Here is a summary of the main components of Configu:
+To better understand the architecture and workflow of Configu, it can be helpful to familiarize yourself with the various components that make up the platform:
 
 <DefinitionList>
 
@@ -14,16 +14,16 @@ To better understand the architecture and workflow with Configu, it can be helpf
 : Configu SDK is a library that can be configured as a dependency in your application. It allows you to manage your configurations as code and provides a simple and consistent way to access configuration data in your application.
 
 `ConfigSchema file`
-: ConfigSchema file `<uid>.cfgu.json` is a human-readable, open-sourced format for declaring configurations and their characteristics. It is designed to be stored in your source control alongside the code that uses these configurations, and is safe to be treated as code.
+: ConfigSchema file `<uid>.cfgu.json` is a human-readable, open-sourced format for declaring configurations and their characteristics. It is designed to be stored in your source control alongside the code that uses these configurations and is safe to be treated as code.
 
-`Configu SaaS Store`
-: Configu SaaS Store is a web interface tool that provides a one-stop-shop for all configuration needs, from development to production. It offers advanced capabilities such as automation, visualization, testing, security, and tracking.
+`Configu Cloud`
+: Configu Cloud is a SaaS tool that provides a one-stop-shop for all configuration needs, from development to production. It offers advanced capabilities such as automation, visualization, testing, security, and tracking. The Configu cloud has a free-forever Community plan.
 
 `Configu IDE plugin`
-: Configu IDE plugin is a plugin that integrates stright to the development environment (IDE) and provides immediate feedback on configuration issues.
+: Configu IDE plugin is a plugin that integrates directly with the development environment (IDE) and provides immediate feedback on configuration issues.
 
 </DefinitionList>
 
-The below diagram demostrates an high level flow using Configu's OSS components toghther with Configu SaaS Store.
+The diagram below shows a high-level flow of Configu's open-source components together with the Configu Cloud.
 
 ![image](./img/architecture-diagramm.png)

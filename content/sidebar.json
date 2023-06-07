@@ -99,16 +99,24 @@
           "slug": "cli-commands"
         },
         {
-          "title": "store",
-          "slug": "cli-store"
-        },
-        {
           "title": "init",
           "slug": "cli-init"
         },
         {
+          "title": "test",
+          "slug": "cli-test"
+        },
+        {
           "title": "upsert",
           "slug": "cli-upsert"
+        },
+        {
+          "title": "delete",
+          "slug": "cli-delete"
+        },
+        {
+          "title": "eval",
+          "slug": "cli-eval"
         },
         {
           "title": "export",
@@ -142,7 +150,7 @@
         },
         {
           "title": "Trigger Github Action",
-          "slug": "webhook-github-action"
+          "slug": "webhooks-github-action"
         },
         {
           "title": "Managing HashiCorp Vault using Configu",

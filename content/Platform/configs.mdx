@@ -4,37 +4,38 @@ slug: configs
 title: Configs
 ---
 
-How Configu structures and visualizes configurations.
+Let's understand how Configu structures and visualize configurations.
 The Configs pages are where you can view and manage your configurations.
 
 ## Configs Explorer (Dashboard)
-The config explorer is a dashboard page that shows all the configuration data in a simple visualization.
-You can organize and view the data in an overview **Sets** (e.g. environments, regions, branches, customers) view or details on the **Configs** view.
-In addition, you can search and filter the data by:
+The Config Explorer is a dashboard page that shows all the configuration data with a simple visualization.
+You organize and view the data in **Sets** (e.g., environments, regions, branches, customers). You can view the details of a configuration in the **Configs** view.
+
+You can also search and filter the data by:
  - Set - set name or part of it
  - Key - key name or part of it
- - Hierarchy - set and all his children
+ - Hierarchy - set and all its children
 
 ![image](./img/configs/configs-filters.png)
 
 ### Sets View
-Sets view is the default view, and it shows all your [ConfigSets](/config-set) on a graph with all the relations between them.
+The Sets view is the default view, and it shows all your [ConfigSets](/config-set) on a graph with the relationship between them.
 
 ![image](./img/configs/platform-configs-explorer-sets.png)
 
-### Configs view
-Configs view shows all the configs data you have permission to (e.g. set name, key, value, last update).
-Admins can mask the values for security reasons.
+### Configs View
+The Configs view shows all the configs data you have permission for (e.g., set name, key, value, last update).
+Admin can mask the values for security reasons.
 
 ![image](./img/configs/platform-configs-explorer-configs.jpg)
 
-Show masked values, see the history of the config or delete it (if you have permission).
+You can show masked values, see the history of the config, or delete it (if you have permission).
 
 ![image](./img/configs/config-explorer-actions.png)
 
 ## Configs Editor
-The configs editor is the place you can upsert (create/edit/delete) configs to an existing set or create a new one.
-As in the other interfaces (CLI & SDKs), you need to insert the set name (choose an exist or create a new one) and upload the updated schema file `.cfgu.json`.
+The Configs Editor is where you can upsert (create/edit/delete) configs to an existing set or create a new one.
+As in the other interfaces (CLI & SDKs), you need to insert the set name (choose an existing one or create a new one) and upload the updated schema file `.cfgu.json`.
 
 ![image](./img/configs/configs-editor-picker.png)
 
@@ -42,17 +43,19 @@ As in the other interfaces (CLI & SDKs), you need to insert the set name (choose
 
 ## Configs History
 
-Configu contains a robust [logging](/audit-log) and versioning system.
-Similar to how source controls like git work, every action is recorded and is viewable and revertable if necessary.
+Configu has a robust [logging](/audit-log) and versioning system.
+Similar to how source controls like git work, every action is recorded, viewable and can be reverted if necessary.
+
 The history log is available for three entities:
-- Set - allows you to see the history of the entire Set for every change
-- Config - allows you to see the history of a specific Config (key & set)
-- Version - allows you to set a snapshot as a version and then jump between them (coming soon)
+
+- Set - allows you to see the history of the entire Set with every change
+- Config - allows you to see the history of a specific config (key & set)
+- Version - allows you to set a snapshot as a version and then jump between versions (coming soon)
 
 ![image](./img/configs/history-sets.png)
 
 ### Rollbacks
 
-For every history log entry, you will see a Revert Changes button inside the diff window.
+For every history log entry, you will see a *Revert Changes* button inside the diff window.
 
 ![image](./img/configs/configs-history-diff.png)

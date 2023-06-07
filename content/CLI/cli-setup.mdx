@@ -6,7 +6,7 @@ title: Configu CLI
 import CliInstallSnippet from '../components/cli-install.mdx';
 import CliInstallCiCdSnippet from '../components/cli-install-ci-cd.mdx';
 
-The Configu CLI is an excellent interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to retrieve and manage your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/cli-setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
+The **Configu CLI** is the easiest interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to orchestrate your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/cli-setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
 
 ## Install with script
 
@@ -16,9 +16,16 @@ To install Configu CLI globally, you can use the following command:
 
 This will download and run the installation script, which will check for dependencies, download the latest version of the Configu CLI binary, and install it on your system. The CLI will be installed on your system's $PATH, allowing you to use it from anywhere in your terminal.
 
-<Admonition>
+<Admonition type="caution">
 
-Please note that you may need to grant the script the necessary permissions to add the CLI to the $PATH. You can review the contents of the script before running it to ensure that it is safe to execute.
+Please note that you may need to grant the script the necessary permissions to add the CLI to the $PATH. You can review the [contents of the script](https://cli.configu.com/install.sh) before running it to ensure that it is safe to execute.
+
+</Admonition>
+
+<Admonition type="tip">
+
+If you want to install the CLI in a stanalone mode (without granting it permissions to add it to $PATH), you can replace the url in the command with `https://cli.configu.com/install-standalone.sh`.
+It is important to note that currently the `install-standalone.sh` script is only available for Unix-based operating systems, such as Linux and macOS.
 
 </Admonition>
 

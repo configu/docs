@@ -1,4 +1,5 @@
 ---
+id: cli-commands
 slug: cli-commands
 title: CLI Reference Documentation
 ---
@@ -16,18 +17,19 @@ Use `configu <command> --help` for information on a specific command. Use `confi
 
 ## Command Reference
 
-- `configu store` - [manage ConfigStore connections](/cli-store)
 - `configu init` - [create a .cfgu file](/cli-init)
-- `configu upsert` - [manage Configs](/cli-upsert)
-- `configu export` - [fetch configuration data](/cli-export)
-  {/* - `configu delete` - [delete Configs](/cli-delete) */}
+- `configu test` - [create a .cfgu file](/cli-test)
+- `configu upsert` - [create/update/delete Configs](/cli-upsert)
+- `configu delete` - [bulk delete Configs](/cli-delete)
+- `configu eval` - [fetch Configs](/cli-eval)
+- `configu export` - [foramt/inject configuration data](/cli-export)
 
 ## Other Commands
 
 <DefinitionList>
 
-`configu autocomplete`
-: Display autocomplete installation instructions
+`configu login`
+: Initiate interactive login session to connect to Configu ConfigStore
 
 `configu update`
 : Update the configu CLI. `-a, --available` install a specific version. `-i, --interactive` interactively select version to install. `-v, --version <semver>` install a specific version. `--force` force a re-download of the requested version.
@@ -37,5 +39,8 @@ Use `configu <command> --help` for information on a specific command. Use `confi
 
 `configu help`
 : Display help for Configu CLI
+
+`configu autocomplete`
+: Display autocomplete installation instructions
 
 </DefinitionList>

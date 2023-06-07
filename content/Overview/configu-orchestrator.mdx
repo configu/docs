@@ -4,39 +4,49 @@ slug: configu-orchestrator
 title: Configu Orchestrator (open-source)
 ---
 
-As applications are becoming more dynamic and distributed in microservices, configurations are also fragmented. 
-They are saved as raw text that is spread across multiple stores, databases, files, git repositories, and third parties (An average company has between 5 to 10 different stores).
+As applications become more dynamic and distributed in microservices architectures, configurations are getting more fragmented. 
+They are saved as raw text that is spread across multiple stores, databases, files, git repositories, and third-party tools (a typical company will have five to ten different stores).
 
-The [Configu open-source](https://github.com/configu/configu) solution is a powerful standalone tool designed to address this challenge by providing a Configuration Orchestration along with [CaC](/configuration-as-code) model.
+The [Configu Orchestrator](https://github.com/configu/configu), which is open-source software, is a powerful standalone tool designed to address this challenge by providing configuration orchestration along with Configuration-as-Code (CaC) approach.
 
-## Configuration Orchestration 
-The Configu Orchestrator enables the seamless management of configurations across different storage systems (e.g. files in your git repo, secret managers, feature flags, DBs) and across various environments from code to runtime. 
-It provides a unified interface that allows developers to define and deploy configurations consistently, ensuring that the desired settings are applied accurately throughout the 
-entire software development lifecycle. By automating the configuration orchestration process, this feature helps reduce manual work and errors and promotes efficient deployments.
+## Configuration Orchestration
+The Configu Orchestrator enables seamless management of configurations across storage systems, for example, files in your git repo, secret managers, feature flags, databases, and more. 
+It also works across environments, from code to runtime.  
+  
+The Configu Orchestrator provides a unified interface that allows developers to define and deploy configurations consistently, ensuring that the desired settings are applied accurately throughout the entire software development lifecycle (SDLC). 
+By automating the configuration orchestration process, it reduces tedious manual work and errors and promotes efficient deployments.
 
-Configu orchestrator includes two interfaces that can sync to any configuration store that you use and manage (CRUN, test and automate) and automate the configuration process
-- [CLI interface](/cli) - single set of commands
-- [SDK interface](/sdk) - unified interface for each supported programming language
+Configu orchestrator includes two interfaces that can sync to any configuration store that you use and manage (CRUN, test and automate) the configuration process
+- [CLI interface](/cli-overview) - single set of commands
+- SDK interface - unified interface for each supported programming language
 
 ## ConfigSchema - CFGU
-ConfigSchema file (`.cfgu.json` or `.cfgu.yaml`) is an open-source human-readable [CaC](/configuration-as-code) format used for declaring configurations and their characteristics. 
-The ConfigSchema provides a structured way to associate configuration keys in the code with their properties, 
-such as data type, requirement level, and constraints.
+
+ConfigSchema file (`.cfgu.json` or `.cfgu.yaml`) is a human-readable and open-source format used for declaring configurations and their characteristics. 
+It is designed to be stored alongside code in source control, binds configurations to the code, and makes the code the single source of truth. 
+It is treated as code as it does not contain sensitive data. 
+The format provides a structured way to associate configuration keys in the code with their properties, such as data type, requirement level, and constraints.  
+  
 By utilizing ConfigSchema, configuration data can be properly validated, preventing misconfigurations and errors 
 from reaching production. There isn't any unique identifier to the `.cfgu` files, and developers have the flexibility to organize and structure these files according to 
 their specific needs and workflows.
-It is designed to be stored alongside code in source control, binds between the configurations to the code and helps to make the code the single source of truth. 
-It is treated as code since it does not contain sensitive data. 
 
 <Admonition>
-Read more about the [CaC concept](/configuration-as-code) and the [CFGU format](/config-schema).
+Read more about the [Configuration-as-Code concept](/configuration-as-code) and the [CFGU format](/config-schema).
 </Admonition>
 
 ## Common Use Case
 
-**Plug and Play** - Have multiple microservices and fragmented configurations across git repos and several tools like secret managers, databases, and feature flag solutions?
-Integrate Configu Orchestrator into your existing SDLC without migrating or changing anything and gain a powerful unified interface that can help you to empower developers, prevent misconfigurations, improve collaboration, and automate the entire configuration process with only two simple steps:
-    - Adopt Configu's CaC model and declare your microservices using the .CFGU format (which can be autogenerated out of your existing configurations using the `configu init --import` command)
-    - Combine Configu CLI commands in your CI/CD tools or directly in your Docker files/K8s so every new release the latest configuration will be tested, clear from misconfiguration, and deployed to the right place automatically.
+### Plug and Play
 
-For example: if your configurations are stored in .env files, DB, Hashicorp Vault, and AWS Parameter Store all you need to do is build a .CFGU for the microservices and add Configu CLI as a step in your GitHub Action and that's it!
+**Scenario:** You have multiple microservices and fragmented configurations across git repos and several tools such as secret managers, databases, and feature flag solutions.
+
+**Solution:** Use Configu Orchestrator with your existing SDLC without migrating or changing anything and gain a powerful unified interface that empowers your developers, prevents misconfigurations, improves collaboration, and automates the entire configuration process with two simple steps:
+
+    - Adopt Configu's CaC model and declare your microservices using the .cfgu format, which can be auto-generated from your existing configurations using the `configu init --import` command
+    - Combine Configu CLI commands in your CI/CD tools or directly in your Docker files/Kubernetes so that in every new release the latest configuration will be tested, cleared from misconfiguration, and deployed to the right place automatically.
+
+For example: if your configurations are stored in .env files, a database, Hashicorp Vault, and AWS Parameter Store, all you need to do is build a .cfgu for the microservices and add Configu CLI as a step in your GitHub Action and that's it!
+
+See also:
+- [Managing HashiCorp Vault using Configu Orchestrator](/hc-vault-w-configu)

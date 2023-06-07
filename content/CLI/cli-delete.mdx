@@ -1,0 +1,26 @@
+---
+slug: cli-delete
+title: configu delete
+---
+
+bulk delete [Configs](/terminology) from a [ConfigStore](/config-store).
+
+```shell
+configu delete [flags]
+```
+
+### Flags
+
+- `--store <type>` (**required**) the ConfigStore to delete Configs from.
+- `--set <hierarchy>` (**required**) the ConfigSet to delete Configs from. use an empty string for the root set.
+- `--schema <path/to/cfgu/file>` (**required**) path for a ConfigSchema file to operate the delete against. the keys declared in the schema will be deleted from the store.
+
+### Examples
+
+```shell
+# delete all Configs declared at schema file at ./config/schema.cfgu.json from a set called "prod" within a store with type "configu"
+configu delete --store 'configu' --set 'prod' --schema './config/schema.cfgu.json'
+
+# delete all Configs declared at schema file at ./config/schema.cfgu.json from the root set within a store with type "hashicorp-vault"
+VAULT_ADDR=https://127.0.0.1:8200/ VAULT_TOKEN=hc_vault_token configu delete --store 'hashicorp-vault' --set 'prod' --schema './config/schema.cfgu.json'
+```
