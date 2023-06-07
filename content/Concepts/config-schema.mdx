@@ -46,25 +46,25 @@ Here are some examples of how a config key named "CONFIG" might be used in vario
 
 <DefinitionList>
 
-`type` [Required]
+`type` **[Required]**
 : The type of data that the configuration represents, such as `String`, `Number`, `Boolean`, [etc](/cfgu-types).
 
-`pattern` [Optional, type=Regex]
+`pattern` **[Optional, type=Regex]**
 : A regular expression that the configuration value must match.
 
-`default` [Optional]
+`default` **[Optional]**
 : A default value for the configuration, in case it is not provided.
 
-`required` [Optional]
+`required` **[Optional]**
 : Whether the configuration is required for the application to function properly. If set to true, the configuration must be provided.
 
-`depends` [Optional]
+`depends` **[Optional]**
 : A list of other configurations that the current configuration depends on.
 
-`template` [Optional, type=String]
+`template` **[Optional, type=String]**
 : A string containing Mustache templates that can be used to construct a templated value from other configuration values.
 
-`description` [Optional]
+`description` **[Optional]**
 : A description of the configuration's role in the code.
 
 </DefinitionList>
