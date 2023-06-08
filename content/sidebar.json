@@ -16,7 +16,7 @@
           "slug": "architecture"
         },
         {
-          "title": "Configuration as code (CaC)",
+          "title": "Configuration-as-Code (CaC)",
           "slug": "configuration-as-code"
         },
         {
@@ -149,7 +149,7 @@
           "slug": "webhook-discord"
         },
         {
-          "title": "Trigger Github Action",
+          "title": "Trigger Github Actions",
           "slug": "webhooks-github-action"
         },
         {
