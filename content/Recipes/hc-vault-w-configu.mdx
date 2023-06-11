@@ -11,8 +11,8 @@ to Vault's API to get and validate your new config values in place. Check out th
 
 ![image](./img/vault-diagram.png)
 
-In order to complete the tutorial, you'll need a HashiCorp Vault Server and Credentials (easiest is having it installed as a [docker](https://github.com/hashicorp/docker-vault)), [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Configu's CLI](/cli-setup),
-and a simple hello world app to deploy which we've provided in this repo.
+To complete the tutorial, you'll need a HashiCorp Vault Server and Credentials (easiest is having it installed as a [docker](https://github.com/hashicorp/docker-vault)), [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Configu's CLI](/cli-setup),
+and a simple 'hello world'app to deploy which we've provided in this repo.
 
 In most cases, your application already has a configuration file, in this example, we will examine Python code that consumes a PostgreSQL connection URL and a .env file:
 
@@ -73,8 +73,8 @@ my-app.cfgu.json
 }
 ```
 
-Although saving configurations in the source control is considered to be bad practice, the CFGU format is designed to be part of the code since it shouldn't include any sensitive values.
-Doing that increases the developers' velocity and helps them to avoid leaving the terminal/IDE for other config management platforms.
+Although saving configurations in the source control is considered to be bad practice, the CFGU format is designed to be part of the code as it doesn't include any sensitive values.
+Doing that increases developers' velocity and helps them avoid leaving the terminal/IDE for other config management platforms.
 
 ## Step 2 - Use defaults for local development
 
