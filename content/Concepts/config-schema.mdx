@@ -5,17 +5,17 @@ title: ConfigSchema (CFGU)
 
 import LangToEnvs from '../components/lang-to-envs';
 
-A ConfigSchema file (`.cfgu.json` or `.cfgu.yaml`) is a human-readable, open-source format for declaring configurations and their characteristics. It is designed to be stored in your source control alongside the code that uses these configurations, and is safe to be treated as code as it shouldn't contain sensitive data.
+A ConfigSchema file (.cfgu.json or .cfgu.yaml) is a human-readable, open-source format for declaring configurations and their characteristics. It is designed to be stored in your source control alongside the code that uses these configurations, and is safe to be treated as code as it shouldn't contain sensitive data.
 
-The ConfigSchema format provides a structured way to tie a configuration key as it appears in the code to its Cfgu properties, such as the type of data it represents (e.g., `String`, `Number`, `Boolean`), whether it is required or optional, and any constraints that should be applied. These bindings help to ensure that configuration data is properly validated and applied, and can help to prevent misconfigurations and errors from reaching production.
+The ConfigSchema format provides a structured way to tie a configuration key as it appears in the code to its Cfgu properties, such as the type of data it represents (e.g., String, Number, Boolean), whether it is required or optional, and any constraints that should be applied. These bindings help to ensure that configuration data is properly validated and applied, and can help to prevent misconfigurations and errors from reaching production.
 
-The name of the `.cfgu` file is used as its unique id (uid), and each Config created as input from it contains this uid and a configuration key from its contents.
+The name of the .cfgu file is used as its unique id (uid), and each Config created as input from it contains this uid and a configuration key from its contents.
 
-`.cfgu` files essentially set the boundaries of different domains in the code relative to the configuration they use. Developers are free to organize and structure their `.cfgu` files in a way that makes sense for their specific needs and workflow. There is no limit on the number of `.cfgu` files that can be created, and they can be spread across different codebases, subfolders in the same project, and different repositories.
+.cfgu files essentially set the boundaries of different domains in the code relative to the configuration they use. Developers are free to organize and structure their .cfgu files in a way that makes sense for their specific needs and workflow. There is no limit on the number of .cfgu files that can be created, and they can be spread across different codebases, subfolders in the same project, and different repositories.
 
-By using `.cfgu` files, teams can benefit from a clear and structured way to define and manage their configuration data, improving the efficiency and reliability of their software development and deployment processes, and facilitating collaboration among team members.
+By using .cfgu files, teams can benefit from a clear and structured way to define and manage their configuration data, improving the efficiency and reliability of their software development and deployment processes, and facilitating collaboration among team members.
 
-Here is an example of a ConfigSchema `.cfgu.json` file:
+Here is an example of a ConfigSchema (.cfgu.json) file:
 
 ```json
 {
@@ -32,41 +32,24 @@ This schema binds a configuration called "API_KEY" with a type of "String", whic
 {/* not ok! consider using other markup */}
 {/* ## [Configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21) ([Config.key](https://github.com/configu/configu/blob/main/types/Config.ts#L5)) */}
 
-## Configuration key
+## [Configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21)
 
-A [configuration key](https://github.com/configu/configu/blob/main/types/ConfigSchema.ts#L21) is the name of the configuration as it appears in the code. It is used to identify and reference a specific configuration, and can be used to access the value of the configuration in the code.
+A configuration key is the name of the configuration as it appears in the code. It is used to identify and reference a specific configuration, and can be used to access the value of the configuration in the code.
 
 Here are some examples of how a config key named "CONFIG" might be used in various programming languages as an environment variable:
 
 <LangToEnvs />
 
-## The Cfgu format
+## [The Cfgu format](https://github.com/configu/configu/blob/main/types/Cfgu.ts)
 
-[The Cfgu format](https://github.com/configu/configu/blob/main/types/Cfgu.ts) consists of a set of properties that specify important characteristics of a software configuration. Here is a list of the properties:
+The Cfgu format consists of a set of properties that specify important characteristics of a software configuration. Here is a list of the properties:
 
-<DefinitionList>
-
-`type` **[Required]**
-: The type of data that the configuration represents, such as `String`, `Number`, `Boolean`, [etc](/cfgu-types).
-
-`pattern` **[Optional, type=Regex]**
-: A regular expression that the configuration value must match.
-
-`default` **[Optional]**
-: A default value for the configuration, in case it is not provided.
-
-`required` **[Optional]**
-: Whether the configuration is required for the application to function properly. If set to true, the configuration must be provided.
-
-`depends` **[Optional]**
-: A list of other configurations that the current configuration depends on.
-
-`template` **[Optional, type=String]**
-: A string containing Mustache templates that can be used to construct a templated value from other configuration values.
-
-`description` **[Optional]**
-: A description of the configuration's role in the code.
-
-</DefinitionList>
+- `type`: The type of data that the configuration represents, such as String, Number, Boolean, [etc](/cfgu-types). [Required]
+- `pattern`: A regular expression that the configuration value must match. [Optional, type=Regex]
+- `default`: A default value for the configuration, in case it is not provided. [Optional]
+- `required`: Whether the configuration is required for the application to function properly. If set to true, the configuration must be provided. [Optional]
+- `depends`: A list of other configurations that the current configuration depends on. [Optional]
+- `template`: A string containing Mustache templates that can be used to construct a templated value from other configuration values. [Optional, type=String]
+- `description`: A description of the configuration's role in the code. [Optional]
 
 When these properties are attached to a configuration key in a ConfigSchema and used through the Configu interface (CLI/SDK), they are used to apply important and repeated validation on the configuration values, often implemented in the code.

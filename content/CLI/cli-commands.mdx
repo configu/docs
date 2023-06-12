@@ -17,30 +17,39 @@ Use `configu <command> --help` for information on a specific command. Use `confi
 
 ## Command Reference
 
-- `configu init` - [create a .cfgu file](/cli-init)
-- `configu test` - [create a .cfgu file](/cli-test)
-- `configu upsert` - [create/update/delete Configs](/cli-upsert)
-- `configu delete` - [bulk delete Configs](/cli-delete)
-- `configu eval` - [fetch Configs](/cli-eval)
-- `configu export` - [foramt/inject configuration data](/cli-export)
+- [`configu init` - create a .cfgu file](/cli-init)
+- [`configu test` - create a .cfgu file](/cli-test)
+- [`configu upsert` - create/update/delete Configs](/cli-upsert)
+- [`configu delete` - bulk delete Configs](/cli-delete)
+- [`configu eval` - fetch Configs](/cli-eval)
+- [`configu export` - foramt/inject configuration data](/cli-export)
 
 ## Other Commands
 
-<DefinitionList>
+### `configu login`
 
-`configu login`
-: Initiate interactive login session to connect to Configu ConfigStore
+Initiate interactive login session to connect to Configu ConfigStore
 
-`configu update`
-: Update the configu CLI. `-a, --available` install a specific version. `-i, --interactive` interactively select version to install. `-v, --version <semver>` install a specific version. `--force` force a re-download of the requested version.
+### `configu update`
 
-`configu version`
-: Display the Configu CLI version. `--verbose` show additional information about the CLI. `--json` format output as json.
+Update the configu CLI
 
-`configu help`
-: Display help for Configu CLI
+`-a, --available` install a specific version.
+`-i, --interactive` interactively select version to install.
+`-v, --version <semver>` install a specific version.
+`--force` force a re-download of the requested version.
 
-`configu autocomplete`
-: Display autocomplete installation instructions
+### `configu version`
 
-</DefinitionList>
+Display the Configu CLI version
+
+`--verbose` show additional information about the CLI.
+`--json` format output as json.
+
+### `configu help`
+
+Display help for Configu CLI
+
+### `configu autocomplete`
+
+Display autocomplete installation instructions

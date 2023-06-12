@@ -80,12 +80,6 @@ import { ConfiguStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/n
 
 The Eval command is used to fetch and validate Configs as an Object from a ConfigStore.
 
-<Admonition>
-
-The Export command in the CLI is built on top of the Eval command and provides additional functionality. It is named after the well-known Bash shell command ([export](https://www.geeksforgeeks.org/export-command-in-linux-with-examples/)) that allows environment variables to be shared with child processes.
-
-</Admonition>
-
 #### Input
 
 - A single ConfigStore {/* or multiple ConfigStores - after we decide what todo with referances values */}
@@ -120,6 +114,12 @@ configu export \
   --store "store=configu;org=my-company;token=123abc;type=Token" \
   --set "production" --schema "./globals.cfgu.json" --schema "./service.cfgu.json"
 ```
+
+<Admonition>
+
+The Export command in the CLI is built on top of the Eval command and provides additional functionality. It is named after the well-known Bash shell command ([export](https://www.geeksforgeeks.org/export-command-in-linux-with-examples/)) that allows environment variables to be shared with child processes.
+
+</Admonition>
 
 ```js
 import path from 'path';
