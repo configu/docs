@@ -236,6 +236,24 @@ curl https://cli.configu.com/install.sh | sh
 </CodeTabs>
 ````
 
+## Collapsible item
+
+Collapsible accordion elements that allow to expand and collapse content by clicking on them. Could be used to hide content that is not immediately relevant to the user.
+
+To add a collapsible to your article, use the following syntax in the `.md` file:
+
+```md
+<CollapsibleItem title="Collapsible title">
+
+<!-- the content that will expand/collapse -->
+
+</CollapsibleItem>
+```
+
+The `CollapsibleItem` expects a string `title` and some content.
+
+If you want the component to be expanded by default, use optional`isOpen` prop and set it to `true`: `<CollapsibleItem title="Collapsible title" isOpen="true">`.
+
 ## The rest
 
 The rest of elements you could write as you would in native md: links, images, inline code, tables etc.
