@@ -29,6 +29,8 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
   useEffect(() => {
     if (JSON.stringify(sidebarOpenItems) === '{}') {
       setSidebarOpenItems({ [activePageItemIndex]: true });
+    } else if (!(activePageItemIndex.toString() in sidebarOpenItems)) {
+      handleSidebarSectionState(activePageItemIndex);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

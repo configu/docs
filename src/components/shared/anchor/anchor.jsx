@@ -2,8 +2,6 @@
 import { Link } from 'gatsby';
 import React from 'react';
 
-// FIXME: a hotpatch
-// shold be turned into a solution
 const mayBeStripPrefix = (href) => {
   const prefix = '/docs';
   if (href.startsWith(prefix)) {
