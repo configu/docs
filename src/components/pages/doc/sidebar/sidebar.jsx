@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo } from 'react';
 
-import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
+import CollapsibleItem from 'components/shared/collapsible-item';
 import Search from 'components/shared/search';
 import { useSidebarContext } from 'context/sidebar-context';
 

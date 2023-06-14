@@ -7,8 +7,7 @@ import Anchor from 'components/shared/anchor';
 import AnchorHeading from 'components/shared/anchor-heading';
 import CodeBlock from 'components/shared/code-block';
 import CodeTabs from 'components/shared/code-tabs';
-import Collapsible from 'components/shared/collapsible';
-import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
+import CollapsibleItem from 'components/shared/collapsible-item';
 import DefinitionList from 'components/shared/definition-list';
 import Version from 'components/shared/definition-list/version';
 import Link from 'components/shared/link';
@@ -35,7 +34,6 @@ const components = {
     </div>
   ),
   a: Anchor,
-  Collapsible,
   Admonition,
   CodeTabs,
   CollapsibleItem,

@@ -295,4 +295,10 @@
       @apply text-base sm:text-sm;
     }
   }
+
+  .collapsible-item {
+    + .collapsible-item {
+      border-top: none;
+    }
+  }
 }
