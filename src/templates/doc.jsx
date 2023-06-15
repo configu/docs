@@ -26,7 +26,7 @@ const DocTemplate = (props) => {
       <div className="border-b border-t border-grey-88 dark:border-grey-40 md:border-t-0 md:border-b-0">
         <div className="container grid w-full grid-cols-[300px_1fr_300px] px-0 xl:px-10 lg:grid-cols-[300px_1fr] md:flex md:flex-col md:px-7 sm:px-4">
           <Sidebar
-            className="pt-9 pr-5 md:w-full md:pr-0 md:pt-0"
+            className="py-9 pr-5 md:w-full md:py-0 md:pr-0"
             sidebar={sidebar}
             currentSlug={frontmatter.slug}
           />

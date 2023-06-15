@@ -157,7 +157,9 @@
           "slug": "hc-vault-w-configu"
         }
       ]
-    },
+    }
+  ],
+  "external": [
     {
       "title": "Contributing",
       "slug": "https://github.com/configu/configu/blob/main/CONTRIBUTING.md"
