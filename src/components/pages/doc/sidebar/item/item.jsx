@@ -14,11 +14,11 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug, onKeyDown, onClick 
           'flex w-full items-center py-1.5 text-left font-mono text-sm font-semibold leading-snug text-grey-25 transition-colors duration-200 hover:text-blue-light dark:text-white dark:hover:text-blue-dark',
           {
             '!text-blue-light dark:!text-blue-dark': currentSlug === slug,
-            'external-link': slug.startsWith('http'),
           }
         )}
         to={slug.startsWith('http') ? slug : slugToHref(slug)}
         target={slug.startsWith('http') ? '_blank' : undefined}
+        isExternal={slug.startsWith('http')}
         theme="black"
       >
         {title}

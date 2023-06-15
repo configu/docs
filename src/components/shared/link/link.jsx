@@ -7,6 +7,7 @@ import { getCookieConsentValue } from 'react-cookie-consent';
 
 import useSegmentEvent from 'hooks/use-segment-event';
 import Arrow from 'icons/arrow.inline.svg';
+import ExternalIcon from 'icons/external-link.inline.svg';
 
 const styles = {
   base: 'font-semibold inline-flex items-baseline leading-none transition-colors duration-200 group relative',
@@ -71,6 +72,7 @@ const Link = ({
   nav,
   children,
   isClickTracked,
+  isExternal,
   ...props
 }) => {
   const isCookieAccepted = useMemo(() => getCookieConsentValue() === 'true', []);
@@ -171,12 +173,19 @@ const Link = ({
       {...props}
     >
       {nav === 'prev' && (
-        <Arrow className="mr-2 h-[10px] w-[16px] rotate-180 fill-blue-light transition-[fill] duration-200 group-hover:fill-blue-light-hover dark:fill-blue-dark dark:group-hover:fill-blue-light" />
+        <Arrow
+          className="mr-2 h-[10px] w-[16px] rotate-180 fill-blue-light transition-[fill] duration-200 group-hover:fill-blue-light-hover dark:fill-blue-dark dark:group-hover:fill-blue-light"
+          aria-hidden
+        />
       )}
       {children}
       {nav === 'next' && (
-        <Arrow className="ml-2 h-[10px] w-[16px] fill-blue-light transition-[fill] duration-200 group-hover:fill-blue-light-hover dark:fill-blue-dark dark:group-hover:fill-blue-light" />
+        <Arrow
+          className="ml-2 h-[10px] w-[16px] fill-blue-light transition-[fill] duration-200 group-hover:fill-blue-light-hover dark:fill-blue-dark dark:group-hover:fill-blue-light"
+          aria-hidden
+        />
       )}
+      {isExternal && <ExternalIcon className="ml-1 h-3.5 w-3.5" aria-hidden />}
       {isUnderline && underline}
     </a>
   );
@@ -190,6 +199,7 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
   nav: PropTypes.oneOf(['prev', 'next']),
   isClickTracked: PropTypes.bool,
+  isExternal: PropTypes.bool,
 };
 
 Link.defaultProps = {
@@ -199,6 +209,7 @@ Link.defaultProps = {
   theme: 'black',
   nav: null,
   isClickTracked: false,
+  isExternal: false,
 };
 
 export default Link;
