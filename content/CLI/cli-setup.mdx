@@ -1,12 +1,10 @@
 ---
 slug: cli-setup
-title: Configu CLI
+title: CLI Setup
 ---
 
 import CliInstallSnippet from '../components/cli-install.mdx';
 import CliInstallCiCdSnippet from '../components/cli-install-ci-cd.mdx';
-
-The **Configu CLI** is the easiest interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to orchestrate your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/cli-setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
 
 ## Install with script:
 
@@ -134,7 +132,7 @@ To update your `$PATH` permanently so that it can be run from any directory, add
 PATH=<path-to-upacked-directory>/bin:$PATH
 ```
 
-## verify
+## Verify
 
 Once installed, you can use the Configu CLI by simply running `configu` in your terminal.
 
@@ -159,3 +157,11 @@ configu update
 ```
 
 If you encounter any errors, you can try re-installing the CLI by running the [installation process](/cli/#setup) again.
+
+## Install Autocomplete
+
+To display autocomplete installation instructions, you can run the following command:
+
+```shell
+configu autocomplete
+```

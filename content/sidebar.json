@@ -28,10 +28,6 @@
           "slug": "configu-cloud"
         },
         {
-          "title": "CLI",
-          "slug": "cli-overview"
-        },
-        {
           "title": "FAQ",
           "slug": "faq"
         }
@@ -45,20 +41,20 @@
           "slug": "terminology"
         },
         {
-          "title": "Config Store",
+          "title": "ConfigStore",
           "slug": "config-store"
         },
         {
-          "title": "Config Schema",
-          "slug": "config-schema"
-        },
-        {
-          "title": "Config Set",
+          "title": "ConfigSet",
           "slug": "config-set"
         },
         {
-          "title": "Cfgu Types",
-          "slug": "cfgu-types"
+          "title": "ConfigSchema",
+          "slug": "config-schema"
+        },
+        {
+          "title": "Cfgu",
+          "slug": "cfgu"
         },
         {
           "title": "Commands",
@@ -91,6 +87,10 @@
       "title": "CLI",
       "items": [
         {
+          "title": "Overview",
+          "slug": "cli-overview"
+        },
+        {
           "title": "Setup",
           "slug": "cli-setup"
         },
@@ -99,28 +99,29 @@
           "slug": "cli-commands"
         },
         {
-          "title": "init",
-          "slug": "cli-init"
+          "title": "Configuration File (.configu)",
+          "slug": "cli-config"
+        }
+      ]
+    },
+    {
+      "title": "SDK",
+      "items": [
+        {
+          "title": "Overview",
+          "slug": "sdk-overview"
         },
         {
-          "title": "test",
-          "slug": "cli-test"
+          "title": "Node.js SDK",
+          "slug": "nodejs-sdk"
         },
         {
-          "title": "upsert",
-          "slug": "cli-upsert"
+          "title": "Python SDK",
+          "slug": "python-sdk"
         },
         {
-          "title": "delete",
-          "slug": "cli-delete"
-        },
-        {
-          "title": "eval",
-          "slug": "cli-eval"
-        },
-        {
-          "title": "export",
-          "slug": "cli-export"
+          "title": "Browser SDK",
+          "slug": "browser-sdk"
         }
       ]
     },
@@ -128,11 +129,11 @@
       "title": "IDE Plugins",
       "items": [
         {
-          "title": "VS Code extension",
+          "title": "VS Code Extension",
           "slug": "vs-code"
         },
         {
-          "title": "IntelliJ extension",
+          "title": "IntelliJ Extension",
           "slug": "intellij"
         }
       ]
