@@ -22,18 +22,21 @@ Configu orchestrator includes two interfaces that can sync to any configuration 
 - [CLI interface](/cli-overview) - single set of commands
 - SDK interface - unified interface for each supported programming language
 
-## ConfigSchema & Cfgu
+## ConfigSchema - CFGU
 
-ConfigSchema file (.cfgu.json or .cfgu.yaml) is a human-readable and open-source format used for declaring configurations and their characteristics.
+ConfigSchema file (`.cfgu.json` or `.cfgu.yaml`) is a human-readable and open-source format used for declaring configurations and their characteristics.
 It is designed to be stored alongside code in source control, binds configurations to the code, and makes the code the single source of truth.
 It is treated as code as it does not contain sensitive data.
 The format provides a structured way to associate configuration keys in the code with their properties, such as data type, requirement level, and constraints.
 
 By utilizing ConfigSchema, configuration data can be properly validated, preventing misconfigurations and errors
-from reaching production. There isn't any unique identifier to the .cfgu files, and developers have the flexibility to organize and structure these files according to
+from reaching production. There isn't any unique identifier to the `.cfgu` files, and developers have the flexibility to organize and structure these files according to
 their specific needs and workflows.
 
-Read more about the [Configuration-as-Code concept](/configuration-as-code) and the [.cfgu format](/config-schema).
+<Admonition type="tip">
+  Read more about the [Configuration-as-Code concept](/configuration-as-code) and the [CFGU
+  format](/config-schema).
+</Admonition>
 
 ## Common Use Case
 

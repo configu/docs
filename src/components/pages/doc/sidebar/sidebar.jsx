@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo } from 'react';
 
-import CollapsibleItem from 'components/shared/collapsible/collapsible-item';
+import CollapsibleItem from 'components/shared/collapsible-item';
 import Search from 'components/shared/search';
 import { useSidebarContext } from 'context/sidebar-context';
 
@@ -29,6 +29,8 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
   useEffect(() => {
     if (JSON.stringify(sidebarOpenItems) === '{}') {
       setSidebarOpenItems({ [activePageItemIndex]: true });
+    } else if (!(activePageItemIndex.toString() in sidebarOpenItems)) {
+      handleSidebarSectionState(activePageItemIndex);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
