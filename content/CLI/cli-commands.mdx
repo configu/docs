@@ -5,26 +5,16 @@ title: CLI Command Reference
 
 This section contains reference documentation for working with the Configu CLI. For a step-by-step introduction, you can get started with [this guide](/get-started).
 
-## Synopsis
-
-```shell
-configu <command> [--string-flag <value>] [--boolean-flag]
-```
-
-Use `configu <command> --help` for information on a specific command. The synopsis for each command shows its flags and their usage. Optional parameters are shown in square brackets.
-
-## Command Reference
-
-- [`configu autocomplete [SHELL]`](#configu-autocomplete-shell)
-- [`configu delete`](#configu-delete)
-- [`configu eval`](#configu-eval)
-- [`configu export`](#configu-export)
-- [`configu init`](#configu-init)
-- [`configu login`](#configu-login)
-- [`configu run`](#configu-run)
-- [`configu test`](#configu-test)
-- [`configu update [CHANNEL]`](#configu-update-channel)
-- [`configu upsert`](#configu-upsert)
+* [`configu autocomplete [SHELL]`](#configu-autocomplete-shell)
+* [`configu delete`](#configu-delete)
+* [`configu eval`](#configu-eval)
+* [`configu export`](#configu-export)
+* [`configu init`](#configu-init)
+* [`configu login`](#configu-login)
+* [`configu run`](#configu-run)
+* [`configu test`](#configu-test)
+* [`configu update [CHANNEL]`](#configu-update-channel)
+* [`configu upsert`](#configu-upsert)
 
 ## configu autocomplete [SHELL]
 
@@ -373,3 +363,4 @@ EXAMPLES
     $ configu upsert --store 'hashicorp-vault' --set 'prod' --schema './config/schema.cfgu.json' --config \
       'secretKey=secretValue'
 ```
+

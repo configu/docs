@@ -6,7 +6,7 @@ title: CLI Setup
 import CliInstallSnippet from '../components/cli-install.mdx';
 import CliInstallCiCdSnippet from '../components/cli-install-ci-cd.mdx';
 
-## Install with script:
+## Install with script
 
 To install Configu CLI globally, you can use the following command:
 
@@ -27,7 +27,7 @@ It is important to note that currently the `install-standalone.sh` script is onl
 
 </Admonition>
 
-## Install on CI/CD:
+## Install on CI/CD
 
 To make Configu CLI available via a CI/CD pipeline, you can use the pre-made, dedicated installation steps which are based on the installation script and designed to be be easily integrated into your pipeline configuration.
 
@@ -39,7 +39,7 @@ After you've used the step, subsequent steps in the same job can run arbitrary C
 
 </Admonition>
 
-## Install with Docker:
+## Install with Docker
 
 You can also choose to run the CLI as an isolated Docker container instead.
 
@@ -47,7 +47,7 @@ You can also choose to run the CLI as an isolated Docker container instead.
 docker run --rm configu/cli [COMMAND]
 ```
 
-## Manual install with TAR:
+## Manual install with TAR
 
 Alternatively, you can manually download the Configu CLI binary from the [releases page](https://github.com/configu/configu/releases?q=cli-&expanded=true) and place it in a location that is included in your `$PATH`. This is useful if you want to install a specific version of the CLI, or if you prefer to manually manage your dependencies.
 
