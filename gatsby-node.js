@@ -4,6 +4,8 @@ const get = require('lodash.get');
 
 const docTemplate = path.resolve('./src/templates/doc.jsx');
 
+const { prepareCliRef } = require('./content/CLI/prepareCliRef');
+const { prepareReadme } = require('./content/prepareReadme');
 const sidebar = require('./content/sidebar.json');
 const { DRAFT_FILTER, DOC_REQUIRED_FIELDS } = require('./src/constants/docs');
 const getDocPreviousAndNextLinks = require('./src/utils/get-doc-previous-and-next-link');
@@ -101,5 +103,33 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         fs: false,
       },
     },
+  });
+};
+
+exports.onPreInit = async () => {
+  await prepareReadme({
+    source: 'ts/packages/cli/README.md',
+    target: 'CLI/cli-overview.mdx',
+    slug: 'cli-overview',
+    title: 'Configu CLI',
+  });
+  await prepareCliRef();
+  await prepareReadme({
+    source: 'ts/packages/node/README.md',
+    target: 'SDK/nodejs-sdk.mdx',
+    slug: 'nodejs-sdk',
+    title: 'Node.js SDK',
+  });
+  await prepareReadme({
+    source: 'py/README.md',
+    target: 'SDK/python-sdk.mdx',
+    slug: 'python-sdk',
+    title: 'Python SDK',
+  });
+  await prepareReadme({
+    source: 'ts/packages/browser/README.md',
+    target: 'SDK/browser-sdk.mdx',
+    slug: 'browser-sdk',
+    title: 'Browser SDK',
   });
 };
