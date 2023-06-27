@@ -7,8 +7,6 @@ import Footer from 'components/shared/footer';
 import Header from 'components/shared/header';
 import Link from 'components/shared/link/link';
 import MobileMenu from 'components/shared/mobile-menu';
-import SearchModal from 'components/shared/search/search-modal';
-import useBodyLockScroll from 'hooks/use-body-lock-scroll';
 import { ThemeContext, useDarkModeInit } from 'hooks/use-dark-mode';
 
 const mainNavigation = [
@@ -79,18 +77,7 @@ const subNavigation = [
 const Layout = ({ children, headerTheme }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useDarkModeInit();
-  const [isMobileSearchModalOpen, setIsMobileSearchModalOpen] = useState(false);
   const themeContextValue = useMemo(() => [isDarkMode, setIsDarkMode], [isDarkMode, setIsDarkMode]);
-
-  useBodyLockScroll(isMobileSearchModalOpen);
-
-  const openMobileSearchModal = () => {
-    setIsMobileSearchModalOpen(true);
-  };
-
-  const closeMobileSearchModal = () => {
-    setIsMobileSearchModalOpen(false);
-  };
 
   const handleHeaderBurgerClick = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -102,12 +89,10 @@ const Layout = ({ children, headerTheme }) => {
           headerTheme={headerTheme}
           nav={mainNavigation}
           onBurgerClick={handleHeaderBurgerClick}
-          onSearchClick={openMobileSearchModal}
         />
         <main className="flex-grow dark:bg-grey-15">{children}</main>
         <Footer nav={subNavigation} />
         <MobileMenu isOpen={isMobileMenuOpen} items={mainNavigation} />
-        <SearchModal isOpen={isMobileSearchModalOpen} closeModal={closeMobileSearchModal} />
         <CookieConsent
           buttonText="Allow all"
           declineButtonText="Reject"

@@ -1,97 +1,90 @@
-import algoliasearch from 'algoliasearch/lite';
+import { DocSearch } from '@docsearch/react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
-import { InstantSearch } from 'react-instantsearch-dom';
+import React, { useEffect } from 'react';
 
-import useDebounce from 'hooks/use-debounce';
-import useOnClickOutside from 'hooks/use-on-click-outside';
-import algoliaQueries from 'utils/algolia-queries';
+import Link from 'components/shared/link';
+import debounce from 'utils/debounce';
 
-import Input from './input';
-import Results from './results';
+const Search = ({ className }) => {
+  // @NOTE: this is a workaround to prevent scroll to the page bottom when closing search modal in Safari
+  // https://github.com/algolia/docsearch/issues/1260#issuecomment-1011939736
+  useEffect(() => {
+    let div = document.querySelector('.fixed[data-docsearch-fixed]');
 
-const indices = [{ name: algoliaQueries[0].indexName, title: 'Docs', hitComp: 'postPageHit' }];
-
-const Search = ({
-  className,
-  inputClassName,
-  placeholderText,
-  searchIconSize,
-  additionalResultsStyles,
-}) => {
-  const ref = useRef(null);
-  const [query, setQuery] = useState();
-  const [hasFocus, setFocus] = useState(false);
-  const debouncedQuery = useDebounce(query, 500);
-
-  const searchClient = useMemo(
-    () => algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY),
-    []
-  );
-
-  const handleKeyPress = useCallback((event) => {
-    if (event.metaKey && event.which === 75) {
-      ref.current.querySelector('input').focus();
-      setFocus(true);
+    if (!div) {
+      div = document.createElement('div');
+      div.classList.add('fixed');
+      div.setAttribute('data-docsearch-fixed', '');
+      div.innerHTML = '<input type="text" aria-label="hidden">';
+      document.body.appendChild(div);
     }
   }, []);
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [handleKeyPress]);
-
-  useOnClickOutside(ref, () => setFocus(false));
-
-  const shouldShowResult = !!debouncedQuery?.length && hasFocus;
-
-  if (!process.env.GATSBY_ALGOLIA_APP_ID || !process.env.GATSBY_ALGOLIA_SEARCH_KEY) {
-    return null;
-  }
-
   return (
-    <div className={clsx('relative', className)} ref={ref}>
-      <InstantSearch
-        searchClient={searchClient}
-        indexName={indices[0].name}
-        onSearchStateChange={({ query }) => setQuery(query)}
-      >
-        <Input
-          additionalClassName={clsx(inputClassName, {
-            'transition duration-200 focus:border-blue-light dark:focus:border-blue-dark':
-              !shouldShowResult,
-          })}
-          placeholder={placeholderText}
-          hasFocus={hasFocus}
-          iconSize={searchIconSize}
-          onFocus={() => setFocus(true)}
-        />
-        {shouldShowResult && (
-          <Results indices={indices} additionalStyles={additionalResultsStyles} />
+    <div className={clsx('relative flex items-center justify-between', className)}>
+      <DocSearch
+        appId={process.env.GATSBY_ALGOLIA_APP_ID}
+        apiKey={process.env.GATSBY_ALGOLIA_SEARCH_API_KEY}
+        indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
+        placeholder="Search..."
+        transformSearchClient={(searchClient) => ({
+          ...searchClient,
+          search: debounce(searchClient.search, 500),
+        })}
+        hitComponent={({ hit, children }) => (
+          <Link
+            className={clsx({
+              'DocSearch-Hit--Result': hit.__is_result?.(),
+              'DocSearch-Hit--Parent': hit.__is_parent?.(),
+              'DocSearch-Hit--FirstChild': hit.__is_first?.(),
+              'DocSearch-Hit--LastChild': hit.__is_last?.(),
+              'DocSearch-Hit--Child': hit.__is_child?.(),
+            })}
+            to={hit.url}
+          >
+            {children}
+          </Link>
         )}
-      </InstantSearch>
+        transformItems={(items) =>
+          items.map((item, index) => {
+            // We transform the absolute URL into a relative URL to leverage next/link prefetch.
+            const a = document.createElement('a');
+            a.href = item.url;
+
+            if (item.hierarchy?.lvl0) {
+              item.hierarchy.lvl0 = item.hierarchy.lvl0.replace(/&amp;/g, '&');
+            }
+
+            if (item._highlightResult?.hierarchy?.lvl0?.value) {
+              item._highlightResult.hierarchy.lvl0.value =
+                item._highlightResult.hierarchy.lvl0.value.replace(/&amp;/g, '&');
+            }
+
+            return {
+              ...item,
+              url: `${a.pathname}${a.hash}`,
+              __is_result: () => true,
+              __is_parent: () => item.type === 'lvl1' && items.length > 1 && index === 0,
+              __is_child: () =>
+                item.type !== 'lvl1' && items.length > 1 && items[0].type === 'lvl1' && index !== 0,
+              __is_first: () => index === 1,
+              __is_last: () => index === items.length - 1 && index !== 0,
+            };
+          })
+        }
+        insights
+      />
     </div>
   );
 };
 
 Search.propTypes = {
   className: PropTypes.string,
-  inputClassName: PropTypes.string,
-  placeholderText: PropTypes.string,
-  searchIconSize: PropTypes.string,
-  additionalResultsStyles: PropTypes.string,
 };
 
 Search.defaultProps = {
-  className: null,
-  inputClassName: null,
-  placeholderText: null,
-  searchIconSize: null,
-  additionalResultsStyles: null,
+  className: '',
 };
 
 export default Search;

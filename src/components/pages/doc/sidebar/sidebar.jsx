@@ -43,7 +43,7 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
 
   return (
     <aside className={className}>
-      <Search className="md:hidden" additionalResultsStyles="max-h-[70vh]" />
+      <Search className="md:hidden" />
       <nav className="mt-5 md:hidden">
         <ul>
           {sidebar.map((item, index) => (

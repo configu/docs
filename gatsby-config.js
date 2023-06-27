@@ -147,25 +147,5 @@ module.exports = {
           },
         ]
       : []),
-    ...(process.env.NODE_ENV === 'production' &&
-    process.env.ALGOLIA_ADMIN_KEY &&
-    process.env.GATSBY_ALGOLIA_APP_ID &&
-    process.env.GATSBY_ALGOLIA_INDEX_NAME
-      ? [
-          {
-            resolve: 'gatsby-plugin-algolia-search',
-            options: {
-              appId: process.env.GATSBY_ALGOLIA_APP_ID,
-              apiKey: process.env.ALGOLIA_ADMIN_KEY,
-              indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
-              enablePartialUpdates: false,
-              // eslint-disable-next-line global-require
-              queries: require('./src/utils/algolia-queries'),
-              matchFields: ['title', 'excerpt'],
-              chunkSize: 10000, // default: 1000
-            },
-          },
-        ]
-      : []),
   ],
 };
