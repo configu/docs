@@ -4,6 +4,7 @@ import React from 'react';
 
 import Burger from 'components/shared/burger';
 import Link from 'components/shared/link';
+import GithubIcon from 'icons/github.inline.svg';
 import SearchIcon from 'icons/search-icon.inline.svg';
 import Logo from 'images/logo.inline.svg';
 
@@ -34,7 +35,7 @@ const headerStyles = {
 
 const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
   <header className={clsx('header safe-paddings', headerStyles[headerTheme].background)}>
-    <div className="container-lg flex h-20 items-center justify-end xl:px-16 md:h-16 md:px-7 sm:px-4">
+    <div className="container-lg relative flex h-20 items-center justify-between xl:px-16 md:h-16 md:px-7 sm:px-4">
       <Link to={process.env.GATSBY_CONFIGU_SITE_URL} className="z-50 mr-auto h-6">
         <span className="sr-only">Configu</span>
         <Logo
@@ -45,7 +46,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
         />
       </Link>
 
-      <nav className="flex items-center space-x-8 leading-none md:hidden">
+      <nav className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-auto lg:mx-auto lg:translate-x-0 md:hidden">
         <ul className="flex space-x-10">
           {nav.map(({ text, to }, index) => (
             <li key={index}>
@@ -55,14 +56,18 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
             </li>
           ))}
         </ul>
-        <span
-          className={clsx(
-            'h-7 w-px xl:h-6',
-            headerStyles[headerTheme]?.border
-              ? headerStyles[headerTheme].border
-              : 'bg-grey-88 dark:bg-grey-40'
-          )}
-        />
+      </nav>
+
+      <div className="flex items-center space-x-10 md:hidden">
+        <Link
+          className="!items-center gap-x-2.5"
+          to={process.env.GATSBY_CONFIGU_REPO_URL}
+          size="sm"
+          theme={headerStyles[headerTheme].menu}
+        >
+          <GithubIcon aria-hidden />
+          <span>Star Us</span>
+        </Link>
         <Link
           to={process.env.GATSBY_CONFIGU_APP_URL}
           size="sm"
@@ -79,7 +84,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
         >
           Get it free
         </Link>
-      </nav>
+      </div>
 
       <div className="hidden items-center md:flex">
         <button
