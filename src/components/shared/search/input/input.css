@@ -1,7 +1,0 @@
-@layer components {
-  .search-input {
-    &::-webkit-search-cancel-button {
-      @apply h-3 w-3 cursor-pointer appearance-none bg-close-light bg-contain bg-no-repeat dark:bg-close-dark;
-    }
-  }
-}

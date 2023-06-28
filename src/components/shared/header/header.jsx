@@ -4,8 +4,8 @@ import React from 'react';
 
 import Burger from 'components/shared/burger';
 import Link from 'components/shared/link';
+import Search from 'components/shared/search';
 import GithubIcon from 'icons/github.inline.svg';
-import SearchIcon from 'icons/search-icon.inline.svg';
 import Logo from 'images/logo.inline.svg';
 
 const headerStyles = {
@@ -33,7 +33,7 @@ const headerStyles = {
   },
 };
 
-const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
+const Header = ({ isMobileMenuOpen, onBurgerClick, headerTheme, nav }) => (
   <header className={clsx('header safe-paddings', headerStyles[headerTheme].background)}>
     <div className="container-lg relative flex h-20 items-center justify-between xl:px-16 md:h-16 md:px-7 sm:px-4">
       <Link to={process.env.GATSBY_CONFIGU_SITE_URL} className="z-50 mr-auto h-6">
@@ -88,14 +88,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
       </div>
 
       <div className="hidden items-center md:flex">
-        <button
-          className="mr-5"
-          type="button"
-          aria-label="Open Search modal"
-          onClick={onSearchClick}
-        >
-          <SearchIcon className="dark:text-white" />
-        </button>
+        <Search />
 
         <Burger
           className={clsx(
@@ -120,12 +113,10 @@ Header.propTypes = {
       to: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onSearchClick: PropTypes.func,
 };
 
 Header.defaultProps = {
   isMobileMenuOpen: false,
-  onSearchClick: null,
 };
 
 export default Header;

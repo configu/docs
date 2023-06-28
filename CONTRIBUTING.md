@@ -118,7 +118,8 @@ To add an external link to the sidebar section, place it at the desired position
   ]
 }
 ```
-⚠️  Note, that external links are not parts of docs internal navigation and won't be displayed at the bottom of a doc page. They live at the very end of the navigation sidebar, and the order can be adjusted only within `external` array.
+
+⚠️ Note, that external links are not parts of docs internal navigation and won't be displayed at the bottom of a doc page. They live at the very end of the navigation sidebar, and the order can be adjusted only within `external` array.
 **Attributes breakdown**:
 
 - the `title` attribute is required and is a represenation of a certain `.md` page in sidebar. `title` may differ from the on inside the page

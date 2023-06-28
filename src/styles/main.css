@@ -10,10 +10,10 @@
 @import './container.css';
 @import './content.css';
 @import './icons.css';
-@import '../components/shared/search/input/input.css';
 
 /* Utilities */
 @import './safe-paddings.css';
 @import './disable-transition.css';
 @import './with-highlighted-text.css';
 @import './no-scrollbars.css';
+@import './search.css';
