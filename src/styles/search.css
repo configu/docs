@@ -15,10 +15,10 @@
   }
 
   .DocSearch-Button-Keys {
-    @apply ml-auto flex h-4.5 min-w-[33px] items-center justify-center gap-x-1 rounded-sm border border-grey-88 bg-grey-98 py-0.5 dark:border-grey-40 dark:bg-grey-25 lg:hidden lg:border-none;
+    @apply ml-auto flex items-center justify-center gap-x-1;
 
     .DocSearch-Button-Key {
-      @apply relative top-0 m-0 flex items-center justify-center text-[10px] font-medium leading-none text-grey-50 shadow-none first:text-xs first:font-semibold dark:text-grey-70 lg:hidden;
+      @apply flex h-[14px] w-[14px] items-center justify-center rounded-sm border border-grey-88 bg-grey-98 p-0.5 text-[10px] font-medium leading-none text-grey-50 first:text-xs first:font-semibold dark:border-grey-40 dark:bg-grey-25 dark:text-grey-70;
 
       svg {
         @apply h-3.5 w-auto;
