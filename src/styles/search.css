@@ -106,7 +106,7 @@
 
   .DocSearch-Reset {
     @apply cursor-pointer appearance-none rounded-[50%] border-none bg-none;
-    stroke-width: 1.4;
+    stroke-width: 1;
     animation: fade-in 0.1s ease-in forwards;
   }
 
@@ -233,7 +233,7 @@
           @apply h-4 w-4 bg-blue-light opacity-0 transition-opacity duration-200 dark:bg-blue-dark;
           -webkit-mask-image: url('/docs/images/chevron.svg');
           mask-image: url('/docs/images/chevron.svg');
-          mask-size: 6px 12px;
+          mask-size: 8px 14px;
           mask-repeat: no-repeat;
           mask-position: center;
 
@@ -295,12 +295,12 @@
 
           .DocSearch-Hit-action-button {
             svg {
-              @apply h-4 w-4 text-blue-light transition-colors duration-200 dark:text-blue-dark;
+              @apply h-4 w-4 text-grey-60 transition-colors duration-200;
             }
 
             &:hover {
               svg {
-                @apply text-black;
+                @apply text-grey-25 dark:hover:text-grey-88;
               }
             }
           }

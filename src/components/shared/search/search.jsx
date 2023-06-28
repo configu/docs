@@ -63,7 +63,7 @@ const Search = ({ className }) => {
 
             return {
               ...item,
-              url: `${a.pathname}${a.hash}`,
+              url: `${a.pathname.replace('/docs/', '/')}${a.hash}`,
               __is_result: () => true,
               __is_parent: () => item.type === 'lvl1' && items.length > 1 && index === 0,
               __is_child: () =>
