@@ -5,6 +5,7 @@ import React from 'react';
 import Button from 'components/shared/button';
 import Link from 'components/shared/link';
 import useScrollOverflow from 'hooks/use-scroll-overflow';
+import GithubIcon from 'icons/github.inline.svg';
 
 const ANIMATION_DURATION = 0.2;
 
@@ -54,12 +55,21 @@ const MobileMenu = ({ isOpen, items }) => {
       </div>
 
       <div className="mx-auto mt-auto flex w-full max-w-[500px] shrink-0 flex-col space-y-3">
-        <Button to={process.env.GATSBY_CONFIGU_APP_URL} className="w-full" size="sm" theme="blue">
+        <Button className="w-full" to={process.env.GATSBY_CONFIGU_APP_URL} size="sm" theme="blue">
           Get it free
         </Button>
         <Button
-          to={process.env.GATSBY_CONFIGU_APP_URL}
+          className="w-full !items-center gap-x-2.5"
+          to={process.env.GATSBY_CONFIGU_REPO_URL}
+          size="sm"
+          theme="primary-blue-outline"
+        >
+          <GithubIcon aria-hidden />
+          Star Us
+        </Button>
+        <Button
           className="w-full"
+          to={process.env.GATSBY_CONFIGU_APP_URL}
           size="sm"
           theme="primary-blue-outline"
         >
