@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo } from 'react';
 
@@ -40,7 +41,12 @@ const Sidebar = ({ className, sidebar, currentSlug }) => {
   };
 
   return (
-    <aside className={className}>
+    <aside
+      className={clsx(
+        'sticky top-9 my-9 h-full max-h-[calc(100vh-80px)] overflow-y-auto pr-5 md:relative md:top-auto md:my-0 md:max-h-full md:w-full md:overflow-y-visible md:pr-0',
+        className
+      )}
+    >
       <Search className="md:hidden" additionalResultsStyles="max-h-[70vh]" />
       <nav className="mt-5 md:hidden">
         <ul>
