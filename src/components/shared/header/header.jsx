@@ -64,6 +64,7 @@ const Header = ({ onSearchClick, isMobileMenuOpen, onBurgerClick, headerTheme, n
           to={process.env.GATSBY_CONFIGU_REPO_URL}
           size="sm"
           theme={headerStyles[headerTheme].menu}
+          isClickTracked
         >
           <GithubIcon aria-hidden />
           <span>Star Us</span>
