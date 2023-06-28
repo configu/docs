@@ -15,7 +15,7 @@
   }
 
   .DocSearch-Button-Keys {
-    @apply ml-auto flex items-center justify-center gap-x-1;
+    @apply ml-auto flex items-center justify-center gap-x-1 lg:hidden lg:border-none;
 
     .DocSearch-Button-Key {
       @apply flex h-[14px] w-[14px] items-center justify-center rounded-sm border border-grey-88 bg-grey-98 p-0.5 pt-[3px] text-[10px] font-medium leading-none text-grey-50 first:text-xs first:font-semibold dark:border-grey-40 dark:bg-grey-25 dark:text-grey-70;
