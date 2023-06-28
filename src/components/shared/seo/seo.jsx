@@ -36,7 +36,8 @@ const SEO = ({
   const isRobotsNoindexPage = metaRobotsNoindex === 'noindex';
   const currentTitle = title || opengraphTitle || siteTitle;
   const currentDescription = description || opengraphDescription || siteDescription;
-  const currentUrl = pathname !== '/docs/' ? `${siteUrl}${pathname}` : siteUrl;
+  const currentUrl =
+    pathname !== '/docs/' ? `${siteUrl}${pathname.replace('/docs/', '/')}` : siteUrl;
 
   const opengraphImagePreview =
     opengraphImage && siteUrl + getSrc(opengraphImage.localFile.childImageSharp);
