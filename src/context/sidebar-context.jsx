@@ -1,10 +1,17 @@
 import React, { useMemo, createContext, useContext, useState, useCallback } from 'react';
 
+import sidebar from '../../content/sidebar.json';
+
 export const SidebarContext = createContext([]);
 
 // eslint-disable-next-line react/prop-types
 export const SidebarContextAPI = ({ children }) => {
-  const [sidebarOpenItems, setSidebarOpenItems] = useState({});
+  const [sidebarOpenItems, setSidebarOpenItems] = useState(
+    sidebar.items.reduce((acc, _, i) => {
+      acc[i] = true;
+      return acc;
+    }, {})
+  );
 
   const handleSidebarSectionState = useCallback(
     (id) => {

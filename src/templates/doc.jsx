@@ -25,11 +25,7 @@ const DocTemplate = (props) => {
     <Layout>
       <div className="border-b border-t border-grey-88 dark:border-grey-40 md:border-t-0 md:border-b-0">
         <div className="container grid w-full grid-cols-[300px_1fr_300px] px-0 xl:px-10 lg:grid-cols-[300px_1fr] md:flex md:flex-col md:px-7 sm:px-4">
-          <Sidebar
-            className="pt-9 pr-5 md:w-full md:pr-0 md:pt-0"
-            sidebar={sidebar}
-            currentSlug={frontmatter.slug}
-          />
+          <Sidebar sidebar={sidebar} currentSlug={frontmatter.slug} />
 
           <div className="overflow-hidden border-l border-r border-grey-88 px-9 pb-20 pt-7 dark:border-grey-40 lg:border-r-0 lg:pr-0 md:border-l-0 md:pl-0">
             <Content
