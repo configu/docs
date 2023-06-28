@@ -16,8 +16,9 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug, onKeyDown, onClick 
             '!text-blue-light dark:!text-blue-dark': currentSlug === slug,
           }
         )}
-        to={slug.includes('http') ? slug : slugToHref(slug)}
-        target={slug.includes('http') ? '_blank' : undefined}
+        to={slug.startsWith('http') ? slug : slugToHref(slug)}
+        target={slug.startsWith('http') ? '_blank' : undefined}
+        isExternal={slug.startsWith('http')}
         theme="black"
       >
         {title}

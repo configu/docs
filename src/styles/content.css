@@ -208,10 +208,6 @@
       @apply border-grey-40;
     }
 
-    .external-link {
-      @apply relative after:ml-1 after:inline-block after:h-[14px] after:w-[14px] after:bg-external-icon-light after:bg-contain after:align-baseline after:text-blue-light after:transition-all after:duration-200 hover:after:bg-external-icon-light-hover dark:after:bg-external-icon-dark dark:hover:after:bg-external-icon-light;
-    }
-
     .gatsby-resp-image-wrapper {
       margin-top: 1.25em;
       margin-bottom: 1.25em;
@@ -268,6 +264,10 @@
         @apply text-black dark:text-white;
       }
     }
+  }
+
+  .external-link {
+    @apply relative after:ml-1 after:inline-block after:h-[14px] after:w-[14px] after:bg-external-icon-light after:bg-contain after:align-baseline after:text-blue-light after:transition-all after:duration-200 hover:after:bg-external-icon-light-hover dark:after:bg-external-icon-dark dark:hover:after:bg-external-icon-light;
   }
 
   .admonition p {

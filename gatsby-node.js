@@ -67,7 +67,7 @@ const createDocPages = async ({ graphql, actions }) => {
       component: `${docTemplate}?__contentFilePath=${contentFilePath}`,
       context: {
         id,
-        sidebar: sidebar.items,
+        sidebar,
         previousLink,
         nextLink,
         tableOfContents: tableOfContents?.items,

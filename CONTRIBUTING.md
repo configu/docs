@@ -105,6 +105,21 @@ To add a top-level sidebar section, place a sibling in a desired position inside
 
 :warning: Note, that it is not enough to define a page in a sidebar for it to appear! For each page there has to be a corresponding `.md` file used for page generation.
 
+To add an external link to the sidebar section, place it at the desired position within the top-level `external` array:
+
+```json
+{
+  "external": [
+    // your new item
+    {
+      "title": "An external link to app",
+      "slug": "https://app.configu.com"
+    }
+  ]
+}
+```
+
+⚠️ Note, that external links are not parts of docs internal navigation and won't be displayed at the bottom of a doc page. They live at the very end of the navigation sidebar, and the order can be adjusted only within `external` array.
 **Attributes breakdown**:
 
 - the `title` attribute is required and is a represenation of a certain `.md` page in sidebar. `title` may differ from the on inside the page
