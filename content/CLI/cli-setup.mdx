@@ -1,14 +1,12 @@
 ---
 slug: cli-setup
-title: Configu CLI
+title: CLI Setup
 ---
 
 import CliInstallSnippet from '../components/cli-install.mdx';
 import CliInstallCiCdSnippet from '../components/cli-install-ci-cd.mdx';
 
-The **Configu CLI** is the easiest interface for getting started with Configu. With the command-line interface (CLI), you can easily interact with Configu using a terminal or an automated system, providing you with all the functionality you need to orchestrate your configuration data and beyond. The [CLI code is open-source](https://github.com/configu/configu/tree/main/ts/packages/cli), and the [installation process](/cli-setup) is quick and easy, with lightweight binaries available for all major operating systems, Docker, and CI/CD platforms.
-
-## Install with script:
+## Install with script
 
 To install Configu CLI globally, you can use the following command:
 
@@ -29,7 +27,7 @@ It is important to note that currently the `install-standalone.sh` script is onl
 
 </Admonition>
 
-## Install on CI/CD:
+## Install on CI/CD
 
 To make Configu CLI available via a CI/CD pipeline, you can use the pre-made, dedicated installation steps which are based on the installation script and designed to be be easily integrated into your pipeline configuration.
 
@@ -41,7 +39,7 @@ After you've used the step, subsequent steps in the same job can run arbitrary C
 
 </Admonition>
 
-## Install with Docker:
+## Install with Docker
 
 You can also choose to run the CLI as an isolated Docker container instead.
 
@@ -49,7 +47,7 @@ You can also choose to run the CLI as an isolated Docker container instead.
 docker run --rm configu/cli [COMMAND]
 ```
 
-## Manual install with TAR:
+## Manual install with TAR
 
 Alternatively, you can manually download the Configu CLI binary from the [releases page](https://github.com/configu/configu/releases?q=cli-&expanded=true) and place it in a location that is included in your `$PATH`. This is useful if you want to install a specific version of the CLI, or if you prefer to manually manage your dependencies.
 
@@ -134,7 +132,7 @@ To update your `$PATH` permanently so that it can be run from any directory, add
 PATH=<path-to-upacked-directory>/bin:$PATH
 ```
 
-## verify
+## Verify
 
 Once installed, you can use the Configu CLI by simply running `configu` in your terminal.
 
@@ -158,4 +156,12 @@ To update the Configu CLI, you can run the following command:
 configu update
 ```
 
-If you encounter any errors, you can try re-installing the CLI by running the [installation process](/cli/#setup) again.
+If you encounter any errors, you can try re-installing the CLI by running the [installation process](/cli-setup/#install-with-script) again.
+
+## Install Autocomplete
+
+To display autocomplete installation instructions, you can run the following command:
+
+```shell
+configu autocomplete
+```

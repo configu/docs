@@ -3,32 +3,159 @@ slug: config-store
 title: ConfigStore
 ---
 
-A ConfigStore is a storage system for Configs, which can be any system or service that is capable of storing data. This can include text files, databases, secret managers, and Configu's SaaS Configuration Store. ConfigStores are responsible for storing, retrieving, and managing configuration data, and developers can choose the ConfigStore that best fits their needs and workflow.
+import StoreInfo from '../components/store-info.mdx';
 
-ConfigStores are unique in their type, and can be referenced as instances of their class implementation when using Configu's SDK. When using Configu's CLI, ConfigStores are referenced using connection strings, which can also be cached as short labels for convenience.
+A `ConfigStore` is a storage system for `Configs` in Configu, serving as a mechanism for storing, retrieving, and managing configuration data. It can be any system or service capable of storing data, including text files, databases, secret managers, and the `Configu ConfigStore`. ConfigStores play a crucial role in the configuration management process, enabling the seamless retrieval and management of configuration values at deployments or runtime.
 
-Configu's interfaces support a wide range of ConfigStores and are open source, so if you don't see a ConfigStore that meets your needs, you can easily create your own by implementing a simple abstract class with get and set methods. This allows you to extend Configu to fit your specific configuration management needs.
+You can choose the most suitable `ConfigStore` based on your specific needs and workflow. Each `ConfigStore` has its own type and can be referenced as instances of their respective class implementation when using Configu's SDK. When using Configu's CLI, `ConfigStores` are referenced using their type, which can also be declared as friendly names in the [`.configu` file](/cli-configs).
 
-## Supported stores:
+Configu's interfaces support a wide range of `ConfigStores`. In case you don't find a `ConfigStore` that meets your requirements, Configu allows you to easily create your own by implementing a simple abstract class with `get` and `set` methods. This flexibility empowers you to extend Configu and tailor it to your specific configuration management needs.
 
-{/* todo: explain more on each of the sotres */}
+## Available Stores
 
-- [Configu SaaS Store](https://app.configu.com/)
-- Files:
-  - JSON
-- Secret managers:
-  - HashiCorp Vault
-  - AWS Secrets Manager
-  - Azure Key Vault
-  - Google Secret Manager
-  - Kubernetes Secret
-- Databases:
-  - MySQL
-  - Microsoft SQL server
-  - SQLite
-  - PostgreSQL
-  - CockroachDB
-  - MariaDB
-  - Amazon Aurora
-- Browser:
-  - LocalForage
+<Admonition type="info">
+
+You can choose the appropriate `ConfigStore` based on your specific use case, and refer to the corresponding documentation and configuration links for further details on usage and implementation.
+
+</Admonition>
+
+<StoreInfo
+  category="configu"
+  name="Configu"
+  type="configu"
+  interfaces={['CLI', 'Node.js', 'Browser', 'Python']}
+  docs="https://configu.com/docs/"
+  configs="https://configu.com/docs/"
+/>
+
+<StoreInfo
+  category="memory"
+  name="In Memory"
+  type="in-memory"
+  interfaces={['CLI', 'Node.js', 'Browser']}
+  docs="https://configu.com/docs/"
+  configs="https://configu.com/docs/"
+/>
+
+<StoreInfo
+  category="file"
+  name="Json File"
+  type="json-file"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://configu.com/docs/"
+  configs="https://configu.com/docs/"
+/>
+
+<StoreInfo
+  category="secret manager"
+  name="HashiCorp Vault"
+  type="hashicorp-vault"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://developer.hashicorp.com/vault/docs"
+  configs="https://developer.hashicorp.com/vault/docs/configuration"
+/>
+
+<StoreInfo
+  category="secret manager"
+  name="AWS Secrets Manager"
+  type="aws-secrets-manager"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://docs.aws.amazon.com/secretsmanager/"
+  configs="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-secrets-manager/interfaces/secretsmanagerclientconfig.html"
+/>
+
+<StoreInfo
+  category="secret manager"
+  name="Azure Key Vault"
+  type="azure-key-vault"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://learn.microsoft.com/en-us/azure/key-vault/"
+  configs="https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-secrets/secretclient"
+/>
+
+<StoreInfo
+  category="secret manager"
+  name="GCP Secret Manager"
+  type="gcp-secret-manager"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://cloud.google.com/secret-manager/docs"
+  configs="https://cloud.google.com/secret-manager/docs/reference/libraries#client-libraries-install-nodejs"
+/>
+
+<StoreInfo
+  category="secret manager"
+  name="Kubernetes Secret"
+  type="kubernetes-secret"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://kubernetes.io/docs/concepts/configuration/secret/"
+  configs="https://github.com/kubernetes-client/javascript"
+/>
+
+<StoreInfo
+  category="database"
+  name="SQLite"
+  type="sqlite"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://www.sqlite.org/docs.html"
+  configs="https://typeorm.io/data-source-options#sqlite-data-source-options"
+/>
+
+<StoreInfo
+  category="database"
+  name="MySQL"
+  type="mysql"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://dev.mysql.com/doc/"
+  configs="https://typeorm.io/data-source-options#mysql--mariadb-data-source-options"
+/>
+
+<StoreInfo
+  category="database"
+  name="MariaDB"
+  type="mariadb"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://dev.mysql.com/doc/"
+  configs="https://typeorm.io/data-source-options#mysql--mariadb-data-source-options"
+/>
+
+<StoreInfo
+  category="database"
+  name="PostgreSQL"
+  type="postgres"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://www.postgresql.org/docs/"
+  configs="https://typeorm.io/data-source-options#postgres--cockroachdb-data-source-options"
+/>
+
+<StoreInfo
+  category="database"
+  name="CockroachDB"
+  type="cockroachdb"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://www.cockroachlabs.com/docs/"
+  configs="https://typeorm.io/data-source-options#postgres--cockroachdb-data-source-options"
+/>
+
+<StoreInfo
+  category="database"
+  name="Microsoft SQL Server"
+  type="mssql"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://learn.microsoft.com/en-us/sql/sql-server/"
+  configs="https://typeorm.io/data-source-options#mssql-data-source-options"
+/>
+
+<StoreInfo
+  category="browser"
+  name="LocalForage"
+  type="localforage"
+  interfaces={['Browser']}
+  docs="https://localforage.github.io/localForage/"
+  configs="https://localforage.github.io/localForage/#settings-api-config"
+/>
+
+<Admonition type="tip">
+
+If you have a specific requirement that is not met by the available `ConfigStores`, please don't hesitate to reach out to us or consider contributing your own implementation to enhance the Configu ecosystem.
+
+</Admonition>
