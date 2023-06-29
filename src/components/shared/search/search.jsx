@@ -41,7 +41,7 @@ const Search = ({ className }) => {
               'DocSearch-Hit--LastChild': hit.__is_last?.(),
               'DocSearch-Hit--Child': hit.__is_child?.(),
             })}
-            to={hit.url}
+            to={hit.url.replace('/docs', '')}
           >
             {children}
           </Link>

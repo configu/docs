@@ -141,8 +141,6 @@ const Link = ({
   const onMouseOut = isUnderline ? handleHoverFinish : undefined;
 
   if (to.startsWith('/')) {
-    // make sure no /docs/docs ends up in links
-    to = to.replace('/docs/docs/', '/docs');
     return (
       <GatsbyLink
         className={clsx(className, 'group', nav && 'flex items-center')}
