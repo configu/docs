@@ -48,7 +48,6 @@ const Search = ({ className }) => {
         )}
         transformItems={(items) =>
           items.map((item, index) => {
-            // We transform the absolute URL into a relative URL to leverage next/link prefetch.
             const a = document.createElement('a');
             a.href = item.url;
 
@@ -63,7 +62,7 @@ const Search = ({ className }) => {
 
             return {
               ...item,
-              url: `${a.pathname.replace('/docs/', '/')}${a.hash}`,
+              url: `${a.pathname}${a.hash}`,
               __is_result: () => true,
               __is_parent: () => item.type === 'lvl1' && items.length > 1 && index === 0,
               __is_child: () =>
