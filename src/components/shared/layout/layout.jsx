@@ -23,6 +23,10 @@ const mainNavigation = [
     to: '/',
   },
   {
+    text: 'Blog',
+    to: `${process.env.GATSBY_CONFIGU_SITE_URL}blog`,
+  },
+  {
     text: 'About Us',
     to: `${process.env.GATSBY_CONFIGU_SITE_URL}about`,
   },
@@ -56,6 +60,10 @@ const subNavigation = [
       {
         text: 'Docs',
         to: '/',
+      },
+      {
+        text: 'Blog',
+        to: `${process.env.GATSBY_CONFIGU_SITE_URL}blog`,
       },
     ],
   },
