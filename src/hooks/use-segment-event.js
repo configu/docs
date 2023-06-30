@@ -13,7 +13,7 @@ export default function useSegmentEvent(shouldUse = false) {
 
       event.preventDefault();
 
-      if (window.analytics) {
+      if (window.analytics && typeof window.analytics.track !== 'undefined') {
         window.analytics
           .track(eventName, {
             category: `Website ${eventName} click`,
