@@ -256,7 +256,7 @@
       }
 
       .DocSearch-Hit-Container {
-        @apply flex w-full items-start space-x-3;
+        @apply flex w-full items-start space-x-3 overflow-hidden;
 
         .DocSearch-Hit-content-wrapper {
           @apply !mr-2 flex grow flex-col space-y-1.5;
