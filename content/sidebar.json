@@ -80,6 +80,18 @@
         {
           "title": "Settings",
           "slug": "settings"
+        },
+        {
+          "title": "Authorization",
+          "slug": "authorization"
+        },
+        {
+          "title": "Members",
+          "slug": "members"
+        },
+        {
+          "title": "Tokens",
+          "slug": "tokens"
         }
       ]
     },

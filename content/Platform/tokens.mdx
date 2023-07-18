@@ -1,0 +1,53 @@
+---
+id: tokens
+slug: tokens
+title: Tokens
+---
+
+Provide restricted Configs access to an application.
+
+A Configu Token is useful for:
+
+- Authenticating the Configu CLI from a non-interactive system (e.g., CI/CD, Docker)
+- Authenticating in real-time using one of our SDKs
+
+## Creating a Token
+
+To generate a token, head over to the Token page in the Settings tab.
+New tokens are assigned [the reader role](../authorization#predefined-roles).
+
+![image](./img/tokens/tokens-new-token.png)
+
+<Admonition type="info">
+
+A token can optionally be given an expiration date.
+
+</Admonition>
+
+![image](./img/tokens/tokens-pick-expiration.png)
+
+![image](./img/tokens/tokens-token-created.png)
+
+<Admonition type="warning">
+
+Safely store the token value. You won't be able to see it again!
+
+</Admonition>
+
+## Assign roles to a Token
+
+Organization tokens can be given roles that define what resources they can access. A token is always assigned a predefined role.
+![image](./img/tokens/tokens-edit-roles.png)
+![image](./img/tokens/tokens-edit-roles-alert.png)
+
+<Admonition type="info">
+
+- Tokens cannot be assigned the viewer role.
+
+</Admonition>
+
+## Revoking a Token
+
+In case a token is no longer necessary, you may prematurely revoke a token at any time.
+
+![image](./img/tokens/tokens-revoke-token.png)
