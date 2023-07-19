@@ -78,10 +78,6 @@
           "slug": "webhooks"
         },
         {
-          "title": "Settings",
-          "slug": "settings"
-        },
-        {
           "title": "Authorization",
           "slug": "authorization"
         },
@@ -92,6 +88,10 @@
         {
           "title": "Tokens",
           "slug": "tokens"
+        },
+        {
+          "title": "Settings",
+          "slug": "settings"
         }
       ]
     },
