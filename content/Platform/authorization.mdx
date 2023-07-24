@@ -38,6 +38,15 @@ Empower your organization with clear boundaries and well-defined roles that enha
 
 ## Assign roles
 
+Members and tokens can be assigned a single predefined and any amount of custom roles which give stacking permissions on top of the predefined role permissions. For example:
+
+- User "John Doe" has the "Reader" predefined role and a custom role named "Developer" that has the write permission for the "dev" config set.
+- "John Doe" can:
+  - Read config values of all config sets due to the "Reader" role.
+  - Write config values to the "dev" config set and all its children due to the "Developer" Role
+
+Keep in mind that predefined roles give global config set permissions. If you want to keep config set permissions fine-grained, you should keep your members with the "Viewer" role and tokens with the "Reader" predefined roles and give them custom roles that give them the specific permissions they need.
+
 To assign roles to your [organization members](../members#assign-roles-to-a-member) or [organization tokens](../tokens#assign-roles-to-a-token), go to their respective pages and edit their roles.
 
 ## Creating a custom role
@@ -48,11 +57,8 @@ Every organization is unique, with specific requirements and workflows. That's w
 1. Go to the **Roles** page under the **Settings** tab
 2. Click the **Create Role** button and provide the role name and role permissions.
 3. After adding the role, you will see it listed in the custom roles list.
-4. You can click **View details** to see a quick overview of the role definition.
 
 ![image](./img/authorization/roles-new-role.png)
-
-<br />
 
 ![image](./img/authorization/roles-create-form.png)
 
@@ -68,7 +74,10 @@ Every organization is unique, with specific requirements and workflows. That's w
 </Admonition>
 <Admonition type="tip">
 
-Rules can be created for config sets that do not yet exist.
+Rules can be created for config sets that do not yet exist. This is useful for the following cases:
+
+- You want your member or token to have read access to a config set as soon as it's created.
+- You want to give your member or token the ability to create a config set.
 
 </Admonition>
 <Admonition type="warning">
@@ -76,13 +85,6 @@ Rules can be created for config sets that do not yet exist.
 Role names are unique, attempting to use an existing role name including predefined roles will result in an error.
 
 </Admonition>
-
-<br />
-
-![image](./img/authorization/roles-view-details.png)
-
-<br />
-![image](./img/authorization/roles-details.png)
 
 ## Updating a custom role
 
