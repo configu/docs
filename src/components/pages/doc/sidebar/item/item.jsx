@@ -56,9 +56,9 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug, onKeyDown, onClick 
           <li key={index}>
             <Link
               className={clsx(
-                '!flex items-center py-2 font-mono text-sm !leading-snug text-grey-25 transition-all duration-200 first:pt-1.5 last:pb-1.5 dark:text-grey-88',
+                '!flex items-center py-2 pl-2 font-mono text-sm !leading-snug text-grey-25 transition-all duration-200 first:pt-1.5 last:pb-1.5 dark:text-grey-88',
                 {
-                  'rounded bg-grey-96 pl-2 font-semibold !text-blue-light dark:bg-grey-25 dark:!text-blue-dark':
+                  'rounded bg-grey-96 font-semibold !text-blue-light dark:bg-grey-25 dark:!text-blue-dark':
                     currentSlug === slug,
                 }
               )}
