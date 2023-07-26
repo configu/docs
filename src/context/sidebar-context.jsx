@@ -8,7 +8,7 @@ export const SidebarContext = createContext([]);
 export const SidebarContextAPI = ({ children }) => {
   const [sidebarOpenItems, setSidebarOpenItems] = useState(
     sidebar.items.reduce((acc, _, i) => {
-      acc[i] = true;
+      acc[i] = false;
       return acc;
     }, {})
   );
