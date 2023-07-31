@@ -7,8 +7,8 @@ export const SidebarContext = createContext([]);
 // eslint-disable-next-line react/prop-types
 export const SidebarContextAPI = ({ children }) => {
   const [sidebarOpenItems, setSidebarOpenItems] = useState(
-    sidebar.items.reduce((acc, _, i) => {
-      acc[i] = true;
+    sidebar.items.reduce((acc, { isOpenByDefault }, i) => {
+      acc[i] = isOpenByDefault;
       return acc;
     }, {})
   );
