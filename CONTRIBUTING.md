@@ -80,6 +80,7 @@ To add a top-level sidebar section, place a sibling in a desired position inside
     // your new item
     {
       "title": "Before the overview section",
+      "isOpenByDefault": false, // change to true if you want the section to be open by default
       "items": [
         // add entries to pupulate the section with subpages
       ]
@@ -92,6 +93,7 @@ To add a top-level sidebar section, place a sibling in a desired position inside
     },
     {
       "title": "Overview",
+      "isOpenByDefault": false,
       "items": [
         { "title": "Introduction", "slug": "/" },
         { "title": "Architecture", "slug": "architecture" },
