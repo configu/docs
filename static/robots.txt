@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://configu.com/docs/
+Sitemap: https://configu.com/docs/sitemap-index.xml
