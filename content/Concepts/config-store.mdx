@@ -47,6 +47,33 @@ You can choose the appropriate `ConfigStore` based on your specific use case, an
 />
 
 <StoreInfo
+  category="key value"
+  name="AWS Parameter Store"
+  type="aws-parameter-store"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ssm/"
+  configs="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-ssm/Interface/SSMClientConfig/"
+/>
+
+<StoreInfo
+  category="key value"
+  name="Keyv"
+  type="keyv"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://github.com/jaredwray/keyv"
+  configs="https://github.com/jaredwray/keyv"
+/>
+
+<StoreInfo
+  category="feature flag"
+  name="Launch Darkly"
+  type="launch-darkly"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://apidocs.launchdarkly.com/tag/Feature-flags"
+  configs="https://github.com/launchdarkly-labs/ldc"
+/>
+
+<StoreInfo
   category="secret manager"
   name="HashiCorp Vault"
   type="hashicorp-vault"
