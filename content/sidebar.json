@@ -82,6 +82,18 @@
           "slug": "webhooks"
         },
         {
+          "title": "Authorization",
+          "slug": "authorization"
+        },
+        {
+          "title": "Members",
+          "slug": "members"
+        },
+        {
+          "title": "Tokens",
+          "slug": "tokens"
+        },
+        {
           "title": "Settings",
           "slug": "settings"
         }
