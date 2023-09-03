@@ -2,10 +2,12 @@
   "items": [
     {
       "title": "Introduction",
+      "isOpenByDefault": true,
       "slug": "/"
     },
     {
       "title": "Overview",
+      "isOpenByDefault": true,
       "items": [
         {
           "title": "Get Started",
@@ -35,6 +37,7 @@
     },
     {
       "title": "Concepts",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "Terminology",
@@ -64,6 +67,7 @@
     },
     {
       "title": "Configu Cloud",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "Configs",
@@ -97,6 +101,7 @@
     },
     {
       "title": "CLI",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "Overview",
@@ -118,6 +123,7 @@
     },
     {
       "title": "SDK",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "Overview",
@@ -139,6 +145,7 @@
     },
     {
       "title": "IDE Plugins",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "VS Code Extension",
@@ -152,6 +159,7 @@
     },
     {
       "title": "Recipes",
+      "isOpenByDefault": false,
       "items": [
         {
           "title": "Create a Slack Webhook",

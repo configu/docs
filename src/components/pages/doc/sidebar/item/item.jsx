@@ -34,7 +34,7 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug, onKeyDown, onClick 
         onClick={onClick}
         onKeyDown={onKeyDown}
       >
-        <div className="pointer-events-none mr-2 -mt-px h-full w-[12px] shrink-0">
+        <div className="pointer-events-none -mt-px mr-2 h-full w-[12px] shrink-0">
           <ChevronRight
             className={clsx('h-[11px] w-[7px] transition-transform duration-200', {
               'ml-0.5 rotate-90 transform': isOpen,
@@ -56,9 +56,10 @@ const Item = ({ id, title, slug, items, isOpen, currentSlug, onKeyDown, onClick 
           <li key={index}>
             <Link
               className={clsx(
-                '!flex items-center py-2 font-mono text-sm !leading-snug text-grey-25 transition-colors duration-200 first:pt-1.5 last:pb-1.5 dark:text-grey-88',
+                '!flex items-center py-2 pl-2 font-mono text-sm !leading-snug text-grey-25 transition-all duration-200 first:pt-1.5 last:pb-1.5 dark:text-grey-88',
                 {
-                  'font-semibold !text-blue-light dark:!text-blue-dark': currentSlug === slug,
+                  'rounded bg-grey-96 font-semibold !text-blue-light dark:bg-grey-25 dark:!text-blue-dark':
+                    currentSlug === slug,
                 }
               )}
               to={slugToHref(slug)}

@@ -7,7 +7,7 @@ import StoreInfo from '../components/store-info.mdx';
 
 A `ConfigStore` is a storage system for `Configs` in Configu, serving as a mechanism for storing, retrieving, and managing configuration data. It can be any system or service capable of storing data, including text files, databases, secret managers, and the `Configu ConfigStore`. ConfigStores play a crucial role in the configuration management process, enabling the seamless retrieval and management of configuration values at deployments or runtime.
 
-You can choose the most suitable `ConfigStore` based on your specific needs and workflow. Each `ConfigStore` has its own type and can be referenced as instances of their respective class implementation when using Configu's SDK. When using Configu's CLI, `ConfigStores` are referenced using their type, which can also be declared as friendly names in the [`.configu` file](/cli-configs).
+You can choose the most suitable `ConfigStore` based on your specific needs and workflow. Each `ConfigStore` has its own type and can be referenced as instances of their respective class implementation when using Configu's SDK. When using Configu's CLI, `ConfigStores` are referenced using their type, which can also be declared as friendly names in the [`.configu` file](/cli-config).
 
 Configu's interfaces support a wide range of `ConfigStores`. In case you don't find a `ConfigStore` that meets your requirements, Configu allows you to easily create your own by implementing a simple abstract class with `get` and `set` methods. This flexibility empowers you to extend Configu and tailor it to your specific configuration management needs.
 
@@ -44,6 +44,15 @@ You can choose the appropriate `ConfigStore` based on your specific use case, an
   interfaces={['CLI', 'Node.js', 'Python']}
   docs="https://configu.com/docs/"
   configs="https://configu.com/docs/"
+/>
+
+<StoreInfo
+  category="feature flag"
+  name="Launch Darkly"
+  type="launch-darkly"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://apidocs.launchdarkly.com/tag/Feature-flags"
+  configs="https://github.com/launchdarkly-labs/ldc"
 />
 
 <StoreInfo
@@ -89,6 +98,24 @@ You can choose the appropriate `ConfigStore` based on your specific use case, an
   interfaces={['CLI', 'Node.js', 'Python']}
   docs="https://kubernetes.io/docs/concepts/configuration/secret/"
   configs="https://github.com/kubernetes-client/javascript"
+/>
+
+<StoreInfo
+  category="key value"
+  name="AWS Parameter Store"
+  type="aws-parameter-store"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ssm/"
+  configs="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-ssm/Interface/SSMClientConfig/"
+/>
+
+<StoreInfo
+  category="key value"
+  name="Keyv"
+  type="keyv"
+  interfaces={['CLI', 'Node.js']}
+  docs="https://github.com/jaredwray/keyv"
+  configs="https://github.com/jaredwray/keyv"
 />
 
 <StoreInfo
