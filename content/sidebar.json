@@ -70,8 +70,20 @@
       "isOpenByDefault": false,
       "items": [
         {
-          "title": "Configs",
-          "slug": "configs"
+          "title": "Configs Explorer",
+          "slug": "configs-explorer"
+        },
+        {
+          "title": "Configs Editor",
+          "slug": "configs-editor"
+        },
+        {
+          "title": "Configs History",
+          "slug": "configs-history"
+        },
+        {
+          "title": "Configs Compare",
+          "slug": "configs-compare"
         },
         {
           "title": "Activity Logs",
@@ -80,6 +92,10 @@
         {
           "title": "Webhooks",
           "slug": "webhooks"
+        },
+        {
+          "title": "Integrations",
+          "slug": "integrations"
         },
         {
           "title": "Authorization",

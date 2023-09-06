@@ -126,10 +126,11 @@ Export `Configs` as configuration data in various modes
 USAGE
   $ configu export [--empty] [--explain | --format
     JSON|YAML|Dotenv|KubernetesConfigMap|HelmValues|TerraformTfvars|TOML | --template <value> | --source | --run
-    <value>] [--label <value>] [--template-input object|array ]
+    <value>] [--label <value>] [--eol ] [--template-input object|array ]
 
 FLAGS
   --[no-]empty               Omits all empty (non-value) from the exported `Configs`
+  --eol                      Adds EOL (\n on POSIX \r\n on Windows) to the end of the stdout
   --explain                  Outputs metadata on the exported `Configs`
   --format=<option>          Format exported `Configs` to common configuration formats. Redirect the output to file, if
                              needed
