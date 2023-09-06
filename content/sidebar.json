@@ -176,6 +176,10 @@
         {
           "title": "Managing HashiCorp Vault using Configu",
           "slug": "hc-vault-w-configu"
+        },
+        {
+          "title": "Managing ASM and AWS Param Store",
+          "slug": "configu-over-asm-and-param-store"
         }
       ]
     }
