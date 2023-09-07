@@ -153,7 +153,7 @@ Similar to the way we previously used the Cfgu defaults we can evaluate and expo
 
 ```bash
 configu eval --store "my-store" --set "prod" --schema "./app.cfgu.json" \
- | configu export
+ | configu export --run "node app.js"
 ```
 
 You're done! This was a simple operation, but that's the best way to show someone the power and the simplicity of Configu Orchestrator and how you can use it to manage your configuration automatically and safely using all your current stores.
