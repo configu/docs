@@ -86,18 +86,18 @@ Running a local environment was never easier, choose your preferred way to injec
 - Run Configu seamlessly with your app
 
   ```bash
-  configu eval --schema "./my-app.cfgu.json" --defaults | configu export --run "py my-app.py"
+  configu eval --schema "./my-app.cfgu.json" | configu export --run "py my-app.py"
   ```
 
 - Inject the variables into your shell
 
   ```bash
-  configu eval --schema "./my-app.cfgu.json" --defaults | configu export --source
+  configu eval --schema "./my-app.cfgu.json" | configu export --source
   ```
 
 - Download and use `.env` file or any other format you want
   ```bash
-  configu eval --schema "./my-app.cfgu.json" --defaults | configu export --format "Dotenv" > .env.development
+  configu eval --schema "./my-app.cfgu.json" | configu export --format "Dotenv" > .env.development
   ```
 
 ## Step 3 - Manage configs in HashiCorp Vault using Configu Orchestrator

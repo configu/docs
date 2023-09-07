@@ -13,9 +13,15 @@ and validating your new config values. Check out the tutorial below that shows h
 
 To complete the tutorial, you'll need:
 
-- A [JSON file](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) that contains an array or an [INI file](https://docs.fileformat.com/system/ini/)
+- A [JSON file](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) or an [INI file](https://docs.fileformat.com/system/ini/)
 - [Configu's CLI](/cli-setup)
 - [hackathon-starter application](https://github.com/sahat/hackathon-starter)
+
+<Admonition type="info">
+- Make sure that the files are already created when using the Configu CLI.
+- When using a JSON file, make sure it is a root-level array.
+
+</Admonition>
 
 As most applications already have configuration files, In this example, we will use the `.env.example` file from the hackathon-starter repo:
 
@@ -82,7 +88,7 @@ configu init --import .env.example --defaults --types --name app
 Running a local environment was never easier, run Configu seamlessly with your app.
 
 ```bash
-configu eval --schema "./app.cfgu.json" --defaults | configu export --run "node app.js"
+configu eval --schema "./app.cfgu.json" | configu export --run "node app.js"
 ```
 
 ## Step 3 - Manage configs in JSON/INI files using Configu Orchestrator
