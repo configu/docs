@@ -7,7 +7,7 @@ title: Managing GSM and LaunchDarkly using Configu Orchestrator (open-source)
 Today's dev teams are tasked with managing Config Ops on the _platform_ as well,
 Configu lets you only worry about your application [schemas](/config-schema), with Configu providing the rest of what's needed, including managing the diffrent storage platforms
 and validating your new config values. Check out the tutorial below that shows how to use [Configu Orchestrator (open-source)](https://github.com/configu/configu) to manage
-[Google Secret manager (GSM)](https://cloud.google.com/secret-manager) and [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags).
+[Google Secret manager (GSM)](https://cloud.google.com/secret-manager) and [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags) together with [Configu Cloud](../configu-cloud).
 
 ![image](./img/gsm-launch-darkly-diagram.png)
 
@@ -15,6 +15,7 @@ To complete the tutorial, you'll need:
 
 - [Google Secret manager (GSM)](https://cloud.google.com/secret-manager)
 - [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags)
+- [A Configu Cloud organization](../configu-cloud)
 - [Configu's CLI](/cli-setup)
 - [hackathon-starter application](https://github.com/sahat/hackathon-starter)
 
@@ -118,12 +119,12 @@ Running a local environment was never easier, run Configu seamlessly with your a
 configu eval --schema "./app.cfgu.json" | configu export --run "node app.js"
 ```
 
-## Step 3 - Manage configs in GSM and LaunchDarkly using Configu Orchestrator
+## Step 3 - Manage configs in GSM and LaunchDarkly together with Configu Cloud using Configu Orchestrator
 
 Using a single set of commands we can control any store from local files to secret managers.
-In the following example, we will manage our configs over Google Secret Manager (GSM) and LaunchDarkly.
+In the following example, we will manage our configs over Google Secret Manager (GSM) and LaunchDarkly together with Configu Cloud.
 
-### Authenticate GSM and LaunchDarkly
+### Authenticate GSM, LaunchDarkly, and Configu Cloud
 
 For GSM, Configu's CLI needs to be directed to a [service account key file](https://cloud.google.com/iam/docs/service-accounts-create) by providing a file path and a project id via the [.configu file](../cli-config).
 
@@ -141,19 +142,21 @@ Make sure your LaunchDarkly access token has the "Writer" role.
 
 </Admonition>
 
+For Configu Cloud, you can use the native [configu login](../cli-commands#configu-login) command in the CLI.
+
 example:
 
 ```json
 {
   "stores": {
-    "my-gsm": {
+    "gsm": {
       "type": "gcp-secret-manager",
       "configuration": {
         "keyFile": "path/to/service-account.json",
         "projectId": "myProjectId"
       }
     },
-    "my-launchdarkly": {
+    "launchdarkly": {
       "type": "launch-darkly",
       "configuration": {
         "ldcJsonPath": "ldc.json",
@@ -167,24 +170,31 @@ example:
 ### Upsert values
 
 ```bash
-configu upsert --store "my-gsm" --set "prod" --schema "./app.cfgu.json" \
+configu upsert --store "gsm" --set "prod" --schema "./app.cfgu.json" \
     -c "ENABLE_CONTANT_FORM=true" \
 ```
 
 ```bash
-configu upsert --store "my-launchdarkly" --set "prod" --schema "./app.cfgu.json" \
-    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
+configu upsert --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
     -c "GITHUB_ID=ff12r1d4f0c7435t4r7y" \
     -c "GITHUB_SECRET=5875trfhud4764445ttr2f1c16b9c705d48yy4ee6y"
+```
+
+```bash
+configu upsert --store "configu" --set "prod" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
+    -c "BASE_URL=https://your-website.com"
 ```
 
 We can also easily add configs to additional environments like `test`
 
 ```bash
-configu upsert --store "my-gsm" --set "test" --schema "./app.cfgu.json" \
+configu upsert --store "gsm" --set "test" --schema "./app.cfgu.json" \
     -c "ENABLE_CONTANT_FORM=false" \
-&& configu upsert --store "my-launchdarkly" --set "test" --schema "./app.cfgu.json" \
-    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y"
+&& configu upsert --store "launchdarkly" --set "test" --schema "./app.cfgu.json" \
+    -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y" \
+&& configu upsert --store "configu" --set "test" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "BASE_URL=https://your-website-test.com"
 ```
 
 ### Export values
@@ -192,8 +202,9 @@ configu upsert --store "my-gsm" --set "test" --schema "./app.cfgu.json" \
 Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need.
 
 ```bash
-configu eval --store "my-gsm" --set "prod" --schema "./app.cfgu.json" \
- | configu eval --store "my-launchdarkly" --set "prod" --schema "./app.cfgu.json" \
+configu eval --store "gsm" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "configu" --set "prod" --schema "./app.cfgu.json" \
  | configu export --format 'HelmValues' > 'prod.yml'
 ```
 
