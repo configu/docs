@@ -192,6 +192,10 @@
         {
           "title": "Managing HashiCorp Vault using Configu",
           "slug": "hc-vault-w-configu"
+        },
+        {
+          "title": "Managing GSM and LaunchDarkly",
+          "slug": "configu-over-gsm-and-launchdarkly"
         }
       ]
     }
