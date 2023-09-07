@@ -107,7 +107,7 @@ example:
 ```json
 {
   "stores": {
-    "my-store": {
+    "file-store": {
       "type": "json-file",
       "configuration": {
         "path": "path/to/file.json"
@@ -120,7 +120,7 @@ example:
 ```json
 {
   "stores": {
-    "my-store": {
+    "file-store": {
       "type": "ini-file",
       "configuration": {
         "path": "path/to/file.ini"
@@ -135,7 +135,7 @@ example:
 ### Upsert values
 
 ```bash
-configu upsert --store "my-store" --set "prod" --schema "./app.cfgu.json" \
+configu upsert --store "file-store" --set "prod" --schema "./app.cfgu.json" \
     -c "BASE_URL=http://app.yourdomain.com" \
     -c "SITE_CONTACT_EMAIL=info@yourdomain.com"
 ```
@@ -143,7 +143,7 @@ configu upsert --store "my-store" --set "prod" --schema "./app.cfgu.json" \
 We can also easily add configs to additional environments like `test`
 
 ```bash
-configu upsert --store "my-store" --set "test" --schema "./app.cfgu.json" \
+configu upsert --store "file-store" --set "test" --schema "./app.cfgu.json" \
     -c "BASE_URL=http://app.test.yourdomain.com" -c "SITE_CONTACT_EMAIL=test@yourdomain.com"
 ```
 
@@ -152,7 +152,7 @@ configu upsert --store "my-store" --set "test" --schema "./app.cfgu.json" \
 Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need.
 
 ```bash
-configu eval --store "my-store" --set "prod" --schema "./app.cfgu.json" \
+configu eval --store "file-store" --set "prod" --schema "./app.cfgu.json" \
  | configu export --run "node app.js"
 ```
 
