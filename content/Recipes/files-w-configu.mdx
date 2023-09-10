@@ -19,7 +19,10 @@ To complete the tutorial, you'll need:
 
 <Admonition type="info">
 - Make sure that the files are already created when using the Configu CLI.
-- When using a JSON file, make sure it is a root-level array.
+- When using a JSON file, make sure it is a root-level array as such:
+```json
+[]
+```
 
 </Admonition>
 
@@ -146,6 +149,47 @@ We can also easily add configs to additional environments like `test`
 configu upsert --store "file-store" --set "test" --schema "./app.cfgu.json" \
     -c "BASE_URL=http://app.test.yourdomain.com" -c "SITE_CONTACT_EMAIL=test@yourdomain.com"
 ```
+
+Upsert result:
+
+<CodeTabs labels={["JSON File", "INI File"]}>
+
+```json
+[
+  {
+    "key": "BASE_URL",
+    "set": "test",
+    "value": "http://app.test.yourdomain.com"
+  },
+  {
+    "key": "SITE_CONTACT_EMAIL",
+    "set": "test",
+    "value": "test@yourdomain.com"
+  },
+  {
+    "key": "BASE_URL",
+    "set": "prod",
+    "value": "http://app.yourdomain.co.il"
+  },
+  {
+    "key": "SITE_CONTACT_EMAIL",
+    "set": "prod",
+    "value": "info@yourdomain.com"
+  }
+]
+```
+
+```ini
+[test]
+BASE_URL=http://app.test.yourdomain.com
+SITE_CONTACT_EMAIL=test@yourdomain.com
+
+[prod]
+BASE_URL=http://app.yourdomain.com
+SITE_CONTACT_EMAIL=info@yourdomain.com
+```
+
+</CodeTabs>
 
 ### Export values
 
