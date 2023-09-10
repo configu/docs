@@ -9,7 +9,7 @@ Configu lets you only worry about your application [schemas](/config-schema), wi
 and validating your new config values. Check out the tutorial below that shows how to use [Configu Orchestrator (open-source)](https://github.com/configu/configu) to manage
 [Google Secret manager (GSM)](https://cloud.google.com/secret-manager) and [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags) together with [Configu Cloud](../configu-cloud).
 
-![image](./img/gsm-launch-darkly-diagram.png)
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-launch-darkly-diagram.png)
 
 To complete the tutorial, you'll need:
 
@@ -142,9 +142,7 @@ Make sure your LaunchDarkly access token has the "Writer" role.
 
 </Admonition>
 
-For Configu Cloud, you can use the native [configu login](../cli-commands#configu-login) command in the CLI.
-
-example:
+example .configu file:
 
 ```json
 {
@@ -167,44 +165,75 @@ example:
 }
 ```
 
+For Configu Cloud, you can use the native [configu login](../cli-commands#configu-login) command in the CLI and select the Configu organization you want to use:
+
+```bash
+configu login
+```
+
 ### Upsert values
 
 ```bash
-configu upsert --store "gsm" --set "prod" --schema "./app.cfgu.json" \
-    -c "ENABLE_CONTANT_FORM=true" \
+configu upsert --store "configu" --set "" --schema "./app.cfgu.json" \
+    -c "ENABLE_CONTANT_FORM=false" \
+&& configu upsert --store "configu" --set "prod" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
+    -c "BASE_URL=https://your-website.com"
 ```
+
+<Admonition type="info">
+
+We upserted a value of `false` to `ENABLE_CONTANT_FORM` on the root set to ensure that any export from the configu store will have a value for this key. This leverages the [hierarchal inheritance feature](../config-set) of ConfigSets. We will later use LaunchDarkly as the source of truth for this key by chaining eval commands.
+
+</Admonition>
 
 ```bash
 configu upsert --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
-    -c "GITHUB_ID=ff12r1d4f0c7435t4r7y" \
-    -c "GITHUB_SECRET=5875trfhud4764445ttr2f1c16b9c705d48yy4ee6y"
+    -c "ENABLE_CONTANT_FORM=true"
 ```
 
 ```bash
-configu upsert --store "configu" --set "prod" --schema "./app.cfgu.json" \
-    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
-    -c "BASE_URL=https://your-website.com"
+configu upsert --store "gsm" --set "prod" --schema "./app.cfgu.json" \
+    -c "GITHUB_ID=ff12r1d4f0c7435t4r7y" \
+    -c "GITHUB_SECRET=5875trfhud4764445ttr2f1c16b9c705d48yy4ee6y"
 ```
 
 We can also easily add configs to additional environments like `test`
 
 ```bash
-configu upsert --store "gsm" --set "test" --schema "./app.cfgu.json" \
-    -c "ENABLE_CONTANT_FORM=false" \
+configu upsert --store "configu" --set "test" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "BASE_URL=https://your-website-test.com" \
 && configu upsert --store "launchdarkly" --set "test" --schema "./app.cfgu.json" \
-    -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y" \
-&& configu upsert --store "configu" --set "test" --schema "./app.cfgu.json" \
-    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "BASE_URL=https://your-website-test.com"
+    -c "ENABLE_CONTANT_FORM=false" \
+&& configu upsert --store "gsm" --set "test" --schema "./app.cfgu.json" \
+    -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y"
 ```
+
+Configu upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/configu-root-set.png)
+![image](./img/configu-over-gsm-and-launchdarkly/configu-prod-set.png)
+![image](./img/configu-over-gsm-and-launchdarkly/configu-test-set.png)
+
+LaunchDarkly upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/launchdarkly-feature-flags.png)
+![image](./img/configu-over-gsm-and-launchdarkly/launchdarkly-feature-flags-contact-form.png)
+
+GSM upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets.png)
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets-prod.png)
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets-test.png)
 
 ### Export values
 
-Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need.
+Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need. We start by evaluating "configu" to ensure that any existing feature flags from LaunchDarkly and secrets from GSM will take priority over values we evaluated from Configu Cloud.
 
 ```bash
-configu eval --store "gsm" --set "prod" --schema "./app.cfgu.json" \
+configu eval --store "configu" --set "prod" --schema "./app.cfgu.json" \
  | configu eval --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
- | configu eval --store "configu" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "gsm" --set "prod" --schema "./app.cfgu.json" \
  | configu export --format 'HelmValues' > 'prod.yml'
 ```
 
