@@ -126,7 +126,7 @@ In the following example, we will manage our configs over Google Secret Manager 
 
 ### Authenticate GSM, LaunchDarkly, and Configu Cloud
 
-For GSM, Configu's CLI needs to be directed to a [service account key file](https://cloud.google.com/iam/docs/service-accounts-create) by providing a file path and a project id via the [.configu file](../cli-config).
+For GSM, Configu's CLI uses the [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) GSM uses, if you have the Google Cloud CLI configured then you only need to direct the Configu CLI to the target project by providing a project ID via the [.configu file](../cli-config). If you don't have the Google Cloud CLI configured, Configu's CLI needs to be directed to a [service account key file](https://cloud.google.com/iam/docs/service-accounts-create) by providing a file path via the .configu file.
 
 <Admonition type="info">
 
@@ -150,7 +150,7 @@ example .configu file:
     "gsm": {
       "type": "gcp-secret-manager",
       "configuration": {
-        "keyFile": "path/to/service-account.json",
+        "keyFile": "optional/path/to/service-account.json",
         "projectId": "myProjectId"
       }
     },
