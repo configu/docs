@@ -160,6 +160,16 @@
       ]
     },
     {
+      "title": "Stores",
+      "isOpenByDefault": false,
+      "items": [
+        {
+          "title": "INI file",
+          "slug": "ini-file"
+        }
+      ]
+    },
+    {
       "title": "IDE Plugins",
       "isOpenByDefault": false,
       "items": [
