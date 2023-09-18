@@ -1,0 +1,161 @@
+---
+id: json-file
+slug: json-file
+title: JSON File
+---
+
+Integrates the Configu Orchestrator with your JSON files.
+
+## Limitations
+
+<Admonition type="info">
+- Make sure that the files are already created when using the Configu Orchestrator.
+- When using a JSON file, make sure it is a root-level array as such:
+```json
+[]
+```
+
+</Admonition>
+
+## SDK Usage
+
+<CodeTabs labels={["Node SDK", "Python SDK"]}>
+
+```js
+import path from 'path';
+import {
+  JsonFileConfigStore,
+  ConfigSet,
+  ConfigSchema,
+  UpsertCommand,
+  EvalCommand,
+  ExportCommand,
+  TestCommand,
+  DeleteCommand,
+} from '@configu/node';
+
+(async () => {
+  try {
+    const store = new JsonFileConfigStore({ path: 'store.json' });
+    const set = new ConfigSet('test');
+    const schema = new ConfigSchema(path.join(__dirname, 'get-started.cfgu.json'));
+
+    await new TestCommand({ store, clean: true }).run();
+
+    await new UpsertCommand({
+      store,
+      set,
+      schema,
+      configs: {
+        GREETING: 'hey',
+        SUBJECT: 'configu node.js sdk',
+      },
+    }).run();
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const configurationData = await new ExportCommand({
+      data,
+    }).run();
+
+    console.log(configurationData);
+
+    await new DeleteCommand({ store, set, schema }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
+```python
+coming soon
+```
+
+</CodeTabs>
+
+## CLI Usage
+
+Configu's CLI needs to be directed to your desired file by providing a file path via the [.configu file](../cli-config).
+
+example .configu file:
+
+```json
+{
+  "stores": {
+    "json-file-store": {
+      "type": "json-file",
+      "configuration": {
+        "path": "path/to/file.json"
+      }
+    }
+  }
+}
+```
+
+### Test command
+
+```bash
+configu test --store "json-file-store" --clean
+```
+
+### Upsert command
+
+```bash
+configu upsert --store "json-file-store" --set "test" --schema "./get-started.cfgu.json" \
+    -c "GREETING=hey" \
+    -c "SUBJECT=configu node.js sdk"
+```
+
+### Eval and export commands
+
+```bash
+configu eval --store "json-file-store" --set "test" --schema "./get-started.cfgu.json" \
+ | configu export
+```
+
+Export result:
+
+```json
+{
+  "GREETING": "hey",
+  "SUBJECT": "configu node.js sdk",
+  "MESSAGE": "hey, configu node.js sdk!"
+}
+```
+
+### Delete command
+
+Clean up the previous upsert by using:
+
+```bash
+configu delete --store "json-file-store" --set "test" --schema "./get-started.cfgu.json"
+```
+
+## Examples
+
+Empty JSON file store before upsert:
+
+```json
+[]
+```
+
+JSON file store after upsert:
+
+```json
+[
+  {
+    "key": "GREETING",
+    "set": "test",
+    "value": "hey"
+  },
+  {
+    "key": "SUBJECT",
+    "set": "test",
+    "value": "configu node.js sdk"
+  }
+]
+```
