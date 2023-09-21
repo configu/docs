@@ -160,6 +160,20 @@
       ]
     },
     {
+      "title": "Stores",
+      "isOpenByDefault": false,
+      "items": [
+        {
+          "title": "AWS Secrets Manager",
+          "slug": "aws-secrets-manager"
+        },
+        {
+          "title": "AWS Parameter Store",
+          "slug": "aws-parameter-store"
+        }
+      ]
+    },
+    {
       "title": "IDE Plugins",
       "isOpenByDefault": false,
       "items": [
