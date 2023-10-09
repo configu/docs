@@ -1,0 +1,173 @@
+---
+id: configu-over-asm-and-param-store
+slug: configu-over-asm-and-param-store
+title: Managing ASM and AWS Param Store using Configu Orchestrator (open-source)
+---
+
+Today's dev teams are tasked with managing Config Ops on the _platform_ as well,
+Configu lets you only worry about your application [schemas](/config-schema), with Configu providing the rest of what's needed, including managing the diffrent storage platforms
+and validating your new config values. Check out the tutorial below that shows how to use [Configu Orchestrator (open-source)](https://github.com/configu/configu) to manage 
+[AWS Secret Manager (ASM)](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) and [AWS Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html).
+
+![image](./img/aws-diagram.png)
+
+To complete the tutorial, you'll need:
+- [AWS Secret Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+- [AWS Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
+- [Configu's CLI](/cli-setup)
+- [hackathon-starter application](https://github.com/sahat/hackathon-starter)
+
+ <Admonition type="info">
+By default `Configu Orchestrator` will use the AWS IIM file as the authentication method, no need to login
+</Admonition>
+
+As most applications already have configuration files, In this example, we will use the `.env.example` file from the hackathon-starter repo:
+
+`.env.example`
+
+```bash
+BASE_URL=http://localhost:8080
+MONGODB_URI=mongodb://localhost:27017/test
+SITE_CONTACT_EMAIL=youremail@yourdomain.com
+
+SESSION_SECRET=Your Session Secret goes here
+
+MAILGUN_USER=postmaster@sandbox697fcddc09814c6b83718b9fd5d4e5dc.mailgun.org
+MAILGUN_PASSWORD=29eldds1uri6
+
+SMTP_USER=none
+SMTP_PASSWORD=none
+
+SENDGRID_API_KEY=hdgfadsfahg---apikey---hdgfadsfahg
+
+NYT_KEY=9548be6f3a64163d23e1539f067fcabd:5:68537648
+
+LASTFM_KEY=c8c0ea1c4a6b199b3429722512fbd17f
+LASTFM_SECRET=is cb7857b8fba83f819ea46ca13681fe71
+
+SNAPCHAT_ID=181f414f-9581-4498-be9a-a223d024cf10
+SNAPCHAT_SECRET=DyswCZGyuZl5BBEA1yWlcjyAoONB-_qw8WNodhc4hr4
+
+FACEBOOK_ID=754220301289665
+FACEBOOK_SECRET=41860e58c256a3d7ad8267d3c1939a4a
+
+INSTAGRAM_ID=9f5c39ab236a48e0aec354acb77eee9b
+INSTAGRAM_SECRET=5920619aafe842128673e793a1c40028
+
+GITHUB_ID=cb448b1d4f0c743a1e36
+GITHUB_SECRET=815aa4606f476444691c5f1c16b9c70da6714dc6
+
+...
+
+```
+
+## Step 1 - Create schema declaration
+
+Instead of maintaining a `.env` file for each environment or duplicating the keys again and again to sync and insert configurations between the ASM and the Parameter Store,
+create a `.cfgu` schema declaration for this service, so that each change will only have to be made once (only the key in the schema) and then the values will be initialized by the same interface.
+We will use the `init` command to generate it and for this example, we can also use the `--import` flag to auto-generate it from the existing `.env` file:
+
+```bash
+configu init --import .env.example --defaults --types --name app
+```
+
+<Admonition type="info">
+`--types` will automatically generate the types for you, based on the supported types. If you use this flag, always check and verify that the generated types are accurate
+</Admonition>
+
+`app.cfgu.json`
+
+```json
+{
+  "BASE_URL": {
+    "type": "URL",
+    "default": "http://localhost:8080"
+  },
+  "MONGODB_URI": {
+    "type": "String",
+    "default": "mongodb://localhost:27017/test"
+  },
+  "SITE_CONTACT_EMAIL": {
+    "type": "Email",
+    "default": "youremail@yourdomain.com"
+  },
+  "SESSION_SECRET": {
+    "type": "String",
+    "default": "Your Session Secret goes here"
+  },
+
+  ...
+
+  "GITHUB_ID": {
+    "type": "String",
+    "default": "cb448b1d4f0c743a1e36"
+  },
+  "GITHUB_SECRET": {
+    "type": "String",
+    "default": "815aa4606f476444691c5f1c16b9c70da6714dc6"
+  }
+  ...
+}
+```
+
+<Admonition type="info">
+Although saving configurations in the source control is considered to be bad practice, the Cfgu format is designed to be part of the code as it doesn't include any sensitive values.
+Doing that increases developers' velocity and helps them avoid leaving the terminal/IDE.
+</Admonition>
+
+## Step 2 - Use defaults for local development
+
+<Admonition type="info">
+For the full instructions please follow the `hackathon-starter` [getting started guide](https://github.com/sahat/hackathon-starter/blob/master/README.md#getting-started) 
+</Admonition>
+
+Running a local environment was never easier, run Configu seamlessly with your app.
+
+  ```bash
+  configu eval --schema "./app.cfgu.json" --defaults | configu export --run "node app.js"
+  ```
+
+## Step 3 - Manage configs in AWS using Configu Orchestrator
+
+Using a single set of commands we can control any store from local files to secret managers.
+In the following example, we will manage our configs over our AWS secret manager (ASM) and Parameter Store.
+
+### Authenticate AWS
+
+By default, Configu's CLI uses the standard authentication method AWS uses, if you have an IIM file with the right permissions, there's no special action to take.
+
+### Upsert values
+
+```bash
+configu upsert --store "aws-parameter-store" --set "prod" --schema "./app.cfgu.json" \
+    -c "BASE_URL=http://app.yourdomain.com" \
+    -c "SITE_CONTACT_EMAIL=info@yourdomain.com"
+```
+
+```bash
+configu upsert --store "aws-secrets-manager" --set "prod" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
+    -c "GITHUB_ID=ff12r1d4f0c7435t4r7y" \
+    -c "GITHUB_SECRET=5875trfhud4764445ttr2f1c16b9c705d48yy4ee6y"
+```
+
+We can also easily add configs to additional environments like `test`
+
+```bash
+configu upsert --store "aws-parameter-store" --set "test" --schema "./app.cfgu.json" \
+    -c "BASE_URL=http://app.test.yourdomain.com" -c "SITE_CONTACT_EMAIL=test@yourdomain.com" \
+&& configu upsert --store "aws-secrets-manager" --set "test" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y"
+```
+
+### Export values
+
+Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need.
+
+```bash
+configu eval --store "aws-parameter-store" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "aws-secrets-manager" --set "prod" --schema "./app.cfgu.json" \
+ | configu export --format 'HelmValues' > 'prod.yml'
+```
+
+You're done!
