@@ -17,7 +17,7 @@ This routine assumes you’ll be using `npm` as the main package manager.
 
 💡 Note that by default `npm update` will not update the [semver](https://semver.org/) values of direct dependencies in your project `package.json`, if you want to also update values in `package.json` you can run: `npm update --save` (or add the `save=true` option to a [configuration file](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc) to make that the default behavior).
 
-1. Open up the project, fetch latest changes, branch out
+1. Open up the project, fetch the latest changes, branch out
 
 2. Run `npm update --save` to update all the versions in your package.json
 
@@ -52,7 +52,7 @@ In case `npm update` malfunctioning or need to update deps to the latest version
 - [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) is a handy little library that for historic reasons came into spotlight as a properly working alternative to [everbugging](https://github.com/npm/cli/issues/708) native `npm outdated && npm update`
 - [npx](https://docs.npmjs.com/cli/v8/commands/npx) is a part of functionality of `npm` that allows you use npm packages remote, without local installation
 
-1. Open up the project, fetch latest changes, branch out
+1. Open up the project, fetch the latest changes, branch out
 2. Run `npx npm-check-updates` to get the list of packages that are out of date
 
 Example output

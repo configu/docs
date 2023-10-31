@@ -16,7 +16,7 @@ The documentation content is [MDX-based](https://mdxjs.com/docs/what-is-mdx/#mar
 
 A list of common gotchas:
 
-- MDX supports standard markdown (a.k.a `CommonMark`). GFM, which stands for GitHub-Flavoured Markdown, **is not supported**
+- MDX supports standard markdown (a.k.a. `CommonMark`). GFM, which stands for GitHub-Flavoured Markdown, **is not supported**
 - Know what is [interleaving](https://mdxjs.com/docs/what-is-mdx/#interleaving)
 - Pass HTML attributes as JSX (e.g. use `className` instead of `class`)
 
@@ -82,7 +82,7 @@ To add a top-level sidebar section, place a sibling in a desired position inside
       "title": "Before the overview section",
       "isOpenByDefault": false, // change to true if you want the section to be open by default
       "items": [
-        // add entries to pupulate the section with subpages
+        // add entries to populate the section with subpages
       ]
     },
     // an item that will lead user elsewhere from Configu's docs,
@@ -124,8 +124,8 @@ To add an external link to the sidebar section, place it at the desired position
 ⚠️ Note, that external links are not parts of docs internal navigation and won't be displayed at the bottom of a doc page. They live at the very end of the navigation sidebar, and the order can be adjusted only within `external` array.
 **Attributes breakdown**:
 
-- the `title` attribute is required and is a represenation of a certain `.md` page in sidebar. `title` may differ from the on inside the page
-- `slug` should always match page's slug. Under the hood we define the active item by comparing current page url and the passed `slug` metadata. Also the sidebar links are being constructed using this attribute.
+- the `title` attribute is required and is a representation of a certain `.md` page in sidebar. `title` may differ from the on inside the page
+- `slug` should always match page's slug. Under the hood we define the active item by comparing current page url and the passed `slug` metadata. Also, the sidebar links are being constructed using this attribute.
 
 ## Headings
 
@@ -186,7 +186,7 @@ A video element can contain one or more video sources. To specify the source of 
 
 ## Admonition
 
-To improve the documentation readability, one can leverage an Admonition custom component. Wrap your piece of text with `<Admonition></Admonition>`, make sure content within starts end end with an empty line, and pass the type.
+To improve the documentation readability, one can leverage an Admonition custom component. Wrap your piece of text with `<Admonition></Admonition>`, make sure content within starts and ends with an empty line, and pass the type.
 
 There are 5 types of Admonition: `note`, `warning`, `info`, `caution`, `tip`, ; the default is `note`.
 
@@ -210,7 +210,7 @@ Example:
 
 ## Definition List
 
-Custom `mdx` component that makes possible using [extended markdown syntax for descriptions lists](https://www.markdownguide.org/extended-syntax/#definition-lists). Fully [WCAG-compliant](https://www.w3.org/TR/WCAG20-TECHS/H40.html). It provides an accessible way to make term lists, and it's a generally good way to add structure to a text when a writer needs more than bullets and less than headings.
+Custom `mdx` component that makes possible using [extended Markdown syntax for descriptions lists](https://www.markdownguide.org/extended-syntax/#definition-lists). Fully [WCAG-compliant](https://www.w3.org/TR/WCAG20-TECHS/H40.html). It provides an accessible way to make term lists, and it's a generally good way to add structure to a text when a writer needs more than bullets and less than headings.
 
 To use the Version component, you need to include `<Version></Version>` and provide its type. The type can be one of three options: green, blue, or pink.
 
