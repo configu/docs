@@ -44,8 +44,8 @@ import {
       set,
       schema,
       configs: {
-        'GREETING': 'hey',
-        'SUBJECT': 'configu browser sdk'
+        GREETING: 'hey',
+        SUBJECT: 'configu browser sdk',
       },
     }).run();
 
@@ -56,14 +56,13 @@ import {
     }).run();
 
     const configurationData = await new ExportCommand({
-      data,
+      pipe: data,
     }).run();
   } catch (error) {
     console.error(error);
   }
 })();
 ```
-
 
 ## Reference
 
@@ -90,4 +89,3 @@ npm install
 ### Contribute
 
 Follow the [Sending a Pull Request](https://github.com/configu/configu/blob/main/CONTRIBUTING.md#sending-a-pull-request) section from the `CONTRIBUTING.md`.
-
