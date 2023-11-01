@@ -16,7 +16,7 @@ The documentation content is [MDX-based](https://mdxjs.com/docs/what-is-mdx/#mar
 
 A list of common gotchas:
 
-- MDX supports standard markdown (a.k.a. `CommonMark`). GFM, which stands for GitHub-Flavoured Markdown, **is not supported**
+- MDX supports standard markdown (a.k.a `CommonMark`). GFM, which stands for GitHub-Flavoured Markdown, **is not supported**
 - Know what is [interleaving](https://mdxjs.com/docs/what-is-mdx/#interleaving)
 - Pass HTML attributes as JSX (e.g. use `className` instead of `class`)
 
