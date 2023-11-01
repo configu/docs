@@ -34,7 +34,7 @@ An `.env` file should consist of publicly available included in `.env` as well a
 ALGOLIA_ADMIN_KEY=
 ```
 
-:warning: Please, ask project owners for private variables or, if you have an access to Gatsby Dashboard, just pull them out from the `Environment variables` section.
+:warning: Please ask project owners for private variables or, if you have access to Gatsby Dashboard, just pull them out from the `Environment variables` section.
 
 ## Usage
 
