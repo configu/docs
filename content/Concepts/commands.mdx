@@ -77,6 +77,43 @@ import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@con
 })();
 ```
 
+Upsert configs from a previous Eval command:
+
+```js
+import path from 'path';
+import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
+
+(async () => {
+  try {
+    const store = new ConfiguConfigStore({
+      credentials: {
+        org: process.env.CONFIGU_ORG,
+        token: process.env.CONFIGU_TOKEN,
+      },
+    });
+    const set = new ConfigSet('production');
+    const schema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const hcvStore = new HashiCorpVaultConfigStore();
+
+    await new UpsertCommand({
+      store: hcvStore,
+      set,
+      schema,
+      pipe: data,
+    }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
 ## Eval & Export
 
 The `Eval` command is used to fetch and validate `Configs` from `ConfigStore` on demand.
