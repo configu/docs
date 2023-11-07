@@ -178,6 +178,10 @@
       "isOpenByDefault": false,
       "items": [
         {
+          "title": "Overview",
+          "slug": "recipes-overview"
+        },
+        {
           "title": "Create a Slack Webhook",
           "slug": "webhook-slack"
         },
