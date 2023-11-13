@@ -192,6 +192,10 @@
         {
           "title": "Managing HashiCorp Vault using Configu",
           "slug": "hc-vault-w-configu"
+        },
+        {
+          "title": "Managing configuration files using Configu",
+          "slug": "files-w-configu"
         }
       ]
     }
