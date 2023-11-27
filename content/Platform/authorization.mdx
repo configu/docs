@@ -54,7 +54,7 @@ To assign roles to your [organization members](../members#assign-roles-to-a-memb
 Take control of your organization's access management with our flexible and dynamic custom roles feature.
 Every organization is unique, with specific requirements and workflows. That's why we empower you to create custom roles, allowing you to fine-tune access permissions according to your exact needs.
 
-1. Go to the **Roles** page under the **Settings** tab
+1. Go to the **Roles** page under the **Settings** tab.
 2. Click the **Create Role** button and provide the role name and role permissions.
 3. After adding the role, you will see it listed in the custom roles list.
 
@@ -99,5 +99,27 @@ Role names are unique, attempting to use an existing role name including predefi
 
 - The deleted role will be unassigned from any member or token that used it.
 - Custom roles that have been selected as the default role cannot be deleted.
+
+</Admonition>
+
+## Assign config attribute
+
+Members and tokens can be assigned a config attribute which gives them access to a specific config within a config set.
+
+1. Go to the **Configs** page under the **Explorer** tab.
+2. Open a config's action menu and click **Permissions**. Pick one or more members and assign them a desired attribute.
+3. After assigning an attribute, the member will be able to access the config with the granted permission.
+
+![image](./img/authorization/abac-config-view-permissions.png)
+![image](./img/authorization/abac-config-permissions.png)
+
+<Admonition type="info">
+
+- The **read** permission grants access to read the config value.
+- The **write** permission grants access to edit the config.
+- The **manage** permission grants access to edit the config and also assign config attributes to other members.
+- Only members can be assigned config attributes, tokens cannot.
+- Only members with the **Admin** and **Owner** role can initially assign attributes.
+- Attributes are additive, meaning that a member with multiple attributes will have the union of all their permissions.
 
 </Admonition>
