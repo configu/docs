@@ -6,6 +6,8 @@ title: Authorization
 
 Configu provides role based access control (RBAC) and attribute-based access control (ABAC). Managers (owners and admins) of an organization can assign roles and specific permissions to organization members and tokens according to their requirements.
 
+The usage of roles and attributes depends on the level of granularity needed for access control. Roles are suitable for broad categorization of permissions, streamlining high-level access management for a group of users. Conversely, attributes provide a more tailored, fine-grained approach for specific access control for individual users. Choose roles for simplicity and predefined permissions for groups of users, and attributes for customized, nuanced access control for individual users, or a combination of both based on your organization's needs.
+
 RBAC and ABAC are inclusive, meaning that the member/token gets access to resources according to the union of all their respective roles and attributes.
 
 ## Default role
@@ -104,7 +106,7 @@ Role names are unique, attempting to use an existing role name including predefi
 
 ## Assign config attribute
 
-Members and tokens can be assigned a config attribute which gives them access to a specific config within a config set.
+Members can be assigned a config attribute which gives them access to a specific config within a config set.
 
 1. Go to the **Configs** page under the **Explorer** tab.
 2. Open a config's action menu and click **Permissions**. Pick one or more members and assign them a desired attribute.
@@ -118,7 +120,7 @@ Members and tokens can be assigned a config attribute which gives them access to
 - The **read** permission grants access to read the config value.
 - The **write** permission grants access to edit the config.
 - The **manage** permission grants access to edit the config and also assign config attributes to other members.
-- Only members can be assigned config attributes, tokens cannot.
+- Tokens cannot be assigned a config attribute.
 - Only members with the **Admin** and **Owner** role can initially assign attributes.
 - Attributes are additive, meaning that a member with multiple attributes will have the union of all their permissions.
 
