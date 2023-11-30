@@ -14,6 +14,8 @@ The `Cfgu` format represents a set of properties that define essential character
 - **depends**: Specifies a list of other configurations that the current configuration depends on. This property is optional.
 - **template**: Allows you to define Mustache templates that can be used to construct a templated value from other configuration values. This property is optional and applicable when the type is set to String.
 - **description**: Provides a description of the configuration's role in the code. This property is optional.
+- **options**: Specifies a list of values that the configuration value must match. This property is optional.
+- **schema**: Specifies a [JSON-schema](https://json-schema.org/specification) that the configuration value must match. This property is optional and applicable when the type is set to JSONSchema.
 
 ### Available Types
 
@@ -61,6 +63,9 @@ Configu supports the following types for configuration values:
 - **AlibabaRegion**: Represents a Alibaba Cloud region. Example: `cn-hangzhou`
 - **MongoId**: Represents a MongoDB identifier. Example: `64ef397579c9984350addd44`
 - **DateTime**: Represents a date/timestamp/hour. Example: `2023-08-30`, `12:30`, `1661846400000`
+- **ARN**: Represents a Amazon Resource Names (ARNs). Example: `arn:partition:service:region:account-id:resource-id`
+- **JSONschema**: Represents JSON data that must conform to a JSON schema. Example: `{"key":value}`
+  - Also requires `schema` property to be specified. Example: `{"type": "object", "properties": {"GREETING": {"type": "string"}, "SUBJECT": {"type": "string"}}, "required": ["GREETING", "SUBJECT"]}`
 
 <Admonition type="tip">
 
