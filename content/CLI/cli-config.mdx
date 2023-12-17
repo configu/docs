@@ -134,13 +134,13 @@ module.exports = {
 };
 ```
 
-You can then pass the environment variable to the CLI to replace the mustache template with the environment variable value. Example [eval command](../cli-commands#configu-eval) with an environment variable and the example schema above:
+You can then pass the environment variable to the CLI using any method of setting environment variables to replace the mustache template with the environment variable value. Here is an example of passing an environment variable to the CLI by using an operating system specific prefix:
 
 <CodeTabs labels={['Unix/Linux/MacOS','Windows']}>
 ```bash
-PASSWORD=somePassword configu eval --store store1 --schema <value> [--set <value>] [-c <value>]
+PASSWORD=password configu eval --store store1 --schema <value> [--set <value>] [-c <value>]
 ```
 ```bash
-set PASSWORD=somePassword && configu eval --store store1 --schema <value> [--set <value>] [-c <value>]
+set PASSWORD=password && configu eval --store store1 --schema <value> [--set <value>] [-c <value>]
 ```
 </CodeTabs>
