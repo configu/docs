@@ -1,0 +1,240 @@
+---
+id: configu-over-gsm-and-launchdarkly
+slug: configu-over-gsm-and-launchdarkly
+title: Managing GSM and LaunchDarkly using Configu Orchestrator (open-source)
+---
+
+Today's dev teams are tasked with managing Config Ops on the _platform_ as well,
+Configu lets you only worry about your application [schemas](/config-schema), with Configu providing the rest of what's needed, including managing the diffrent storage platforms
+and validating your new config values. Check out the tutorial below that shows how to use [Configu Orchestrator (open-source)](https://github.com/configu/configu) to manage
+[Google Secret manager (GSM)](https://cloud.google.com/secret-manager) and [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags) together with [Configu Cloud](../configu-cloud).
+
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-launch-darkly-diagram.png)
+
+To complete the tutorial, you'll need:
+
+- [Google Secret manager (GSM)](https://cloud.google.com/secret-manager)
+- [LaunchDarkly](https://apidocs.launchdarkly.com/tag/Feature-flags)
+- [A Configu Cloud organization](../configu-cloud)
+- [Configu's CLI](/cli-setup)
+- [hackathon-starter application](https://github.com/sahat/hackathon-starter)
+
+As most applications already have configuration files, In this example, we will use the `.env.example` file from the hackathon-starter repo and also add a feature flag that enables/disables the contact form:
+
+`.env.example`
+
+```bash
+BASE_URL=http://localhost:8080
+MONGODB_URI=mongodb://localhost:27017/test
+SITE_CONTACT_EMAIL=youremail@yourdomain.com
+# New feature flag that controls if the contact form is enabled
+ENABLE_CONTANT_FORM=true
+
+SESSION_SECRET=Your Session Secret goes here
+
+MAILGUN_USER=postmaster@sandbox697fcddc09814c6b83718b9fd5d4e5dc.mailgun.org
+MAILGUN_PASSWORD=29eldds1uri6
+
+SMTP_USER=none
+SMTP_PASSWORD=none
+
+SENDGRID_API_KEY=hdgfadsfahg---apikey---hdgfadsfahg
+
+NYT_KEY=9548be6f3a64163d23e1539f067fcabd:5:68537648
+
+LASTFM_KEY=c8c0ea1c4a6b199b3429722512fbd17f
+LASTFM_SECRET=is cb7857b8fba83f819ea46ca13681fe71
+
+SNAPCHAT_ID=181f414f-9581-4498-be9a-a223d024cf10
+SNAPCHAT_SECRET=DyswCZGyuZl5BBEA1yWlcjyAoONB-_qw8WNodhc4hr4
+
+FACEBOOK_ID=754220301289665
+FACEBOOK_SECRET=41860e58c256a3d7ad8267d3c1939a4a
+
+INSTAGRAM_ID=9f5c39ab236a48e0aec354acb77eee9b
+INSTAGRAM_SECRET=5920619aafe842128673e793a1c40028
+
+GITHUB_ID=cb448b1d4f0c743a1e36
+GITHUB_SECRET=815aa4606f476444691c5f1c16b9c70da6714dc6
+
+...
+```
+
+## Step 1 - Create schema declaration
+
+Instead of maintaining a `.env` file for each environment or duplicating the keys,
+create a `.cfgu` schema declaration for this service, so that each change will only have to be made once (only the key in the schema) and then the values will be initialized by the same interface.
+We will use the `init` command to generate it and for this example, we can also use the `--import` flag to auto-generate it from the existing `.env` file:
+
+```bash
+configu init --import .env.example --defaults --types --name app
+```
+
+<Admonition type="info">
+  `--types` will automatically generate the types for you, based on the supported types. If you use
+  this flag, always check and verify that the generated types are accurate
+</Admonition>
+
+`app.cfgu.json`
+
+```json
+{
+  "BASE_URL": {
+    "type": "URL",
+    "default": "http://localhost:8080"
+  },
+  "MONGODB_URI": {
+    "type": "String",
+    "default": "mongodb://localhost:27017/test"
+  },
+  "SITE_CONTACT_EMAIL": {
+    "type": "Email",
+    "default": "youremail@yourdomain.com"
+  },
+  "ENABLE_CONTANT_FORM": {
+    "type": "Boolean",
+    "default": "true"
+  },
+
+  ...
+}
+```
+
+<Admonition type="info">
+  Although saving configurations in the source control is considered to be bad practice, the Cfgu
+  format is designed to be part of the code as it doesn't include any sensitive values. Doing that
+  increases developers' velocity and helps them avoid leaving the terminal/IDE.
+</Admonition>
+
+## Step 2 - Use defaults for local development
+
+<Admonition type="info">
+  For the full instructions please follow the `hackathon-starter` [getting started
+  guide](https://github.com/sahat/hackathon-starter/blob/master/README.md#getting-started)
+</Admonition>
+
+Running a local environment was never easier, run Configu seamlessly with your app.
+
+```bash
+configu eval --schema "./app.cfgu.json" | configu export --run "node app.js"
+```
+
+## Step 3 - Manage configs in GSM and LaunchDarkly together with Configu Cloud using Configu Orchestrator
+
+Using a single set of commands we can control any store from local files to secret managers.
+In the following example, we will manage our configs over Google Secret Manager (GSM) and LaunchDarkly together with Configu Cloud.
+
+### Authenticate GSM, LaunchDarkly, and Configu Cloud
+
+For GSM, Configu's CLI uses the [Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) GSM uses, if you have the Google Cloud CLI configured then you only need to direct the Configu CLI to the target project by providing a project ID via the [.configu file](../cli-config). If you don't have the Google Cloud CLI configured, Configu's CLI needs to be directed to a [service account key file](https://cloud.google.com/iam/docs/service-accounts-create) by providing a file path via the .configu file.
+
+<Admonition type="info">
+
+Make sure your service account key has permission to manage secrets (`roles/secretmanager.admin`).
+
+</Admonition>
+
+For LaunchDarkly, Configu's CLI needs to be directed to an [ldc file](https://github.com/launchdarkly-labs/ldc) by providing a file path and speciying a configuration key via the [.configu file](../cli-config).
+
+<Admonition type="info">
+
+Make sure your LaunchDarkly access token has the "Writer" role.
+
+</Admonition>
+
+example .configu file:
+
+```json
+{
+  "stores": {
+    "gsm": {
+      "type": "gcp-secret-manager",
+      "configuration": {
+        "keyFile": "optional/path/to/service-account.json",
+        "projectId": "myProjectId"
+      }
+    },
+    "launchdarkly": {
+      "type": "launch-darkly",
+      "configuration": {
+        "ldcJsonPath": "ldc.json",
+        "ldcConfigurationKey": "default"
+      }
+    }
+  }
+}
+```
+
+For Configu Cloud, you can use the native [configu login](../cli-commands#configu-login) command in the CLI and select the Configu organization you want to use:
+
+```bash
+configu login
+```
+
+### Upsert values
+
+```bash
+configu upsert --store "configu" --set "" --schema "./app.cfgu.json" \
+    -c "ENABLE_CONTANT_FORM=false" \
+&& configu upsert --store "configu" --set "prod" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/prod" \
+    -c "BASE_URL=https://your-website.com"
+```
+
+<Admonition type="info">
+
+We upserted a value of `false` to `ENABLE_CONTANT_FORM` on the root set to ensure that any export from the configu store will have a value for this key. This leverages the [hierarchal inheritance feature](../config-set) of ConfigSets. We will later use LaunchDarkly as the source of truth for this key by chaining eval commands.
+
+</Admonition>
+
+```bash
+configu upsert --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
+    -c "ENABLE_CONTANT_FORM=true"
+```
+
+```bash
+configu upsert --store "gsm" --set "prod" --schema "./app.cfgu.json" \
+    -c "GITHUB_ID=ff12r1d4f0c7435t4r7y" \
+    -c "GITHUB_SECRET=5875trfhud4764445ttr2f1c16b9c705d48yy4ee6y"
+```
+
+We can also easily add configs to additional environments like `test`
+
+```bash
+configu upsert --store "configu" --set "test" --schema "./app.cfgu.json" \
+    -c "MONGODB_URI=mongodb://username:password@X.X.X.X:27017/test" -c "BASE_URL=https://your-website-test.com" \
+&& configu upsert --store "launchdarkly" --set "test" --schema "./app.cfgu.json" \
+    -c "ENABLE_CONTANT_FORM=false" \
+&& configu upsert --store "gsm" --set "test" --schema "./app.cfgu.json" \
+    -c "GITHUB_ID=ff12r1-test-435t4r7y" -c "GITHUB_SECRET=5875trfhud476444-test-1c16b9c705d48yy4ee6y"
+```
+
+Configu upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/configu-root-set.png)
+![image](./img/configu-over-gsm-and-launchdarkly/configu-prod-set.png)
+![image](./img/configu-over-gsm-and-launchdarkly/configu-test-set.png)
+
+LaunchDarkly upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/launchdarkly-feature-flags.png)
+![image](./img/configu-over-gsm-and-launchdarkly/launchdarkly-feature-flags-contact-form.png)
+
+GSM upsert result:
+
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets.png)
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets-prod.png)
+![image](./img/configu-over-gsm-and-launchdarkly/gsm-secrets-test.png)
+
+### Export values
+
+Similar to the way we previously used the Cfgu defaults we can evaluate and export from any store we need. We start by evaluating "configu" to ensure that any existing feature flags from LaunchDarkly and secrets from GSM will take priority over values we evaluated from Configu Cloud.
+
+```bash
+configu eval --store "configu" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "launchdarkly" --set "prod" --schema "./app.cfgu.json" \
+ | configu eval --store "gsm" --set "prod" --schema "./app.cfgu.json" \
+ | configu export --format 'HelmValues' > 'prod.yml'
+```
+
+You're done! This was a simple operation, but that's the best way to show someone the power and the simplicity of Configu Orchestrator and how you can use it to manage your configuration automatically and safely using all your current stores.
