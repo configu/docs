@@ -43,18 +43,6 @@ import {
     const schemaContents = JSON.parse(fileContent);
     const schema = new ConfigSchema('get-started', schemaContents);
 
-    await new TestCommand({ store, clean: true }).run();
-
-    await new UpsertCommand({
-      store,
-      set,
-      schema,
-      configs: {
-        GREETING: 'hey',
-        SUBJECT: 'configu node.js sdk',
-      },
-    }).run();
-
     const data = await new EvalCommand({
       store,
       set,
@@ -66,8 +54,6 @@ import {
     }).run();
 
     console.log(configurationData);
-
-    await new DeleteCommand({ store, set, schema }).run();
   } catch (error) {
     console.error(error);
   }
