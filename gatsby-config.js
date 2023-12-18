@@ -95,6 +95,15 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        headers: {
+          '/*': ['Access-Control-Allow-Origin: *'],
+          '/fonts/*': ['Cache-Control: public, max-age=31536000, immutable'],
+        },
+      },
+    },
     'gatsby-alias-imports',
     'gatsby-plugin-postcss',
     'gatsby-plugin-sitemap',
