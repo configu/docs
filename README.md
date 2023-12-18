@@ -1,4 +1,6 @@
-# Configu Docs Website Repo :rocket
+# Configu Company Website Repo 🚀
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/70117ebb-9163-4170-a533-bee6740d501a/deploy-status)](https://app.netlify.com/sites/configu-docs/deploys)
 
 ## Table of Contents
 
@@ -34,7 +36,7 @@ An `.env` file should consist of publicly available included in `.env` as well a
 ALGOLIA_ADMIN_KEY=
 ```
 
-:warning: Please ask project owners for private variables or, if you have access to Gatsby Dashboard, just pull them out from the `Environment variables` section.
+⚠️ Please ask project owners for private variables or, if you have access to Gatsby Dashboard, just pull them out from the `Environment variables` section.
 
 ## Usage
 
