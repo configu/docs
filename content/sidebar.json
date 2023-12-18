@@ -160,6 +160,60 @@
       ]
     },
     {
+      "title": "Stores",
+      "isOpenByDefault": false,
+      "items": [
+        {
+          "title": "HashiCorp Vault",
+          "slug": "hashicorp-vault"
+        },
+        {
+          "title": "Azure Key Vault",
+          "slug": "azure-key-vault"
+        },
+        {
+          "title": "GCP Secret Manager",
+          "slug": "gcp-secret-manager"
+        },
+        {
+          "title": "Kubernetes Secret",
+          "slug": "kubernetes-secret"
+        },
+        {
+          "title": "SQLite",
+          "slug": "sqlite"
+        },
+        {
+          "title": "MySQL",
+          "slug": "mysql"
+        },
+        {
+          "title": "MariaDB",
+          "slug": "mariadb"
+        },
+        {
+          "title": "PostgreSQL",
+          "slug": "postgres"
+        },
+        {
+          "title": "CockroachDB",
+          "slug": "cockroachdb"
+        },
+        {
+          "title": "Microsoft SQL Server",
+          "slug": "mssql"
+        },
+        {
+          "title": "LaunchDarkly",
+          "slug": "launch-darkly"
+        },
+        {
+          "title": "CloudBees",
+          "slug": "cloud-bees"
+        }
+      ]
+    },
+    {
       "title": "IDE Plugins",
       "isOpenByDefault": false,
       "items": [
