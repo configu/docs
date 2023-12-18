@@ -6,6 +6,27 @@ title: HashiCorp Vault
 
 Integrates the Configu Orchestrator with HashiCorp Vault.
 
+## Initialization
+
+Configu needs to be authorized to access your HashiCorp vault account. By default, Configu attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. The `engine` parameter must always be provided.
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "hashicorp-vault-store": {
+      "type": "hashicorp-vault",
+      "configuration": {
+        "address": "https://vault.example.com",
+        "engine": "example-engine",
+        "token": "example-token"
+      }
+    }
+  }
+}
+```
+
 ## Limitations
 
 <Admonition type="info">
@@ -83,28 +104,6 @@ coming soon
 </CodeTabs>
 
 ## CLI Usage
-
-Configu's CLI needs to be authorized to access your HashiCorp vault account. This can be done two ways
-
-- By default, Configu's CLI attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. You have to provide the engine via the [.configu file](../cli-config).
-- via the [.configu file](../cli-config).
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "hashicorp-vault-store": {
-      "type": "hashicorp-vault",
-      "configuration": {
-        "address": "https://vault.example.com",
-        "engine": "example-engine",
-        "token": "example-token"
-      }
-    }
-  }
-}
-```
 
 ### Test command
 

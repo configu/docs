@@ -6,11 +6,30 @@ title: CloudBees
 
 Integrates the Configu Orchestrator with CloudBees.
 
+## Initialization
+
+Configu needs to be authorized to access your CloudBees app. You must specify an `appKey` that corresponds to an an environment of some CloudBees environment and an optional context that has a `targetingKey` that identifies the subject (end-user, or client service) of a flag evaluation. You may also configure [`providerOptions`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/dc3f51b89bf7741b8d327311321ab6db041aa88d/types/rox-node/index.d.ts#L35C35-L35C35) to customize the CloudBees client.
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "cloud-bees-store": {
+      "type": "cloud-bees",
+      "configuration": {
+        "appKey": "example-appKey"
+      }
+    }
+  }
+}
+```
+
 ## Limitations
 
 <Admonition type="info">
 
-- Only supports the eval command
+- Only supports the eval and export commands
 
 </Admonition>
 
@@ -35,7 +54,7 @@ import {
 (async () => {
   try {
     const store = new CloudBeesConfigStore({
-      TODO,
+      appKey: 'example-appKey',
     });
     const set = new ConfigSet('test');
     const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
@@ -68,40 +87,13 @@ coming soon
 
 ## CLI Usage
 
-TODO
-Configu's CLI needs to be authorized to access your HashiCorp vault account. This can be done two ways
-
-- By default, Configu's CLI attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. You have to provide the engine via the [.configu file](../cli-config).
-- via the [.configu file](../cli-config).
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "cloud-bees-store": {
-      "type": "cloud-bees",
-      "configuration": {
-   TODO
-      }
-    }
-  }
-}
-```
-
 ### Test command
 
-```bash
-configu test --store "cloud-bees-store" --clean
-```
+Not supported
 
 ### Upsert command
 
-```bash
-configu upsert --store "cloud-bees-store" --set "test" --schema "./get-started.cfgu.json" \
-    -c "GREETING=hey" \
-    -c "SUBJECT=configu node.js sdk"
-```
+Not supported
 
 ### Eval and export commands
 
@@ -122,17 +114,9 @@ Export result:
 
 ### Delete command
 
-Clean up the previous upsert by using:
-
-```bash
-configu delete --store "cloud-bees-store" --set "test" --schema "./get-started.cfgu.json"
-```
+Not supported
 
 ## Examples
 
-TODO
 Secrets list:
-![image](./img/hashicorp-vault-secret-list.png)
-
-Upserted values to the `test` config set:
-![image](./img/hashicorp-vault-upsert-result.png)
+![image](./img/cloud-bees-feature-flag-list.png)

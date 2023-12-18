@@ -6,6 +6,25 @@ title: SQLite
 
 Integrates the Configu Orchestrator with a SQLite database.
 
+## Initialization
+
+Configu needs to be authorized to access your database instance. View the configuration options [here](https://typeorm.io/data-source-options#better-sqlite3-data-source-options).
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "sqlite-store": {
+      "type": "sqlite",
+      "configuration": {
+        "database": "example.sql"
+      }
+    }
+  }
+}
+```
+
 ## SDK Usage
 
 <CodeTabs labels={["Node SDK", "Python SDK"]}>
@@ -27,7 +46,7 @@ import {
 (async () => {
   try {
     const store = new SQLiteConfigStore({
-      url: 'example://username:password@example-host',
+      database: 'example.sql',
     });
     const set = new ConfigSet('test');
     const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
@@ -73,25 +92,6 @@ coming soon
 </CodeTabs>
 
 ## CLI Usage
-
-Configu's CLI needs to be authorized to access your database instance. This can be editing your .configu file.
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "sqlite-store": {
-      "type": "sqlite",
-      "configuration": {
-        "url": "example://username:password@example-host"
-      }
-    }
-  }
-}
-```
-
-View additional configuration options [here](https://typeorm.io/data-source-options#better-sqlite3-data-source-options).
 
 ### Test command
 

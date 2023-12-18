@@ -6,6 +6,25 @@ title: CockroachDB
 
 Integrates the Configu Orchestrator with a CockroachDB database.
 
+## Initialization
+
+Configu needs to be authorized to access your database instance. View the configuration options [here](https://typeorm.io/data-source-options#postgres--cockroachdb-data-source-options).
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "cockroachdb-store": {
+      "type": "cockroachdb",
+      "configuration": {
+        "url": "example://username:password@example-host"
+      }
+    }
+  }
+}
+```
+
 ## SDK Usage
 
 <CodeTabs labels={["Node SDK", "Python SDK"]}>
@@ -73,25 +92,6 @@ coming soon
 </CodeTabs>
 
 ## CLI Usage
-
-Configu's CLI needs to be authorized to access your database instance. This can be editing your .configu file.
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "cockroachdb-store": {
-      "type": "cockroachdb",
-      "configuration": {
-        "url": "example://username:password@example-host"
-      }
-    }
-  }
-}
-```
-
-View additional configuration options [here](https://typeorm.io/data-source-options#postgres--cockroachdb-data-source-options).
 
 ### Test command
 

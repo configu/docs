@@ -6,6 +6,28 @@ title: Azure Key Vault
 
 Integrates the Configu Orchestrator with Azure Key Vault.
 
+## Initialization
+
+Configu needs to be authorized to access Azure Key Vault. This can be done using the [default azure credentials](https://www.npmjs.com/package/@azure/identity#defaultazurecredential) which by default will read account information specified via [environment variables](https://www.npmjs.com/package/@azure/identity#environment-variables) and use it to authenticate. The `vaultUrl` parameter must always be provided.
+
+The examples below will use the following environment variables for authentication: `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `AZURE_TENANT_ID` in conjunction with the required `vaultUrl` parameter.
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "azure-key-vault-store": {
+      "type": "azure-key-vault",
+      "configuration": {
+        "credential": {},
+        "vaultUrl": "https://example.vault.azure.net"
+      }
+    }
+  }
+}
+```
+
 ## Limitations
 
 <Admonition type="info">
@@ -13,10 +35,6 @@ Integrates the Configu Orchestrator with Azure Key Vault.
 - Deleted configs does not immediately remove secrets [due to soft deletion](https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview). Attempting to upsert to a deleted secret that is not purged will throw an error.
 
 </Admonition>
-
-## Initialization
-
-TODO
 
 ## SDK Usage
 
@@ -39,10 +57,7 @@ import {
 (async () => {
   try {
     const store = new AzureKeyVaultConfigStore({
-      credential: {
-        tenantId: 'example-tenantId',
-        workloadIdentityClientId: 'example-workloadIdentityClientId',
-      },
+      credential: {},
       vaultUrl: 'https://example.vault.azure.net',
     });
     const set = new ConfigSet('test');
@@ -89,28 +104,6 @@ coming soon
 </CodeTabs>
 
 ## CLI Usage
-
-TODO
-Configu's CLI needs to be authorized to access Azure Key Vault. This can be done using the [default azure credentials](https://www.npmjs.com/package/@azure/identity#defaultazurecredential) which by default will read account information specified via [environment variables](https://www.npmjs.com/package/@azure/identity#environment-variables) and use it to authenticate.. The vault url must be provided via the [.configu file](../cli-config).
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "azure-key-vault-store": {
-      "type": "azure-key-vault",
-      "configuration": {
-        "credential": {
-          "tenantId": "example-tenantId",
-          "workloadIdentityClientId": "example-workloadIdentityClientId"
-        },
-        "vaultUrl": "https://example.vault.azure.net"
-      }
-    }
-  }
-}
-```
 
 ### Test command
 

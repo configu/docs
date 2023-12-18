@@ -4,13 +4,33 @@ slug: launch-darkly
 title: LaunchDarkly
 ---
 
-Integrates the Configu Orchestrator with HashiCorp Vault.
+Integrates the Configu Orchestrator with LaunchDarkly.
+
+## Initialization
+
+Configu needs to be authorized to access your LaunchDarkly project. You must specify an `sdkKey` that corresponds to an SDK key of an environment of some LaunchDarkly project and a context that has a `key` or a `targetingKey` that identifies the subject (end-user, or client service) of a flag evaluation. You may also configure [`ldOptions`](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDOptions.html) to customize the LaunchDarkly client.
+
+example .configu file store configuration:
+
+```json
+{
+  "stores": {
+    "launch-darkly-store": {
+      "type": "launch-darkly",
+      "configuration": {
+        "sdkKey": "example-sdkKey",
+        "context": { "targetingKey": "default" }
+      }
+    }
+  }
+}
+```
 
 ## Limitations
 
 <Admonition type="info">
 
-- Only supports the eval command
+- Only supports the eval and export commands
 
 </Admonition>
 
@@ -35,9 +55,8 @@ import {
 (async () => {
   try {
     const store = new LaunchDarklyConfigStore({
-      address: 'https://vault.example.com'
-      engine: 'example-engine',
-      token: 'example-token',
+      sdkKey: 'example-sdkKey',
+      context: { targetingKey: 'default' },
     });
     const set = new ConfigSet('test');
     const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
@@ -70,41 +89,13 @@ coming soon
 
 ## CLI Usage
 
-Configu's CLI needs to be authorized to access your HashiCorp vault account. This can be done two ways
-
-- By default, Configu's CLI attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. You have to provide the engine via the [.configu file](../cli-config).
-- via the [.configu file](../cli-config).
-
-example .configu file:
-
-```json
-{
-  "stores": {
-    "launch-darkly-store": {
-      "type": "launch-darkly",
-      "configuration": {
-        "address": "https://vault.example.com",
-        "engine": "example-engine",
-        "token": "example-token"
-      }
-    }
-  }
-}
-```
-
 ### Test command
 
-```bash
-configu test --store "launch-darkly-store" --clean
-```
+Not supported
 
 ### Upsert command
 
-```bash
-configu upsert --store "launch-darkly-store" --set "test" --schema "./get-started.cfgu.json" \
-    -c "GREETING=hey" \
-    -c "SUBJECT=configu node.js sdk"
-```
+Not supported
 
 ### Eval and export commands
 
@@ -125,16 +116,9 @@ Export result:
 
 ### Delete command
 
-Clean up the previous upsert by using:
-
-```bash
-configu delete --store "launch-darkly-store" --set "test" --schema "./get-started.cfgu.json"
-```
+Not supported
 
 ## Examples
 
 Secrets list:
-![image](./img/hashicorp-vault-secret-list.png)
-
-Upserted values to the `test` config set:
-![image](./img/hashicorp-vault-upsert-result.png)
+![image](./img/launch-darkly-feature-flag-list.png)
