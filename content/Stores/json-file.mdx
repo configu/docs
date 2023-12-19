@@ -8,9 +8,9 @@ Integrates the Configu Orchestrator with your JSON files.
 
 ## Initialization
 
-Configu's CLI needs to be directed to your desired file by providing a file path via the `path` parameter. Configs are stored in the JSON file in a root-level array, if using an existing file, make sure it matches this format.
+Configu needs to be directed to your desired file by providing a file path via the `path` parameter. Configs are stored in the JSON file in a root-level array, if using an existing file, make sure it matches this format.
 
-Example .configu file store configuration for CLI usage:
+Example [.configu file](../cli-config) file store configuration for CLI usage:
 
 ```json
 {
@@ -46,7 +46,10 @@ import {
   try {
     const store = new JsonFileConfigStore({ path: 'store.json' });
     const set = new ConfigSet('test');
-    const schema = new ConfigSchema(path.join(__dirname, 'get-started.cfgu.json'));
+    const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
+    const fileContent = await fs.readFile(absolutePath, { encoding: 'utf8' });
+    const schemaContents = JSON.parse(fileContent);
+    const schema = new ConfigSchema('get-started', schemaContents);
 
     await new TestCommand({ store, clean: true }).run();
 
