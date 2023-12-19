@@ -176,12 +176,12 @@
           "slug": "hashicorp-vault"
         },
         {
-          "title": "AWS Secrets Manager",
-          "slug": "aws-secrets-manager"
-        },
-        {
           "title": "AWS Parameter Store",
           "slug": "aws-parameter-store"
+        },
+        {
+          "title": "AWS Secrets Manager",
+          "slug": "aws-secrets-manager"
         },
         {
           "title": "Azure Key Vault",

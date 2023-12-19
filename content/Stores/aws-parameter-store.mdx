@@ -4,11 +4,13 @@ slug: aws-parameter-store
 title: AWS Parameter store
 ---
 
-Integrates the Configu Orchestrator with AWS Parameter Store.
+Integrates the Configu Orchestrator with [AWS Parameter Store](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ssm).
 
 ## Initialization
 
-Configu's needs to be authorized to access your AWS Secrets Manager account. By default, Configu uses the standard authentication method AWS uses, if you have the right IAM access credentials, there's no special action to take.
+Configu's needs to be authorized to access your AWS Secrets Manager account. By default, Configu uses the standard authentication methods that the AWS SDKs use, if you have the right IAM access credentials, there's no special action to take. Otherwise, you need to supply the credentials according to the interface that you use:
+
+- [Node.js SDK & CLI configuration options](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-ssm/Interface/SSMClientConfig)
 
 Example [.configu file](../cli-config) file store configuration for CLI usage:
 

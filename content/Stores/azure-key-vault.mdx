@@ -4,11 +4,11 @@ slug: azure-key-vault
 title: Azure Key Vault
 ---
 
-Integrates the Configu Orchestrator with Azure Key Vault.
+Integrates the Configu Orchestrator with [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault).
 
 ## Initialization
 
-Configu needs to be authorized to access Azure Key Vault. This can be done using the [default azure credentials](https://www.npmjs.com/package/@azure/identity#defaultazurecredential) which by default will read account information specified via [environment variables](https://www.npmjs.com/package/@azure/identity#environment-variables) and use it to authenticate. The `vaultUrl` parameter must always be provided.
+Configu needs to be authorized to access Azure Key Vault. Configu uses the [default azure credentials](https://www.npmjs.com/package/@azure/identity#defaultazurecredential) which by default will read account information specified via [environment variables](https://www.npmjs.com/package/@azure/identity#environment-variables) and use it to authenticate. The `vaultUrl` parameter must always be provided.
 
 The examples below will use the following environment variables for authentication: `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `AZURE_TENANT_ID` in conjunction with the required `vaultUrl` parameter.
 

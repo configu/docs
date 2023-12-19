@@ -4,11 +4,11 @@ slug: hashicorp-vault
 title: HashiCorp Vault
 ---
 
-Integrates the Configu Orchestrator with HashiCorp Vault.
+Integrates the Configu Orchestrator with [HashiCorp Vault](https://developer.hashicorp.com/vault/docs).
 
 ## Initialization
 
-Configu needs to be authorized to access your HashiCorp vault account. By default, Configu attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. The `engine` parameter must always be provided.
+Configu needs to be authorized to access your HashiCorp vault account. For this, you need to provide the following parameters: `address`, `engine`, `token`. By default, Configu attempts to use the following environment variables for the vault address and token: `VAULT_ADDR`, `VAULT_TOKEN`. The `engine` parameter must always be provided.
 
 Example [.configu file](../cli-config) file store configuration for CLI usage:
 
