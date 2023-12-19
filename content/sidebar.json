@@ -226,6 +226,10 @@
         {
           "title": "CloudBees",
           "slug": "cloud-bees"
+        },
+        {
+          "title": "LocalForage",
+          "slug": "localforage"
         }
       ]
     },
