@@ -168,6 +168,10 @@
           "slug": "json-file"
         },
         {
+          "title": "INI file",
+          "slug": "ini-file"
+        },
+        {
           "title": "HashiCorp Vault",
           "slug": "hashicorp-vault"
         },
