@@ -1,24 +1,24 @@
 ---
-id: cockroachdb
-slug: cockroachdb
-title: CockroachDB
+id: json-file
+slug: json-file
+title: JSON File
 ---
 
-Integrates the Configu Orchestrator with a CockroachDB database.
+Integrates the Configu Orchestrator with your JSON files.
 
 ## Initialization
 
-Configu needs to be authorized to access your database instance. View the configuration options [here](https://typeorm.io/data-source-options#postgres--cockroachdb-data-source-options).
+Configu's CLI needs to be directed to your desired file by providing a file path via the `path` parameter. Configs are stored in the JSON file in a root-level array, if using an existing file, make sure it matches this format.
 
 Example .configu file store configuration for CLI usage:
 
 ```json
 {
   "stores": {
-    "cockroachdb-store": {
-      "type": "cockroachdb",
+    "json-file-store": {
+      "type": "json-file",
       "configuration": {
-        "url": "example://username:password@example-host"
+        "path": "path/to/file.json"
       }
     }
   }
@@ -31,9 +31,8 @@ Example .configu file store configuration for CLI usage:
 
 ```js
 import path from 'path';
-import fs from 'fs/promises';
 import {
-  CockroachDBConfigStore,
+  JsonFileConfigStore,
   ConfigSet,
   ConfigSchema,
   UpsertCommand,
@@ -45,14 +44,9 @@ import {
 
 (async () => {
   try {
-    const store = new CockroachDBConfigStore({
-      url: 'example://username:password@example-host',
-    });
+    const store = new JsonFileConfigStore({ path: 'store.json' });
     const set = new ConfigSet('test');
-    const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
-    const fileContent = await fs.readFile(absolutePath, { encoding: 'utf8' });
-    const schemaContents = JSON.parse(fileContent);
-    const schema = new ConfigSchema('get-started', schemaContents);
+    const schema = new ConfigSchema(path.join(__dirname, 'get-started.cfgu.json'));
 
     await new TestCommand({ store, clean: true }).run();
 
@@ -73,7 +67,7 @@ import {
     }).run();
 
     const configurationData = await new ExportCommand({
-      pipe: data,
+      data,
     }).run();
 
     console.log(configurationData);
@@ -96,13 +90,13 @@ coming soon
 ### Test command
 
 ```bash
-configu test --store "cockroachdb-store" --clean
+configu test --store "json-file-store" --clean
 ```
 
 ### Upsert command
 
 ```bash
-configu upsert --store "cockroachdb-store" --set "test" --schema "./get-started.cfgu.json" \
+configu upsert --store "json-file-store" --set "test" --schema "./get-started.cfgu.json" \
     -c "GREETING=hey" \
     -c "SUBJECT=configu node.js sdk"
 ```
@@ -110,7 +104,7 @@ configu upsert --store "cockroachdb-store" --set "test" --schema "./get-started.
 ### Eval and export commands
 
 ```bash
-configu eval --store "cockroachdb-store" --set "test" --schema "./get-started.cfgu.json" \
+configu eval --store "json-file-store" --set "test" --schema "./get-started.cfgu.json" \
  | configu export
 ```
 
@@ -129,5 +123,30 @@ Export result:
 Clean up the previous upsert by using:
 
 ```bash
-configu delete --store "cockroachdb-store" --set "test" --schema "./get-started.cfgu.json"
+configu delete --store "json-file-store" --set "test" --schema "./get-started.cfgu.json"
+```
+
+## Examples
+
+Empty JSON file store before upsert:
+
+```json
+[]
+```
+
+JSON file store after upsert:
+
+```json
+[
+  {
+    "key": "GREETING",
+    "set": "test",
+    "value": "hey"
+  },
+  {
+    "key": "SUBJECT",
+    "set": "test",
+    "value": "configu node.js sdk"
+  }
+]
 ```

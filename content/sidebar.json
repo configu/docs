@@ -164,6 +164,10 @@
       "isOpenByDefault": false,
       "items": [
         {
+          "title": "JSON file",
+          "slug": "json-file"
+        },
+        {
           "title": "HashiCorp Vault",
           "slug": "hashicorp-vault"
         },
