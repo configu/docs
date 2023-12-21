@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/docs/*"
-  to = "/:splat"
-  status = 200
