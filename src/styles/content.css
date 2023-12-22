@@ -271,7 +271,7 @@
   }
 
   .admonition p {
-    @apply my-2.5 text-black;
+    @apply my-2.5 text-black dark:text-white;
   }
 
   .collapsible p {
@@ -282,7 +282,7 @@
     @apply max-w-full;
 
     *:not(a) {
-      @apply leading-normal text-black;
+      @apply leading-normal text-black dark:text-white;
     }
 
     h2 {
