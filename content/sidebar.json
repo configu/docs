@@ -78,6 +78,10 @@
           "slug": "configs-editor"
         },
         {
+          "title": "Configs Request",
+          "slug": "configs-request"
+        },
+        {
           "title": "Configs History",
           "slug": "configs-history"
         },
