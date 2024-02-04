@@ -51,9 +51,19 @@ curl --request POST \
 </Admonition>
 
 If everything went well, you should get a response with status `200` and your tag is ready to use.
-You can now view it in the history log and revert to it if necessary.
+You can now view it in the history log and revert to it if necessary by opening the action menu and clicking **Show diff**.
 
 ![image](./img/configs-history/history-tags.png)
+
+![image](./img/configs-history/history-show-diff.png)
+
+![image](./img/configs-history/history-revert-tag.png)
+
+<Admonition type="info">
+
+- Only members with the `Admin` role have permission to access the `show diff` action and revert a tag.
+
+</Admonition>
 
 #### Evaluating with a tag
 
@@ -118,14 +128,22 @@ To evaluate using the CLI, make sure to set the `CONFIGU_TAG` [environment varia
 
 You can view the content of a tag by clicking `explore tag`.
 
-Pic of explore tag action
+![image](./img/configs-history/history-explore-tag.png)
 
-This will take you to the explorer tab where you will see the snapshot of the the tag and you can utilize the existing features of the tab to explore it. At any point you can exit the exploration mode by clicking `return to latest tag` in the banner at the top of the page.
+This will take you to the explorer tab where you will see the snapshot of the the tag. You can utilize the existing features of the tab to explore the snapshot.
 
-pic of explore
+![image](./img/configs-history/history-exploration-mode.png)
 
-- note view constraints
-- note authorization still being in effect
+<Admonition type="info">
+
+- All navigation options are disabled during tag exploration.
+- All regular config action menu options besides `show value` are disabled during tag exploration. You can view the value of the configs if you have the appropriate permission.
+
+</Admonition>
+
+At any point you can exit the exploration mode by clicking `return to latest tag` in the banner at the top of the page.
+
+![image](./img/configs-history/history-exit-exploration-mode.png)
 
 ### Rollbacks
 
