@@ -25,7 +25,7 @@ The `Cfgu` format represents a set of properties that define essential character
   - This property is optional.
 - **schema**: Specifies a [JSON-schema](https://json-schema.org/specification) that the configuration value must match.
   - This property is optional and applicable when the type is set to JSONSchema.
-- **lazy**: Specifies that a value for a given configuration key should only be set during the [eval command](../commands/#eval-and-export) execution, either using the `configs` parameter or the `--config` flag in the CLI.
+- **lazy**: Specifies that a value for a given configuration key should only be set during the [eval command](../commands/#eval-and-export) execution.
   - This property is optional.
   - Existing store values are omitted during evaluations.
   - Lazy configs cannot be [upserted](../commands/#upsert).
