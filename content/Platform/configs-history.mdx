@@ -39,7 +39,7 @@ curl --request POST \
   --header 'Org: YOUR_ORG_ID' \
   --header 'Token: YOUR_TOKEN' \
   --data '{
-	"tag": "V0.0.0"
+	"tag": "v1.0.0"
 }'
 ```
 
@@ -50,7 +50,7 @@ curl --request POST \
   Your organization ID can be found under [organization settings](/settings)
 </Admonition>
 
-If everything went well, you should get a response with status `200` and your tag is ready to use.
+Upon success (status 200), your tag will be ready for use.
 You can now view it in the history log and revert to it if necessary by opening the action menu and clicking **Show diff**.
 
 ![image](./img/configs-history/history-tags.png)
@@ -61,7 +61,7 @@ You can now view it in the history log and revert to it if necessary by opening 
 
 <Admonition type="info">
 
-- Only members with the `Admin` role have permission to access the `show diff` action and revert a tag.
+- Only members with the `Admin` role have permission to access the `show diff` and `revert` actions.
 
 </Admonition>
 
@@ -88,7 +88,7 @@ import schemaContents from './get-started.cfgu.json';
         org: process.env.CONFIGU_ORG,
         token: process.env.CONFIGU_TOKEN,
       },
-      tag: 'V0.0.0',
+      tag: 'v1.0.0',
     });
     const set = new ConfigSet('test');
     const schema = new ConfigSchema('get-started', schemaContents);
@@ -108,7 +108,7 @@ import schemaContents from './get-started.cfgu.json';
 })();
 ```
 
-To evaluate using the CLI, make sure to set the `CONFIGU_TAG` [environment variable](../cli-config/#environment-variables) to the tag name you wish to use or provide the `tag` parameter directly [via a `.configu` file](cli-config).
+To evaluate using the CLI, make sure to set the `CONFIGU_TAG` environment variable to the tag name you wish to use or provide the `tag` parameter directly [via a `.configu` file](../cli-config).
 
 <Admonition type="warning">
 
