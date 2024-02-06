@@ -16,6 +16,7 @@ The history log is available for three entities:
 ![image](./img/configs-history/history-sets.png)
 
 ### Revision Tags
+
 Tags are a way to mark a specific snapshot of the organization's configs as a version.
 Once a tag is created, you can compare it with the current state of your organization and revert to it.
 **Tags can be created, viewed, and reverted only by the organization's admins.**
@@ -25,6 +26,7 @@ Once a tag is created, you can compare it with the current state of your organiz
 </Admonition>
 
 #### Create a tag
+
 In order to create a tag you'll first need to create a token with the `Admin` role.
 See [Tokens](/tokens/#assign-roles-to-a-token) for more information about creating tokens and assigning them roles.
 
@@ -37,9 +39,10 @@ curl --request POST \
   --header 'Org: YOUR_ORG_ID' \
   --header 'Token: YOUR_TOKEN' \
   --data '{
-	"tag": "V0.0.0"
+	"tag": "v1.0.0"
 }'
-````
+```
+
 <Admonition type="info">
   Tag can be any alphanumeric string. optionally with the following characters: `. _ / -`
 </Admonition>
@@ -47,10 +50,100 @@ curl --request POST \
   Your organization ID can be found under [organization settings](/settings)
 </Admonition>
 
-If everything went well, you should get a response with status `200` and your tag is ready to use.
-You can now view it in the history log and revert to it if necessary.
+Upon success (status 200), your tag will be ready for use.
+You can now view it in the history log and revert to it if necessary by opening the action menu and clicking **Show diff**.
 
 ![image](./img/configs-history/history-tags.png)
+
+![image](./img/configs-history/history-show-diff.png)
+
+![image](./img/configs-history/history-revert-tag.png)
+
+<Admonition type="info">
+
+- Only members with the `Admin` role have permission to access the `show diff` and `revert` actions.
+
+</Admonition>
+
+#### Evaluating with a tag
+
+You can use a tag to evaluate your configs with a specific snapshot of any existing tags to ensure your evaluations are deterministic. To do this, use `ConfiguConfigStore` with the `tag` parameter using any existing tag name.
+
+Example usage with the [Node.js SDK](../sdk/nodejs-sdk):
+
+```js
+import {
+  ConfiguConfigStore,
+  ConfigSet,
+  ConfigSchema,
+  EvalCommand,
+  ExportCommand,
+} from '@configu/node';
+import schemaContents from './get-started.cfgu.json';
+
+(async () => {
+  try {
+    const store = new ConfiguConfigStore({
+      credentials: {
+        org: process.env.CONFIGU_ORG,
+        token: process.env.CONFIGU_TOKEN,
+      },
+      tag: 'v1.0.0',
+    });
+    const set = new ConfigSet('test');
+    const schema = new ConfigSchema('get-started', schemaContents);
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const configurationData = await new ExportCommand({
+      pipe: data,
+    }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
+To evaluate using the CLI, make sure to set the `CONFIGU_TAG` environment variable to the tag name you wish to use or provide the `tag` parameter directly [via a `.configu` file](../cli-config).
+
+<Admonition type="warning">
+
+- Attempting to evaluate a tag that does not exist will result in an error.
+- Evaluating configs without having the `read` permission will return in an empty value.
+
+</Admonition>
+
+<Admonition type="info">
+
+- Evaluations with a tag will be marked with the tag in the [audit log](/audit-log).
+- Evaluations with a tag will trigger webhooks with the tag name in the payload as `tag`.
+
+</Admonition>
+
+#### Exploring a tag
+
+You can view the content of a tag by clicking `explore tag`.
+
+![image](./img/configs-history/history-explore-tag.png)
+
+This will take you to the explorer tab where you will see the snapshot of the the tag. You can utilize the existing features of the tab to explore the snapshot.
+
+![image](./img/configs-history/history-exploration-mode.png)
+
+<Admonition type="info">
+
+- All navigation options are disabled during tag exploration.
+- All regular config action menu options besides `show value` are disabled during tag exploration. You can view the value of the configs if you have the appropriate permission.
+
+</Admonition>
+
+At any point you can exit the exploration mode by clicking `return to latest tag` in the banner at the top of the page.
+
+![image](./img/configs-history/history-exit-exploration-mode.png)
 
 ### Rollbacks
 
