@@ -118,6 +118,12 @@ The Export command in the CLI is built on top of the Export command and provides
 
 </Admonition>
 
+<Admonition type="tip">
+
+The Export command in the SDK supports an optional `keys` parameter that allows you to mutate the configuration keys according to your requirements by providing a callback.
+
+</Admonition>
+
 ```bash
 configu eval \
   --store 'configu' --set 'production' --schema './service.cfgu.json' --config "AWS_REGION=us-east-1" \
@@ -167,6 +173,7 @@ import {
 
     const configurationData = await new ExportCommand({
       data,
+      keys: (key) => key.toUpperCase(),
     }).run();
   } catch (error) {
     console.error(error);
