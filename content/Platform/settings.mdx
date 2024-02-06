@@ -18,6 +18,22 @@ Here you can find your organization information, including org and owner.
 
 ![image](./img/settings/settings-general-domains.png)
 
+## Protected Sets
+
+For stricter access control, owners can define protected sets via the Settings page. Any mutation of protected sets within the organization will trigger change requests that are [queued for approval by an admin](../approval-queue).
+
+![image](./img/settings/settings-general-protected-sets.png)
+
+<Admonition type="tip">
+
+Config sets that do not yet exist can also be protected.
+
+</Admonition>
+
+Mutations of protected sets create a `Upsert Config Request` [audit](../audit-log) entry.
+
+![image](./img/settings/settings-general-upsert-config-request-audit.png)
+
 ## Organization Plan
 
 <Admonition>

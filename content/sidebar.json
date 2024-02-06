@@ -86,6 +86,10 @@
           "slug": "configs-compare"
         },
         {
+          "title": "Approval Queue",
+          "slug": "approval-queue"
+        },
+        {
           "title": "Activity Logs",
           "slug": "audit-log"
         },
