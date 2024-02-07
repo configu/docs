@@ -1,0 +1,62 @@
+---
+id: localforage
+slug: localforage
+title: LocalForage
+---
+
+Integrates the Configu Orchestrator with your desired web app async data store via [localForage](https://localforage.github.io/localForage/).
+
+## Initialization
+
+The localForage store needs to be initialized with the [localForage configuration options](https://localforage.github.io/localForage/#settings-api-config).
+
+## Browser SDK Usage
+
+```js
+import {
+  LocalForageConfigStore,
+  ConfigSet,
+  ConfigSchema,
+  UpsertCommand,
+  EvalCommand,
+  ExportCommand,
+  TestCommand,
+  DeleteCommand,
+} from '@configu/browser';
+
+(async () => {
+  try {
+    const store = new LocalForageConfigStore({ name: 'example-db-name' });
+    const set = new ConfigSet('test');
+    const schema = new ConfigSchema('get-started', schemaContents);
+
+    await new TestCommand({ store, clean: true }).run();
+
+    await new UpsertCommand({
+      store,
+      set,
+      schema,
+      configs: {
+        GREETING: 'hey',
+        SUBJECT: 'configu node.js sdk',
+      },
+    }).run();
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const configurationData = await new ExportCommand({
+      data,
+    }).run();
+
+    console.log(configurationData);
+
+    await new DeleteCommand({ store, set, schema }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```

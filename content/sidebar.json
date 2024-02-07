@@ -164,6 +164,80 @@
       ]
     },
     {
+      "title": "Config Stores",
+      "isOpenByDefault": false,
+      "items": [
+        {
+          "title": "JSON file",
+          "slug": "json-file"
+        },
+        {
+          "title": "INI file",
+          "slug": "ini-file"
+        },
+        {
+          "title": "HashiCorp Vault",
+          "slug": "hashicorp-vault"
+        },
+        {
+          "title": "AWS Parameter Store",
+          "slug": "aws-parameter-store"
+        },
+        {
+          "title": "AWS Secrets Manager",
+          "slug": "aws-secrets-manager"
+        },
+        {
+          "title": "Azure Key Vault",
+          "slug": "azure-key-vault"
+        },
+        {
+          "title": "GCP Secret Manager",
+          "slug": "gcp-secret-manager"
+        },
+        {
+          "title": "Kubernetes Secret",
+          "slug": "kubernetes-secret"
+        },
+        {
+          "title": "SQLite",
+          "slug": "sqlite"
+        },
+        {
+          "title": "MySQL",
+          "slug": "mysql"
+        },
+        {
+          "title": "MariaDB",
+          "slug": "mariadb"
+        },
+        {
+          "title": "PostgreSQL",
+          "slug": "postgres"
+        },
+        {
+          "title": "CockroachDB",
+          "slug": "cockroachdb"
+        },
+        {
+          "title": "Microsoft SQL Server",
+          "slug": "mssql"
+        },
+        {
+          "title": "LaunchDarkly",
+          "slug": "launch-darkly"
+        },
+        {
+          "title": "CloudBees",
+          "slug": "cloud-bees"
+        },
+        {
+          "title": "LocalForage",
+          "slug": "localforage"
+        }
+      ]
+    },
+    {
       "title": "IDE Plugins",
       "isOpenByDefault": false,
       "items": [

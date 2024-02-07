@@ -1,0 +1,137 @@
+---
+id: sqlite
+slug: sqlite
+title: SQLite
+---
+
+Integrates the Configu Orchestrator with a [SQLite](https://www.sqlite.org/docs.html) database.
+
+## Initialization
+
+Configu needs to be authorized to access your database instance. View the configuration options [here](https://typeorm.io/data-source-options#better-sqlite3-data-source-options).
+
+Example [.configu file](../cli-config) file store configuration for CLI usage:
+
+```json
+{
+  "stores": {
+    "sqlite-store": {
+      "type": "sqlite",
+      "configuration": {
+        "database": "example.sql"
+      }
+    }
+  }
+}
+```
+
+## SDK Usage
+
+<CodeTabs labels={["Node SDK", "Python SDK","Go SDK"]}>
+
+```js
+import path from 'path';
+import fs from 'fs/promises';
+import {
+  SQLiteConfigStore,
+  ConfigSet,
+  ConfigSchema,
+  UpsertCommand,
+  EvalCommand,
+  ExportCommand,
+  TestCommand,
+  DeleteCommand,
+} from '@configu/node';
+
+(async () => {
+  try {
+    const store = new SQLiteConfigStore({
+      database: 'example.sql',
+    });
+    const set = new ConfigSet('test');
+    const absolutePath = path.resolve(path.join(__dirname, 'get-started.cfgu.json'));
+    const fileContent = await fs.readFile(absolutePath, { encoding: 'utf8' });
+    const schemaContents = JSON.parse(fileContent);
+    const schema = new ConfigSchema('get-started', schemaContents);
+
+    await new TestCommand({ store, clean: true }).run();
+
+    await new UpsertCommand({
+      store,
+      set,
+      schema,
+      configs: {
+        GREETING: 'hey',
+        SUBJECT: 'configu node.js sdk',
+      },
+    }).run();
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const configurationData = await new ExportCommand({
+      pipe: data,
+    }).run();
+
+    console.log(configurationData);
+
+    await new DeleteCommand({ store, set, schema }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
+```python
+coming soon
+```
+
+```GO
+coming soon
+```
+
+</CodeTabs>
+
+## CLI Usage
+
+### Test command
+
+```bash
+configu test --store "sqlite-store" --clean
+```
+
+### Upsert command
+
+```bash
+configu upsert --store "sqlite-store" --set "test" --schema "./get-started.cfgu.json" \
+    -c "GREETING=hey" \
+    -c "SUBJECT=configu node.js sdk"
+```
+
+### Eval and export commands
+
+```bash
+configu eval --store "sqlite-store" --set "test" --schema "./get-started.cfgu.json" \
+ | configu export
+```
+
+Export result:
+
+```json
+{
+  "GREETING": "hey",
+  "SUBJECT": "configu node.js sdk",
+  "MESSAGE": "hey, configu node.js sdk!"
+}
+```
+
+### Delete command
+
+Clean up the previous upsert by using:
+
+```bash
+configu delete --store "sqlite-store" --set "test" --schema "./get-started.cfgu.json"
+```
