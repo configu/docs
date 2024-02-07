@@ -19,7 +19,7 @@ This section contains reference documentation for working with the Configu CLI. 
 
 ## configu autocomplete [SHELL]
 
-display autocomplete installation instructions
+Display autocomplete installation instructions.
 
 ```bash
 USAGE
@@ -32,7 +32,7 @@ FLAGS
   -r, --refresh-cache  Refresh cache (ignores displaying instructions)
 
 DESCRIPTION
-  display autocomplete installation instructions
+  Display autocomplete installation instructions.
 
 EXAMPLES
   $ configu autocomplete
@@ -87,14 +87,14 @@ USAGE
 
 FLAGS
   -c, --config=<value>...  'key=value' pairs to override fetched `Configs`
-  --schema=<value>         (required) `ConfigSchema` (config-keys declaration) path/to/[schema].cfgu.json file to
+      --schema=<value>     (required) `ConfigSchema` (config-keys declaration) path/to/[schema].cfgu.json file to
                            operate the eval against. The keys declared in the `ConfigSchema` will be fetched and
                            evaluated from the to the `ConfigStore`. In case of key duplication from multiple
                            `ConfigSchema`, the order of the --schema flag in the pipe will come to hand as the rightmost
                            key overriding the rest
-  --set=<value>            `ConfigSet` (config-values context) to fetch `Configs` from. Use an empty string for the root
+      --set=<value>        `ConfigSet` (config-values context) to fetch `Configs` from. Use an empty string for the root
                            set
-  --store=<value>          `ConfigStore` (configs data-source) to fetch `Configs` from
+      --store=<value>      `ConfigStore` (configs data-source) to fetch `Configs` from
 
 DESCRIPTION
   Fetch `Configs` from `ConfigStore` on demand based on `ConfigSet` and `ConfigSchema`
@@ -125,8 +125,8 @@ Export `Configs` as configuration data in various modes
 ```bash
 USAGE
   $ configu export [--empty] [--explain | --format
-    JSON|YAML|Dotenv|KubernetesConfigMap|HelmValues|TerraformTfvars|TOML | --template <value> | --source | --run
-    <value>] [--label <value>] [--eol ] [--template-input object|array ]
+    JSON|CompactJSON|YAML|Dotenv|KubernetesConfigMap|HelmValues|TerraformTfvars|TOML | --template <value> | --source |
+    --run <value>] [--label <value>] [--eol ] [--template-input object|array ]
 
 FLAGS
   --[no-]empty               Omits all empty (non-value) from the exported `Configs`
@@ -134,7 +134,7 @@ FLAGS
   --explain                  Outputs metadata on the exported `Configs`
   --format=<option>          Format exported `Configs` to common configuration formats. Redirect the output to file, if
                              needed
-                             <options: JSON|YAML|Dotenv|KubernetesConfigMap|HelmValues|TerraformTfvars|TOML>
+                             <options: JSON|CompactJSON|YAML|Dotenv|KubernetesConfigMap|HelmValues|TerraformTfvars|TOML>
   --label=<value>            Metadata required in some formats like Kubernetes ConfigMap
   --run=<value>              Spawns executable as child-process and pass exported `Configs` as environment variables
   --source                   Source exported `Configs` as environment variables to the current shell
@@ -210,22 +210,22 @@ Create a `ConfigSchema` .cfgu file in the current working dir
 
 ```bash
 USAGE
-  $ configu init [--dir <value>] [-f] [--get-started | --name <value> | --import <value> | --example]
+  $ configu init [--name <value>] [--dir <value>] [-f] [--start | --import <value> | --example]
     [--defaults ] [--types ]
 
 FLAGS
-  -f, --force       Override the .cfgu file in case it already exists
-  --defaults        Assign the values from the imported file as the default value for the keys that will be created in
-                    the .cfgu file
-  --dir=<value>     [default: /home/runner/work/configu/configu/ts/packages/cli] Set the directory that will contain the
-                    new .cfgu file. The default is the current directory
-  --example         Fills the new .cfgu file with a variety of detailed examples
-  --get-started     Fills the new .cfgu file with a get-started example
-  --import=<value>  Import an existing .env or flat .json file and create a new .cfgu file from its records
-  --name=<value>    [default: cli] Set the name of the new .cfgu file. The default is the current directory name in
-                    parameter-case
-  --types           Infer the Cfgu type of the values from the imported file and assign them to the keys that will be
-                    created in the .cfgu file. The default is String
+  -f, --force           Override the .cfgu file in case it already exists
+      --defaults        Assign the values from the imported file as the default value for the keys that will be created
+                        in the .cfgu file
+      --dir=<value>     [default: /home/runner/work/configu/configu/ts/packages/cli] Set the directory that will contain
+                        the new .cfgu file. The default is the current directory
+      --example         Fills the new .cfgu file with a variety of detailed examples
+      --import=<value>  Import an existing .env or flat .json file and create a new .cfgu file from its records
+      --name=<value>    [default: cli] Set the name of the new .cfgu file. The default is the current directory name in
+                        parameter-case
+      --start           Fills the new .cfgu file with a get-started example
+      --types           Infer the Cfgu type of the values from the imported file and assign them to the keys that will
+                        be created in the .cfgu file. The default is String
 
 DESCRIPTION
   Create a `ConfigSchema` .cfgu file in the current working dir
@@ -279,9 +279,11 @@ Run a script from the scripts section in the .configu file
 
 ```bash
 USAGE
-  $ configu run -s <value>
+  $ configu run -s <value> [-d <value>]
 
 FLAGS
+  -d, --dir=<value>     Set the directory where the script is being executed. The default is the location of the
+                        .configu file
   -s, --script=<value>  (required) The script property from the scripts section in the .configu file
 
 DESCRIPTION
@@ -324,13 +326,13 @@ update the configu CLI
 
 ```bash
 USAGE
-  $ configu update [CHANNEL] [-a] [-v <value> | -i] [--force]
+  $ configu update [CHANNEL] [-a] [--force] [-i | -v <value>]
 
 FLAGS
-  -a, --available        Install a specific version.
+  -a, --available        See available versions.
   -i, --interactive      Interactively select version to install. This is ignored if a channel is provided.
   -v, --version=<value>  Install a specific version.
-  --force                Force a re-download of the requested version.
+      --force            Force a re-download of the requested version.
 
 DESCRIPTION
   update the configu CLI
@@ -363,13 +365,13 @@ USAGE
 
 FLAGS
   -c, --config=<value>...  'key=value' pairs to upsert. Use an empty value to delete a `Config`
-  --import=<value>         Import an existing .env or flat .json file and create `Configs` from its records
-  --schema=<value>         (required) `ConfigSchema` (config-keys declaration) path/to/[schema].cfgu.json file to
+      --import=<value>     Import an existing .env or flat .json file and create `Configs` from its records
+      --schema=<value>     (required) `ConfigSchema` (config-keys declaration) path/to/[schema].cfgu.json file to
                            operate the upsert against. The keys declared in the `ConfigSchema` can be assigned a value
                            in the `ConfigSet` that will be upserted as a `Config` to the `ConfigStore`
-  --set=<value>            (required) `ConfigSet` (config-values context) to assign the upserted `Configs`. Use an empty
+      --set=<value>        (required) `ConfigSet` (config-values context) to assign the upserted `Configs`. Use an empty
                            string for the root set
-  --store=<value>          (required) `ConfigStore` (configs data-source) to upsert `Configs` to
+      --store=<value>      (required) `ConfigStore` (configs data-source) to upsert `Configs` to
 
 DESCRIPTION
   Create, update or delete `Configs` from a `ConfigStore`

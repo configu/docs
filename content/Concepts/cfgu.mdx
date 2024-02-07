@@ -7,13 +7,28 @@ The `Cfgu` format represents a set of properties that define essential character
 
 ### Properties
 
-- **type**: Specifies the data type that the configuration represents. This property is required.
-- **pattern**: Allows you to define a regular expression that the configuration value must match. This property is optional and applicable when the type is set to Regex.
-- **default**: Provides a default value for the configuration if it is not explicitly provided. This property is optional.
-- **required**: Determines whether the configuration is required for the application to function correctly. When set to true, the configuration must be provided. This property is optional.
-- **depends**: Specifies a list of other configurations that the current configuration depends on. This property is optional.
-- **template**: Allows you to define Mustache templates that can be used to construct a templated value from other configuration values. This property is optional and applicable when the type is set to String.
-- **description**: Provides a description of the configuration's role in the code. This property is optional.
+- **type**: Specifies the data type that the configuration represents.
+  - This property is required.
+- **pattern**: Allows you to define a regular expression that the configuration value must match.
+  - This property is optional and applicable when the type is set to Regex.
+- **default**: Provides a default value for the configuration if it is not explicitly provided.
+  - This property is optional.
+- **required**: Determines whether the configuration is required for the application to function correctly.
+  - When set to true, the configuration must be provided. This property is optional.
+- **depends**: Specifies a list of other configurations that the current configuration depends on.
+  - This property is optional.
+- **template**: Allows you to define Mustache templates that can be used to construct a templated value from other configuration values.
+  - This property is optional and applicable when the type is set to String.
+- **description**: Provides a description of the configuration's role in the code.
+  - This property is optional.
+- **options**: Specifies a list of values that the configuration value must match.
+  - This property is optional.
+- **schema**: Specifies a [JSON-schema](https://json-schema.org/specification) that the configuration value must match.
+  - This property is optional and applicable when the type is set to JSONSchema.
+- **lazy**: Specifies that a value for a given configuration key should only be set during the [eval command](../commands/#eval-and-export) execution.
+  - This property is optional.
+  - Existing store values are omitted during evaluations.
+  - Lazy configs cannot be [upserted](../commands/#upsert).
 
 ### Available Types
 
@@ -61,6 +76,9 @@ Configu supports the following types for configuration values:
 - **AlibabaRegion**: Represents a Alibaba Cloud region. Example: `cn-hangzhou`
 - **MongoId**: Represents a MongoDB identifier. Example: `64ef397579c9984350addd44`
 - **DateTime**: Represents a date/timestamp/hour. Example: `2023-08-30`, `12:30`, `1661846400000`
+- **ARN**: Represents a Amazon Resource Names (ARNs). Example: `arn:partition:service:region:account-id:resource-id`
+- **JSONschema**: Represents JSON data that must conform to a JSON schema. Example: `{"key":value}`
+  - Also requires `schema` property to be specified. Example: `{"type": "object", "properties": {"GREETING": {"type": "string"}, "SUBJECT": {"type": "string"}}, "required": ["GREETING", "SUBJECT"]}`
 
 <Admonition type="tip">
 

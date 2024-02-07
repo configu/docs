@@ -86,8 +86,18 @@ module.exports = {
         ],
       },
     },
+    // TODO: once the Netlify migration is complete, remove the Gatsby Cloud plugin.
     {
       resolve: 'gatsby-plugin-gatsby-cloud',
+      options: {
+        headers: {
+          '/*': ['Access-Control-Allow-Origin: *'],
+          '/fonts/*': ['Cache-Control: public, max-age=31536000, immutable'],
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify',
       options: {
         headers: {
           '/*': ['Access-Control-Allow-Origin: *'],
