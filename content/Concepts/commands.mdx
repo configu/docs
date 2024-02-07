@@ -49,6 +49,7 @@ configu upsert \
 ```js
 import path from 'path';
 import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
+import schemaContents from './service.cfgu.json';
 
 (async () => {
   try {
@@ -59,7 +60,7 @@ import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@con
       },
     });
     const set = new ConfigSet('production');
-    const schema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
+    const schema = new ConfigSchema('service', schemaContents);
 
     await new UpsertCommand({
       store,
@@ -82,6 +83,7 @@ Upsert configs from a previous Eval command:
 ```js
 import path from 'path';
 import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
+import schemaContents from './service.cfgu.json';
 
 (async () => {
   try {
@@ -92,7 +94,7 @@ import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@con
       },
     });
     const set = new ConfigSet('production');
-    const schema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
+    const schema = new ConfigSchema('service', schemaContents);
 
     const data = await new EvalCommand({
       store,
@@ -186,6 +188,8 @@ import {
   EvalCommand,
   ExportCommand,
 } from '@configu/node';
+import serviceSchemaContents from './service.cfgu.json';
+import secretsSchemaContents from './secrets.cfgu.json';
 
 (async () => {
   try {
@@ -199,8 +203,8 @@ import {
 
     const set = new ConfigSet('production');
 
-    const serviceSchema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
-    const secretsSchema = new ConfigSchema(path.join(__dirname, 'secrets.cfgu.json'));
+    const serviceSchema = new ConfigSchema('service', serviceSchemaContents);
+    const secretsSchema = new ConfigSchema('secrets', secretsSchemaContents);
 
     const previous = await new EvalCommand({
       store: configuStore,
