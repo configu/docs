@@ -15,6 +15,7 @@ The `Upsert` command is used to create, update or delete `Configs` from a `Confi
 - A single ConfigSet
 - A snigle ConfigSchema
 - key=value pairs to upsert
+- EvalCommandReturn from previous Eval command
 
 #### Output
 
@@ -22,10 +23,16 @@ The `Upsert` command is used to create, update or delete `Configs` from a `Confi
 
 #### Flow
 
+- Iterate through each EvalCommandReturn from the input:
+  - Filter out keys that are not declared in the ConfigSchema.
+  - Filter out keys that are declared as templates in the ConfigSchema.
+  - Validate the value against the matching Cfgu properties in the ConfigSchema (e.g. type, pattern, etc.).
+  - Construct a Config object using the input ConfigSet path, ConfigSchema uid, key, and value.
 - Iterate through each key=value pair from the input:
   - Validate that the key has been declared in the ConfigSchema.
   - Validate the value against the matching Cfgu properties in the ConfigSchema (e.g. type, pattern, etc.).
   - Construct a Config object using the input ConfigSet path, ConfigSchema uid, key, and value.
+- Merge both of the previous results. If there are duplicates key=value pairs take precedence.
 - Call the ConfigStore's set method with the constructed Config objects.
   - If a Config with the same set, schema, and key does not already exist in the ConfigStore, it will be created.
   - If a Config with the same set, schema, and key already exists in the ConfigStore, it will be updated with the new value.
@@ -42,6 +49,7 @@ configu upsert \
 ```js
 import path from 'path';
 import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
+import schemaContents from './service.cfgu.json';
 
 (async () => {
   try {
@@ -52,7 +60,7 @@ import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@con
       },
     });
     const set = new ConfigSet('production');
-    const schema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
+    const schema = new ConfigSchema('service', schemaContents);
 
     await new UpsertCommand({
       store,
@@ -63,6 +71,44 @@ import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@con
         { key: 'AWS_REGION', value: 'us-east-1' },
         { key: 'DELETE_ME', value: '' },
       ],
+    }).run();
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
+Upsert configs from a previous Eval command:
+
+```js
+import path from 'path';
+import { ConfiguConfigStore, ConfigSet, ConfigSchema, UpsertCommand } from '@configu/node';
+import schemaContents from './service.cfgu.json';
+
+(async () => {
+  try {
+    const store = new ConfiguConfigStore({
+      credentials: {
+        org: process.env.CONFIGU_ORG,
+        token: process.env.CONFIGU_TOKEN,
+      },
+    });
+    const set = new ConfigSet('production');
+    const schema = new ConfigSchema('service', schemaContents);
+
+    const data = await new EvalCommand({
+      store,
+      set,
+      schema,
+    }).run();
+
+    const hcvStore = new HashiCorpVaultConfigStore();
+
+    await new UpsertCommand({
+      store: hcvStore,
+      set,
+      schema,
+      pipe: data,
     }).run();
   } catch (error) {
     console.error(error);
@@ -142,6 +188,8 @@ import {
   EvalCommand,
   ExportCommand,
 } from '@configu/node';
+import serviceSchemaContents from './service.cfgu.json';
+import secretsSchemaContents from './secrets.cfgu.json';
 
 (async () => {
   try {
@@ -155,8 +203,8 @@ import {
 
     const set = new ConfigSet('production');
 
-    const serviceSchema = new ConfigSchema(path.join(__dirname, 'service.cfgu.json'));
-    const secretsSchema = new ConfigSchema(path.join(__dirname, 'secrets.cfgu.json'));
+    const serviceSchema = new ConfigSchema('service', serviceSchemaContents);
+    const secretsSchema = new ConfigSchema('secrets', secretsSchemaContents);
 
     const previous = await new EvalCommand({
       store: configuStore,
@@ -168,11 +216,11 @@ import {
       store: hcvStore,
       set,
       schema: secretsSchema,
-      previous,
+      pipe: previous,
     }).run();
 
     const configurationData = await new ExportCommand({
-      data,
+      pipe: data,
       keys: (key) => key.toUpperCase(),
     }).run();
   } catch (error) {
