@@ -39,8 +39,8 @@ import schemaContents from './get-started.cfgu.json';
       set,
       schema,
       configs: {
-        GREETING: 'hey',
-        SUBJECT: 'configu node.js sdk',
+        'GREETING': 'hey',
+        'SUBJECT': 'configu node.js sdk'
       },
     }).run();
 
@@ -58,6 +58,37 @@ import schemaContents from './get-started.cfgu.json';
   }
 })();
 ```
+
+**With fs & path**:
+
+```js
+import path from 'path';
+import fs from 'fs/promises';
+import {
+  JsonFileConfigStore,
+  ConfigSet,
+  ConfigSchema,
+  UpsertCommand,
+  EvalCommand,
+  ExportCommand,
+} from '@configu/node';
+
+(async () => {
+  try {
+    const store = new JsonFileConfigStore({ path: 'config-db.json' });
+    const set = new ConfigSet('test');
+
+    const schemaContentsString = await fs.readFile(path.join(__dirname, 'get-started.cfgu.json'));
+    const schemaContents = JSON.parse(schemaContentsString);
+    const schema = new ConfigSchema('get-started', schemaContents);
+    
+    ...
+  } catch (error) {
+    console.error(error);
+  }
+})();
+```
+
 
 ## Reference
 
@@ -84,3 +115,4 @@ npm install
 ### Contribute
 
 Follow the [Sending a Pull Request](https://github.com/configu/configu/blob/main/CONTRIBUTING.md#sending-a-pull-request) section from the `CONTRIBUTING.md`.
+
